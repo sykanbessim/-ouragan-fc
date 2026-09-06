@@ -1,0 +1,868 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#F57C20">
+<title>Ouragan FC — Application officielle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.main-logo{display:block;position:relative;z-index:20}
+.logo-video{width:150px;height:150px;object-fit:contain;display:block;background:transparent}
+@media(max-width:560px){.logo-video{width:108px;height:108px}}
+</style>
+</head>
+<body>
+
+<svg class="icon-sprite" aria-hidden="true">
+  <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 16h12l-1.5-2.2V10a4.5 4.5 0 0 0-9 0v3.8L6 16Z"/><path d="M10 19h4M12 3V2"/></symbol>
+  <symbol id="icon-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7Zm-3 2.2-3.2.3m4.3 3.2-2.4 3.1m6.2-3.1 2.4 3.1m-8.6 0 .7 3.1m7.9-3.1-.7 3.1m.4-9.7 3.2.3"/></symbol>
+  <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3.5 19c.4-4 2.2-6 5.5-6s5.1 2 5.5 6M14 14c3.7-.8 5.8.9 6.5 4"/></symbol>
+  <symbol id="icon-trophy" viewBox="0 0 24 24"><path d="M7 4h10v4c0 4-2 6-5 6s-5-2-5-6V4Zm3 10v4m4-4v4M8 21h8"/><path d="M7 6H4v2c0 2 1.3 3 3.5 3M17 6h3v2c0 2-1.3 3-3.5 3"/></symbol>
+  <symbol id="icon-calendar" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 2v6m10-6v6M3 10h18M7 14h2m3 0h2m3 0h1m-11 3h2m3 0h2"/></symbol>
+  <symbol id="icon-bolt" viewBox="0 0 24 24"><path d="m14 2-9 12h7l-2 8 9-12h-7l2-8Z"/></symbol>
+  <symbol id="icon-home" viewBox="0 0 24 24"><path d="m3 11 9-8 9 8v10h-6v-6H9v6H3V11Z"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4.5 21c.5-5 3-7 7.5-7s7 2 7.5 7"/></symbol>
+  <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M12 21S3 16 3 9.5C3 6 7.4 4 12 8c4.6-4 9-2 9 1.5C21 16 12 21 12 21Z"/></symbol>
+  <symbol id="icon-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><circle cx="12" cy="12" r="2.5"/></symbol>
+</svg>
+<div class="page">
+<div class="page-wave-watermark" aria-hidden="true"></div>
+
+<header class="header">
+  <a href="index.html" class="brand main-logo" aria-label="Ouragan FC">
+      <img class="logo-video" src="logo-anime-transparent.webp" alt="Ouragan FC">
+    </a>
+
+  <div class="header-impact" aria-label="Slogans Ouragan FC">
+    <span><b>LA FIERTÉ</b><strong>DANS LA BATAILLE</strong></span>
+    <span><b>ENSEMBLE</b><strong>PLUS FORTS</strong></span>
+    <span><b>BRAZZAVILLE</b><strong>EN FORCE</strong></span>
+  </div>
+
+  <div class="header-actions">
+    <a href="#notifications" class="icon-link" aria-label="Notifications">
+      <span class="badge">3</span><svg class="storm-icon"><use href="#icon-bell"/></svg>
+    </a>
+    <a href="#menu" class="icon-link" aria-label="Menu">☰</a>
+  </div>
+
+  <img class="header-waves" src="waves.svg" alt="">
+</header>
+
+<main>
+
+<section class="hero">
+  <img class="hero-animation" src="hero-soccer-animated.webp" alt="Joueurs d’Ouragan FC en action">
+  <img class="hero-bottom-logo" src="logo-anime-transparent.webp" alt="Ouragan FC">
+  <div class="hero-shade"></div>
+  <div class="hero-filigree" aria-hidden="true"></div>
+  <div class="hero-content">
+    <p>ENSEMBLE</p>
+    <h1>PLUS FORTS</h1>
+    <span class="small-line"></span>
+    <a href="#notre-club" class="button">DÉCOUVRIR LE CLUB <b>›</b></a>
+  </div>
+  <div class="carousel-dots"><span></span><span class="on"></span><span></span><span></span></div>
+</section>
+
+<section class="next-match panel">
+  <div class="tab-title"><svg class="label-icon"><use href="#icon-calendar"/></svg> PROCHAIN MATCH</div>
+
+  <div class="match-row">
+    <div class="date">
+      <strong>21</strong>
+      <b>AOÛT</b>
+      <span>2026</span>
+      <small>▣ SAMEDI</small>
+    </div>
+
+    <div class="clubs">
+      <a href="ouragan-fc.html" class="club">
+        <img src="logo.png" alt="Ouragan FC">
+        <span>OURAGAN FC</span>
+      </a>
+
+      <div class="versus">VS</div>
+
+      <a href="cnff.html" class="club">
+        <div class="cnff-logo">CNFF</div>
+        <span>CNFF</span>
+      </a>
+    </div>
+
+    <div class="kickoff">
+      <b>◷ 10H00</b>
+      <strong>J-02</strong>
+      <span>16h 43m 21s</span>
+      <small>AVANT LE COUP D’ENVOI</small>
+    </div>
+  </div>
+
+  <a href="https://maps.google.com/" class="venue">📍 STADE MUNICIPAL - OURAGAN</a>
+
+  <a href="billetterie.html" class="big-link">INFOS &amp; BILLETTERIE <b>›</b></a>
+</section>
+
+<section class="news panel">
+  <div class="section-head">
+    <strong>ACTUALITÉS DU CLUB</strong>
+    <a href="https://www.ouraganfc.com/category/actualite/" target="_blank" rel="noopener">VOIR TOUT ›</a>
+  </div>
+
+  <div class="news-grid">
+    <article class="news-card">
+      <div class="thumb"><img src="photo/actualite-tournoi.jpg" alt="Tournoi CNFF 2026" loading="lazy"><span>NOUVEAU</span></div>
+      <small>18 AOÛT 2026</small><h3>OURAGAN FC ENTRE EN BATAILLE !</h3>
+      <p>Nos jeunes U11 et U14 sont prêts à défendre nos couleurs lors de la 7ᵉ édition du tournoi du CNFF.</p><button class="news-more" type="button" data-news-target="news-tournoi" aria-controls="news-tournoi" aria-expanded="false">LIRE LA SUITE ›</button>
+    </article>
+    <article class="news-card">
+      <div class="thumb"><img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais" loading="lazy"><span>FÉLICITATIONS</span></div>
+      <small>14 FÉVRIER 2026</small><h3>REPRÉSENTANT CONGOLAIS</h3>
+      <p>Ouragan FC félicite l’AS Otohô pour sa qualification en quart de finale de la Coupe de la Confédération CAF.</p><button class="news-more" type="button" data-news-target="news-otoho" aria-controls="news-otoho" aria-expanded="false">LIRE LA SUITE ›</button>
+    </article>
+    <article class="news-card">
+      <div class="thumb"><img src="photo/actualite-jeancy-fila.png" alt="Jeancy Fila alias Kaboré" loading="lazy"><span>TRANSFERT</span></div>
+      <small>19 JANVIER 2026</small><h3>JEANCY FILA ALIAS KABORÉ</h3>
+      <p>Notre joueur Jeancy Fila, alias Kaboré, rejoint Diablo Rojo FC en Guinée équatoriale.</p><button class="news-more" type="button" data-news-target="news-jeancy" aria-controls="news-jeancy" aria-expanded="false">LIRE LA SUITE ›</button>
+    </article>
+    <article class="news-card">
+      <div class="thumb"><img src="photo/actualite-nouvelle-annee.png" alt="Préparation du footballeur pour une nouvelle année" loading="lazy"><span>FORMATION</span></div>
+      <small>19 JANVIER 2026</small><h3>UNE NOUVELLE ANNÉE</h3>
+      <p>La progression repose sur six piliers : technique, tactique, physique, mental, spirituel et social.</p><button class="news-more" type="button" data-news-target="news-annee" aria-controls="news-annee" aria-expanded="false">LIRE LA SUITE ›</button>
+    </article>
+    <article class="news-card">
+      <div class="thumb"><img src="photo/actualite-couleurs.png" alt="Fiers des couleurs d’Ouragan FC" loading="lazy"><span>CLUB</span></div>
+      <small>19 JANVIER 2026</small><h3>FIERS DE NOS COULEURS</h3>
+      <p>Orange et noir : une identité qui rassemble les joueurs, les familles et tous les supporters d’Ouragan FC.</p><button class="news-more" type="button" data-news-target="news-couleurs" aria-controls="news-couleurs" aria-expanded="false">LIRE LA SUITE ›</button>
+    </article>
+  </div>
+
+  <div class="news-reader" id="news-tournoi" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
+    <img src="photo/actualite-tournoi.jpg" alt="Tournoi CNFF 2026">
+    <div><small>18 AOÛT 2026 · ACTUALITÉ</small><h2>OURAGAN FC ENTRE EN BATAILLE !</h2>
+      <p>Le compte à rebours est lancé ! À l’occasion de la 7ᵉ édition 2026 du Tournoi du Centre National de Formation de Football, nos jeunes U11 et U14 sont prêts à défendre nos couleurs avec fierté, rigueur et passion.</p>
+      <p><strong>21, 23, 25 et 27 août 2026 :</strong> quatre matchs et un seul objectif, aller le plus loin possible. Tous derrière Ouragan FC !</p>
+    </div>
+  </div>
+  <div class="news-reader" id="news-otoho" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
+    <img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais">
+    <div><small>14 FÉVRIER 2026 · ACTUALITÉ</small><h2>REPRÉSENTANT CONGOLAIS</h2>
+      <p>Le club de Ligue 2 nationale Zone A, Ouragan Football Club, félicite l’unique représentant congolais AS Otohô pour sa qualification en quart de finale de la Coupe de la Confédération CAF.</p>
+    </div>
+  </div>
+  <div class="news-reader" id="news-jeancy" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
+    <img src="photo/actualite-jeancy-fila.png" alt="Jeancy Fila alias Kaboré">
+    <div><small>19 JANVIER 2026 · TRANSFERT</small><h2>JEANCY FILA ALIAS KABORÉ</h2>
+      <p>Nous sommes ravis d’annoncer que notre joueur Jeancy Fila, alias Kaboré, vient de signer avec Diablo Rojo FC en Guinée équatoriale.</p>
+      <p>Ce jeune talent a démontré un potentiel exceptionnel sur le terrain. Nous lui souhaitons le meilleur dans cette nouvelle aventure.</p>
+    </div>
+  </div>
+  <div class="news-reader" id="news-annee" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
+    <img src="photo/actualite-nouvelle-annee.png" alt="Préparation du footballeur pour une nouvelle année">
+    <div><small>19 JANVIER 2026 · FORMATION</small><h2>UNE NOUVELLE ANNÉE</h2>
+      <p>Avant de vouloir changer de club, de coach ou de pays, chaque footballeur doit se regarder avec honnêteté. Le football moderne exige de la conscience, de la structure et une vision claire.</p>
+      <p>La progression repose sur six piliers : la technique, la tactique, le physique, le mental, le spirituel et le social. Le talent ouvre la porte ; la discipline et le mental permettent d’y rester.</p>
+    </div>
+  </div>
+  <div class="news-reader" id="news-couleurs" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
+    <img src="photo/actualite-couleurs.png" alt="Fiers des couleurs d’Ouragan FC">
+    <div><small>19 JANVIER 2026 · CLUB</small><h2>FIERS DE NOS COULEURS</h2>
+      <p>Orange et noir : plus que des couleurs, une identité qui rassemble les joueurs, les éducateurs, les familles et tous les supporters d’Ouragan FC.</p>
+    </div>
+  </div>
+</section>
+
+<nav class="shortcut-grid">
+  <a href="#match-results" class="shortcut js-matches-toggle" aria-expanded="false" aria-controls="match-results">
+    <span class="picto"><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b>
+  </a>
+  <a href="equipes.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b>
+  </a>
+  <a href="classement.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b>
+  </a>
+  <a href="calendrier.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-calendar"/></svg></span><b>CALENDRIER</b>
+  </a>
+  <a href="actualites.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-bolt"/></svg></span><b>ACTUALITÉS</b>
+  </a>
+</nav>
+
+<section class="match-results panel" id="match-results" hidden>
+  <div class="results-head">
+    <div><strong>MATCHS JOUÉS</strong><span>DERNIERS RÉSULTATS</span></div>
+    <button class="results-close" type="button" aria-label="Fermer les résultats">×</button>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-16">16 AOÛT</time>
+    <div><b>OURAGAN FC</b><span>METAL 10</span></div>
+    <strong><em>3</em><i>–</i>1</strong>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-12">12 AOÛT</time>
+    <div><b>CNFF</b><span>OURAGAN FC</span></div>
+    <strong>2<i>–</i><em>2</em></strong>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-08">8 AOÛT</time>
+    <div><b>OURAGAN FC</b><span>E. MAKABANDILOU</span></div>
+    <strong><em>2</em><i>–</i>0</strong>
+  </div>
+</section>
+
+<section class="club-profile panel" id="notre-club" aria-labelledby="club-profile-title">
+  <button class="club-profile-toggle" type="button" aria-expanded="false" aria-controls="club-profile-content">
+    <span class="club-profile-head">
+      <img src="logo.png" alt="Logo d’Ouragan Football Club">
+      <span class="club-profile-title-wrap">
+        <span>DEPUIS 2020</span>
+        <h2 id="club-profile-title">NOTRE CLUB</h2>
+        <span class="club-profile-motto">La fierté dans la bataille</span>
+      </span>
+    </span>
+    <span class="club-profile-action">
+      <span class="club-profile-action-label">LIRE TOUT</span>
+      <span class="club-profile-chevron" aria-hidden="true">⌄</span>
+    </span>
+  </button>
+
+  <div class="club-profile-content" id="club-profile-content" hidden>
+    <div class="club-facts">
+      <div><small>NOM DU CLUB</small><strong>Ouragan Football Club</strong></div>
+      <div><small>CRÉATION</small><strong>2020</strong></div>
+      <div><small>PALMARÈS</small><strong>Champion départemental 2021</strong></div>
+      <div><small>LIGUE ACTUELLE</small><strong>Ligue 2 nationale</strong></div>
+      <div><small>COULEURS</small><strong><i class="club-color orange"></i><i class="club-color black"></i> Orange &amp; noir</strong></div>
+      <div><small>PRÉSIDENT</small><strong>Beni Carisma Migambanou</strong></div>
+    </div>
+
+    <div class="club-profile-columns">
+      <div class="academy-block">
+        <span><svg class="section-icon"><use href="#icon-ball"/></svg></span>
+        <div><small>ACADÉMIE</small><strong>U13 · U15 · U17</strong></div>
+      </div>
+      <div class="club-objectives">
+        <h3>NOS OBJECTIFS</h3>
+        <ul>
+          <li>Développer le football local et promouvoir la formation des jeunes joueurs.</li>
+          <li>Atteindre les niveaux supérieurs du football national et international.</li>
+          <li>Créer un environnement de jeu sain et convivial pour les joueurs et les supporters.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="president-message panel" aria-labelledby="president-title">
+  <div class="president-feature">
+    <div class="president-video-wrap">
+      <img class="president-portrait" src="photo/president-anime.webp" alt="Portrait animé du président">
+    </div>
+    <div class="president-message-head">
+      <small>🎙️ OURAGAN FC</small>
+      <strong id="president-title">LE MOT DU PRÉSIDENT</strong>
+      <span>Beni Carisma Migambanou</span>
+      <button class="president-text-toggle" type="button" aria-expanded="false" aria-controls="president-content">LIRE LE MESSAGE</button>
+    </div>
+  </div>
+  <div class="president-content" id="president-content" hidden>
+    <article class="president-letter">
+      <p><strong>Chers supporters, chers amis du club,</strong></p>
+      <p>Je suis ravi de vous accueillir sur notre site internet et de partager avec vous notre vision pour l’avenir de notre club.</p>
+      <p>En tant que président, je suis convaincu que notre club a un potentiel énorme et que nous pouvons réaliser de grandes choses ensemble. Nous sommes une équipe jeune et dynamique, avec des joueurs talentueux et des entraîneurs expérimentés.</p>
+      <p>Notre objectif est de promouvoir le football à Brazzaville et de contribuer à la formation de jeunes talents congolais. Nous sommes engagés à offrir un spectacle de qualité à nos supporters et à représenter notre ville avec fierté.</p>
+      <p>Je remercie nos supporters pour leur soutien indéfectible et je les invite à nous rejoindre dans cette aventure. Ensemble, nous pouvons faire de notre club un club de référence en République du Congo.</p>
+      <p>Merci de votre soutien et à bientôt sur le terrain !</p>
+      <footer><span>Cordialement,</span><strong>Beni Carisma Migambanou</strong><small>PRÉSIDENT DU CLUB</small></footer>
+    </article>
+  </div>
+</section>
+
+<section class="tournament panel">
+  <div class="section-head">
+    <div>
+      <strong>🎟 TOURNOI DU CENTRE NATIONAL DE FORMATION DE FOOTBALL</strong>
+      <span>7ÈME ÉDITION 2026</span>
+    </div>
+    <a href="calendrier.html" class="small-button">VOIR LE CALENDRIER ›</a>
+  </div>
+
+  <div class="fixtures">
+    <a href="match-21-aout.html" class="fixture selected">
+      <div class="fixture-date"><b>21</b><span>AOÛT</span></div>
+      <div class="fixture-main">
+        <small>10H00</small>
+        <div class="mini-clubs">
+          <img src="logo.png" alt="">
+          <b>VS</b>
+          <div class="mini-cnff">CNFF</div>
+        </div>
+        <span>OURAGAN FC</span>
+      </div>
+    </a>
+
+    <a href="match-23-aout.html" class="fixture">
+      <div class="fixture-date"><b>23</b><span>AOÛT</span></div>
+      <div class="fixture-main">
+        <small>10H50</small>
+        <div class="mini-clubs"><div class="generic-logo">EM</div><b>VS</b><img src="logo.png" alt=""></div>
+        <span>E. MAKABANDILOU</span>
+      </div>
+    </a>
+
+    <a href="match-25-aout.html" class="fixture">
+      <div class="fixture-date"><b>25</b><span>AOÛT</span></div>
+      <div class="fixture-main">
+        <small>10H50</small>
+        <div class="mini-clubs"><div class="generic-logo">M10</div><b>VS</b><img src="logo.png" alt=""></div>
+        <span>METAL 10</span>
+      </div>
+    </a>
+
+    <a href="match-27-aout.html" class="fixture">
+      <div class="fixture-date"><b>27</b><span>AOÛT</span></div>
+      <div class="fixture-main">
+        <small>10H00</small>
+        <div class="mini-clubs"><img src="logo.png" alt=""><b>VS</b><div class="generic-logo">AJ</div></div>
+        <span>OURAGAN FC</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="gallery panel" aria-labelledby="gallery-title">
+  <div class="section-head">
+    <div>
+      <strong id="gallery-title">📸 GALERIE PHOTOS</strong>
+      <span>LES ÉQUIPES D’OURAGAN FC</span>
+    </div>
+    <div class="gallery-controls">
+      <button type="button" class="gallery-arrow gallery-prev" aria-label="Photo précédente">‹</button>
+      <button type="button" class="gallery-arrow gallery-next" aria-label="Photo suivante">›</button>
+    </div>
+  </div>
+  <div class="gallery-filters" role="group" aria-label="Choisir une équipe">
+    <button type="button" class="gallery-filter active" data-team="senior" aria-pressed="true">SENIOR A</button>
+    <button type="button" class="gallery-filter" data-team="equipe-b" aria-pressed="false">ÉQUIPE B</button>
+    <button type="button" class="gallery-filter" data-team="u15" aria-pressed="false">U15</button>
+    <button type="button" class="gallery-filter" data-team="u17" aria-pressed="false">U17</button>
+  </div>
+  <div class="gallery-track">
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A.jpg" alt="Équipe senior A" loading="lazy"><span>PHOTO D’ÉQUIPE</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A 2.jpg" alt="Équipe senior A, photo 2" loading="lazy"><span>EN MATCH</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A3.jpg" alt="Équipe senior A, photo 3" loading="lazy"><span>LE GROUPE</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A 4.jpeg" alt="Équipe senior A, photo 4" loading="lazy"><span>EN ACTION</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A 5.jpg" alt="Équipe senior A, photo 5" loading="lazy"><span>ÉQUIPE SENIOR A</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A 6.jpeg" alt="Équipe senior A, photo 6" loading="lazy"><span>JOUR DE MATCH</span></button>
+    <button type="button" class="gallery-card" data-team="senior"><img src="photo/Équipe senior A 7.jpeg" alt="Équipe senior A, photo 7" loading="lazy"><span>À L’ENTRAÎNEMENT</span></button>
+    <button type="button" class="gallery-card" data-team="equipe-b" hidden><img src="photo/equipe B.jpeg" alt="Équipe B d’Ouragan FC" loading="lazy"><span>ÉQUIPE B</span></button>
+    <button type="button" class="gallery-card" data-team="u15" hidden><img src="photo/equipe U15.jpeg" alt="Équipe U15 d’Ouragan FC" loading="lazy"><span>ÉQUIPE U15</span></button>
+    <button type="button" class="gallery-card" data-team="u15" hidden><img src="photo/equipe u15 a.jpg" alt="Équipe U15, photo 2" loading="lazy"><span>LE GROUPE U15</span></button>
+    <button type="button" class="gallery-card" data-team="u15" hidden><img src="photo/equipe u15 b.jpg" alt="Équipe U15, photo 3" loading="lazy"><span>U15 EN DÉPLACEMENT</span></button>
+    <button type="button" class="gallery-card" data-team="u17" hidden><img src="photo/Équipe U17.jpeg" alt="Équipe U17" loading="lazy"><span>ÉQUIPE U17</span></button>
+    <button type="button" class="gallery-card" data-team="u17" hidden><img src="photo/Équipe U17 q.jpeg" alt="Équipe U17, photo 2" loading="lazy"><span>LE GROUPE U17</span></button>
+  </div>
+</section>
+
+<section class="partners panel" id="partenaires" aria-labelledby="partners-title">
+  <button class="partners-toggle" type="button" aria-expanded="false" aria-controls="partners-content">
+    <span><small>🤝 GRANDISSONS ENSEMBLE</small><strong id="partners-title">DEVENEZ PARTENAIRE D’OURAGAN FC</strong></span>
+    <b class="partners-toggle-label">EN SAVOIR PLUS</b>
+  </button>
+
+  <div class="partners-content" id="partners-content" hidden>
+    <div class="partners-intro">
+      <p>Le club est en constante évolution et s’appuie sur l’engagement de celles et ceux qui souhaitent <strong>soutenir le sport local et les valeurs du football</strong>.</p>
+    </div>
+
+    <h3>DEVENIR PARTENAIRE, C’EST :</h3>
+    <div class="partner-benefits">
+      <div><span>↗</span><p>Contribuer au <strong>développement du club</strong></p></div>
+      <div><span><svg class="section-icon"><use href="#icon-ball"/></svg></span><p>Soutenir la <strong>formation des joueurs</strong></p></div>
+      <div><span><svg class="section-icon"><use href="#icon-heart"/></svg></span><p>Participer à la <strong>vie associative et sportive locale</strong></p></div>
+      <div><span><svg class="section-icon"><use href="#icon-eye"/></svg></span><p>Bénéficier d’une <strong>visibilité</strong> auprès des licenciés, des familles et du public</p></div>
+    </div>
+
+    <div class="partner-types">
+      <strong>DES PARTENARIATS ADAPTÉS À VOS OBJECTIFS</strong>
+      <p>Nous sommes ouverts à différents types de partenariats : <b>financiers, matériels ou institutionnels</b>, adaptés à la taille et aux objectifs de chaque structure.</p>
+      <div><span>ENTREPRISE</span><span>COMMERÇANT</span><span>ARTISAN</span><span>ACTEUR LOCAL</span></div>
+    </div>
+
+    <div class="partner-contact" id="partnership-contact">
+      <div>
+        <strong>CONSTRUISONS UN PROJET ENSEMBLE</strong>
+        <p>Votre soutien est essentiel pour accompagner nos projets sportifs et éducatifs. Pour toute demande d’information ou pour devenir partenaire, n’hésitez pas à nous contacter. Nous serons ravis d’échanger avec vous.</p>
+      </div>
+      <span class="partner-contact-label">CONTACT À RENSEIGNER</span>
+    </div>
+  </div>
+</section>
+
+<a href="reservation.html" class="support panel">
+  <div class="ticket">🎟️</div>
+  <div>
+    <strong>SOUTENEZ OURAGAN FC !</strong>
+    <span>Réservez vos places et venez vivre l’émotion avec nous !</span>
+  </div>
+  <b class="reserve">JE RÉSERVE ›</b>
+</a>
+
+</main>
+
+<footer class="legal-footer">
+  <address>
+    <strong>Ouragan FC</strong>
+    <span>18 rue Tsiba MFILOU</span>
+    <span>Brazzaville, République du Congo</span>
+  </address>
+  <button class="legal-toggle" type="button" aria-expanded="false" aria-controls="legal-content">Mentions légales</button>
+  <div class="legal-content" id="legal-content" hidden>
+    <h2>MENTIONS LÉGALES</h2>
+
+    <section>
+      <h3>ÉDITEUR DU SITE</h3>
+      <p>Nom du club : <strong>OURAGAN FC</strong><br>
+      Forme juridique : <strong>Association</strong><br>
+      Adresse : 18 rue Tsiba MFILOU, Brazzaville, République du Congo<br>
+      Téléphone : <a href="tel:+242065736867">+242 06 573 6867</a><br>
+      Adresse e-mail : <a href="mailto:contact@ouraganfc.com">contact@ouraganfc.com</a></p>
+    </section>
+
+    <section>
+      <h3>HÉBERGEMENT</h3>
+      <p>Le site est hébergé par :<br><strong>OVH</strong><br>
+      Adresse : <strong>2, rue Kellermann, 59100 Roubaix</strong><br>
+      Téléphone : <strong>1007</strong></p>
+    </section>
+
+    <section>
+      <h3>CONCEPTION ET RÉALISATION</h3>
+      <p>Site réalisé avec le CMS <strong>WordPress</strong>.</p>
+    </section>
+
+    <section>
+      <h3>PROPRIÉTÉ INTELLECTUELLE</h3>
+      <p>L’ensemble des contenus présents sur ce site (textes, images, logos, graphismes, documents, vidéos) est la propriété exclusive du club, sauf mention contraire.</p>
+      <p>Toute reproduction, représentation, modification ou diffusion, totale ou partielle, sans autorisation préalable, est interdite conformément aux dispositions du Code de la propriété intellectuelle.</p>
+    </section>
+
+    <section>
+      <h3>DONNÉES PERSONNELLES</h3>
+      <p>Les informations éventuellement recueillies via les formulaires sont destinées exclusivement au club et ne sont en aucun cas cédées à des tiers.</p>
+      <p>Conformément à la réglementation en vigueur (RGPD et loi Informatique et Libertés), vous disposez d’un droit d’accès, de rectification et de suppression des données vous concernant. Pour exercer ce droit, vous pouvez contacter : <a href="mailto:contact@ouraganfc.com">contact@ouraganfc.com</a>.</p>
+    </section>
+
+    <section>
+      <h3>COOKIES</h3>
+      <p>Le site peut être amené à utiliser des cookies à des fins de fonctionnement, de mesure d’audience ou d’amélioration de l’expérience utilisateur.</p>
+      <p>Vous pouvez configurer votre navigateur pour refuser les cookies.</p>
+    </section>
+
+    <section>
+      <h3>RESPONSABILITÉ</h3>
+      <p>Le club s’efforce de fournir des informations exactes et mises à jour. Toutefois, il ne saurait être tenu responsable des erreurs, omissions ou d’une indisponibilité temporaire du site.</p>
+    </section>
+  </div>
+</footer>
+
+<nav class="bottom-nav">
+  <a href="index.html" class="active"><span><svg><use href="#icon-home"/></svg></span><b>ACCUEIL</b></a>
+  <a href="#match-results" class="js-matches-toggle" aria-expanded="false" aria-controls="match-results"><span><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b></a>
+  <a href="equipes.html"><span><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b></a>
+  <a href="classement.html"><span><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b></a>
+  <a href="compte.html"><span><svg><use href="#icon-user"/></svg></span><b>COMPTE</b></a>
+</nav>
+
+</div>
+<div class="gallery-lightbox" hidden role="dialog" aria-modal="true" aria-label="Photo agrandie">
+  <button type="button" class="lightbox-close" aria-label="Fermer la photo">×</button>
+  <img src="" alt="">
+</div>
+<script>
+(() => {
+  const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelectorAll('.header-impact > span').forEach(slogan => {
+    let letterIndex = 0;
+    slogan.querySelectorAll('b, strong').forEach(line => {
+      const text = line.textContent;
+      line.setAttribute('aria-label', text);
+      line.textContent = '';
+      [...text].forEach(character => {
+        const letter = document.createElement('i');
+        letter.className = `impact-letter${character === ' ' ? ' space' : ''}`;
+        letter.setAttribute('aria-hidden', 'true');
+        letter.style.setProperty('--letter-delay', `${letterIndex * .045}s`);
+        letter.textContent = character === ' ' ? '\u00a0' : character;
+        line.appendChild(letter);
+        letterIndex += 1;
+      });
+    });
+  });
+
+  const newsCards = [...document.querySelectorAll('[data-news-target]')];
+  const newsReaders = [...document.querySelectorAll('.news-reader')];
+  const closeNewsReaders = () => {
+    newsReaders.forEach(reader => { reader.hidden = true; });
+    newsCards.forEach(card => card.setAttribute('aria-expanded', 'false'));
+    document.querySelectorAll('.news-card.is-open').forEach(item => item.classList.remove('is-open'));
+  };
+  newsCards.forEach(card => {
+    card.addEventListener('click', event => {
+      event.preventDefault();
+      const reader = document.getElementById(card.dataset.newsTarget);
+      const newsItem = card.closest('.news-card');
+      const wasOpen = reader && !reader.hidden;
+      closeNewsReaders();
+      if (!reader || !newsItem || wasOpen) return;
+      newsItem.appendChild(reader);
+      newsItem.classList.add('is-open');
+      reader.hidden = false;
+      card.setAttribute('aria-expanded', 'true');
+      requestAnimationFrame(() => newsItem.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' }));
+    });
+  });
+  newsReaders.forEach(reader => {
+    reader.querySelector('.news-reader-close').addEventListener('click', () => {
+      const opener = document.querySelector(`[data-news-target="${reader.id}"]`);
+      closeNewsReaders();
+      opener?.focus();
+    });
+  });
+
+  document.querySelectorAll('.hero-canvas').forEach(canvas => {
+    const ctx = canvas.getContext('2d');
+    const container = canvas.classList.contains('hero-canvas') ? canvas.parentElement : null;
+    let width = 0;
+    let height = 0;
+    let particles = [];
+    let canvasVisible = false;
+    let canvasFrame = 0;
+    let lastCanvasDraw = 0;
+
+    function resize() {
+      const ratio = Math.min(devicePixelRatio || 1, innerWidth <= 560 ? 1.25 : 1.5);
+      width = container ? container.clientWidth : innerWidth;
+      height = container ? container.clientHeight : innerHeight;
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
+      particles = Array.from({ length: Math.max(14, Math.round(width / 28)) }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        radius: 0.6 + Math.random() * 2.2,
+        speed: 0.25 + Math.random() * 0.75,
+        drift: (Math.random() - 0.5) * 0.3,
+        alpha: 0.2 + Math.random() * 0.65
+      }));
+    }
+
+    function draw(time = 0) {
+      canvasFrame = 0;
+      if (!canvasVisible || document.hidden) return;
+      if (time - lastCanvasDraw < 33) {
+        canvasFrame = requestAnimationFrame(draw);
+        return;
+      }
+      lastCanvasDraw = time;
+      ctx.clearRect(0, 0, width, height);
+      ctx.lineCap = 'round';
+      particles.forEach(particle => {
+        const glow = ctx.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius * 5);
+        glow.addColorStop(0, `rgba(255,126,40,${particle.alpha})`);
+        glow.addColorStop(1, 'rgba(255,92,0,0)');
+        ctx.fillStyle = glow;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.radius * 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = `rgba(255,145,70,${particle.alpha * 0.45})`;
+        ctx.lineWidth = particle.radius * 0.65;
+        ctx.beginPath();
+        ctx.moveTo(particle.x, particle.y);
+        ctx.lineTo(particle.x - 14 - particle.speed * 18, particle.y + 4);
+        ctx.stroke();
+        if (!reducedMotion) {
+          particle.x += particle.speed;
+          particle.y += particle.drift;
+          if (particle.x > width + 25) particle.x = -25;
+          if (particle.y < -10) particle.y = height + 10;
+          if (particle.y > height + 10) particle.y = -10;
+        }
+      });
+      if (!reducedMotion) canvasFrame = requestAnimationFrame(draw);
+    }
+
+    addEventListener('resize', resize);
+    resize();
+    const canvasObserver = new IntersectionObserver(entries => {
+      canvasVisible = entries[0].isIntersecting;
+      if (canvasVisible && !canvasFrame && !reducedMotion) canvasFrame = requestAnimationFrame(draw);
+    }, { rootMargin: '80px' });
+    canvasObserver.observe(canvas);
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && canvasVisible && !canvasFrame && !reducedMotion) canvasFrame = requestAnimationFrame(draw);
+    });
+    if (reducedMotion) {
+      canvasVisible = true;
+      draw(34);
+    }
+  });
+
+  const waveWatermark = document.querySelector('.page-wave-watermark');
+  const pageContainer = document.querySelector('.page');
+  const waveObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      entry.target.style.animationPlayState = entry.isIntersecting && !document.hidden ? 'running' : 'paused';
+    });
+  }, { rootMargin: '120px' });
+  let waveLayoutFrame = 0;
+  function createIndependentWaves() {
+    waveLayoutFrame = 0;
+    const spacing = 285;
+    const count = Math.ceil(pageContainer.scrollHeight / spacing) + 1;
+    if (waveWatermark.children.length === count) return;
+    const fragment = document.createDocumentFragment();
+    for (let index = 0; index < count; index++) {
+      const band = document.createElement('span');
+      band.style.top = `${index * spacing - 40}px`;
+      band.style.setProperty('--wave-duration', `${3.3 + (index % 5) * 0.76}s`);
+      band.style.setProperty('--wave-delay', `${-(index * 0.47)}s`);
+      const rotation = -1.1 + (index % 4) * 0.7;
+      band.style.setProperty('--wave-rotation', `${rotation}deg`);
+      band.style.setProperty('--wave-rotation-end', `${-rotation}deg`);
+      band.style.animationDirection = index % 2 ? 'alternate-reverse' : 'alternate';
+      band.style.animationPlayState = 'paused';
+      fragment.appendChild(band);
+    }
+    [...waveWatermark.children].forEach(band => waveObserver.unobserve(band));
+    waveWatermark.replaceChildren(fragment);
+    [...waveWatermark.children].forEach(band => waveObserver.observe(band));
+  }
+  const requestWaveLayout = () => {
+    if (!waveLayoutFrame) waveLayoutFrame = requestAnimationFrame(createIndependentWaves);
+  };
+  new ResizeObserver(requestWaveLayout).observe(pageContainer);
+  createIndependentWaves();
+
+  const results = document.querySelector('#match-results');
+  const matchButtons = document.querySelectorAll('.js-matches-toggle');
+
+  function setResults(open) {
+    results.hidden = !open;
+    matchButtons.forEach(button => button.setAttribute('aria-expanded', String(open)));
+    if (open) results.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+  }
+
+  matchButtons.forEach(button => button.addEventListener('click', event => {
+    event.preventDefault();
+    setResults(results.hidden);
+  }));
+  results.querySelector('.results-close').addEventListener('click', () => setResults(false));
+
+  const clubProfileToggle = document.querySelector('.club-profile-toggle');
+  const clubProfileContent = document.querySelector('#club-profile-content');
+  clubProfileToggle.addEventListener('click', () => {
+    const open = clubProfileContent.hidden;
+    clubProfileContent.hidden = !open;
+    clubProfileToggle.setAttribute('aria-expanded', String(open));
+    clubProfileToggle.querySelector('.club-profile-action-label').textContent = open ? 'RÉDUIRE' : 'LIRE TOUT';
+  });
+
+  document.querySelectorAll('.gallery').forEach(gallery => {
+    const galleryTrack = gallery.querySelector('.gallery-track');
+    const galleryImageObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const image = entry.target.querySelector('img');
+        if (image) image.style.animationPlayState = entry.isIntersecting && !document.hidden ? 'running' : 'paused';
+      });
+    }, { rootMargin: '80px' });
+    gallery.querySelectorAll('.gallery-card').forEach(card => {
+      const image = card.querySelector('img');
+      if (image) image.style.animationPlayState = 'paused';
+      galleryImageObserver.observe(card);
+    });
+    let galleryIndex = 0;
+    const visibleCards = () => [...galleryTrack.querySelectorAll('.gallery-card:not([hidden])')];
+    const showGalleryPhoto = index => {
+      const cards = visibleCards();
+      galleryIndex = Math.max(0, Math.min(index, cards.length - 1));
+      const target = cards[galleryIndex];
+      if (target) galleryTrack.scrollTo({
+        left: target.offsetLeft - galleryTrack.offsetLeft,
+        behavior: reducedMotion ? 'auto' : 'smooth'
+      });
+    };
+    gallery.querySelector('.gallery-prev').addEventListener('click', () => {
+      showGalleryPhoto(galleryIndex - 1);
+    });
+    gallery.querySelector('.gallery-next').addEventListener('click', () => {
+      showGalleryPhoto(galleryIndex + 1);
+    });
+    galleryTrack.addEventListener('scroll', () => {
+      const cards = visibleCards();
+      if (!cards.length) return;
+      galleryIndex = cards.reduce((closest, card, index) => {
+        const distance = Math.abs((card.offsetLeft - galleryTrack.offsetLeft) - galleryTrack.scrollLeft);
+        const closestDistance = Math.abs((cards[closest].offsetLeft - galleryTrack.offsetLeft) - galleryTrack.scrollLeft);
+        return distance < closestDistance ? index : closest;
+      }, 0);
+    }, { passive: true });
+    gallery.querySelectorAll('.gallery-filter').forEach(filter => {
+      filter.addEventListener('click', () => {
+        const selectedTeam = filter.dataset.team;
+        gallery.querySelectorAll('.gallery-filter').forEach(button => {
+          const active = button === filter;
+          button.classList.toggle('active', active);
+          button.setAttribute('aria-pressed', String(active));
+        });
+        gallery.querySelectorAll('.gallery-card').forEach(card => {
+          card.hidden = card.dataset.team !== selectedTeam;
+        });
+        galleryIndex = 0;
+        galleryTrack.scrollLeft = 0;
+      });
+    });
+  });
+
+  const lightbox = document.querySelector('.gallery-lightbox');
+  const lightboxImage = lightbox.querySelector('img');
+  let galleryOpener = null;
+  document.querySelectorAll('.gallery-card').forEach(card => card.addEventListener('click', () => {
+    galleryOpener = card;
+    const image = card.querySelector('img');
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt;
+    lightbox.hidden = false;
+    document.body.classList.add('lightbox-open');
+    lightbox.querySelector('.lightbox-close').focus();
+  }));
+
+  function closeLightbox() {
+    lightbox.hidden = true;
+    lightboxImage.src = '';
+    document.body.classList.remove('lightbox-open');
+    galleryOpener?.focus();
+  }
+  lightbox.querySelector('.lightbox-close').addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', event => { if (event.target === lightbox) closeLightbox(); });
+  addEventListener('keydown', event => { if (event.key === 'Escape' && !lightbox.hidden) closeLightbox(); });
+
+  const partnersToggle = document.querySelector('.partners-toggle');
+  const partnersContent = document.querySelector('#partners-content');
+  partnersToggle.addEventListener('click', () => {
+    const open = partnersContent.hidden;
+    partnersContent.hidden = !open;
+    partnersToggle.setAttribute('aria-expanded', String(open));
+    partnersToggle.querySelector('.partners-toggle-label').textContent = open ? 'RÉDUIRE' : 'EN SAVOIR PLUS';
+  });
+
+  const presidentTextToggle = document.querySelector('.president-text-toggle');
+  const presidentContent = document.querySelector('#president-content');
+  presidentTextToggle.addEventListener('click', () => {
+    const open = presidentContent.hidden;
+    const presidentWindow = presidentTextToggle.closest('.president-message');
+    if (!open) {
+      presidentContent.hidden = true;
+      presidentTextToggle.setAttribute('aria-expanded', 'false');
+      presidentTextToggle.textContent = 'LIRE LE MESSAGE';
+      presidentWindow.classList.remove('message-open');
+      return;
+    }
+
+    const openPresidentMessage = () => {
+      presidentContent.hidden = false;
+      presidentWindow.classList.add('message-open');
+      presidentTextToggle.setAttribute('aria-expanded', 'true');
+      presidentTextToggle.textContent = 'RÉDUIRE';
+    };
+
+    if (reducedMotion) {
+      openPresidentMessage();
+    } else {
+      openPresidentMessage();
+      presidentTextToggle.disabled = true;
+      presidentWindow.setAttribute('aria-busy', 'true');
+      presidentWindow.classList.add('is-rotating');
+      const finishPresidentAnimation = event => {
+        if (event.target !== presidentWindow || event.animationName !== 'president-window-spin') return;
+        presidentWindow.classList.remove('is-rotating');
+        presidentWindow.removeAttribute('aria-busy');
+        presidentTextToggle.disabled = false;
+        presidentWindow.removeEventListener('animationend', finishPresidentAnimation);
+      };
+      presidentWindow.addEventListener('animationend', finishPresidentAnimation);
+    }
+  });
+
+  const legalToggle = document.querySelector('.legal-toggle');
+  const legalContent = document.querySelector('#legal-content');
+  legalToggle.addEventListener('click', () => {
+    const open = legalContent.hidden;
+    legalContent.hidden = !open;
+    legalToggle.setAttribute('aria-expanded', String(open));
+    legalToggle.textContent = open ? 'Fermer les mentions légales' : 'Mentions légales';
+    if (open) legalContent.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+  });
+
+  const depthSections = [...document.querySelectorAll('.hero, main > .panel, main > .support')];
+  const nextMatch = document.querySelector('.next-match');
+  let depthFrame = 0;
+  const updateSectionDepth = () => {
+    depthFrame = 0;
+    const screenCenter = innerHeight / 2;
+    const maxDistance = innerHeight * 0.72;
+    depthSections.forEach(section => {
+      if (section.hidden) return;
+      const box = section.getBoundingClientRect();
+      const sectionCenter = box.top + box.height / 2;
+      const distance = Math.min(Math.abs(sectionCenter - screenCenter), maxDistance);
+      const proximity = 1 - distance / maxDistance;
+      const scale = reducedMotion ? 1 : 0.945 + proximity * 0.075;
+      section.style.setProperty('--scroll-scale', scale.toFixed(4));
+      section.style.setProperty('--scroll-lift', `${(-5 * proximity).toFixed(1)}px`);
+    });
+    if (nextMatch) {
+      const matchBox = nextMatch.getBoundingClientRect();
+      const matchCenter = matchBox.top + matchBox.height / 2;
+      const focusRange = innerHeight * .48;
+      const matchDistance = Math.min(Math.abs(matchCenter - screenCenter), focusRange);
+      const matchProximity = 1 - matchDistance / focusRange;
+      const logoGrowth = innerWidth <= 560 ? .28 : .42;
+      const matchScale = reducedMotion ? 1 : 1 + Math.pow(matchProximity, 1.7) * logoGrowth;
+      nextMatch.style.setProperty('--match-logo-scale', matchScale.toFixed(3));
+    }
+    document.querySelectorAll('.gallery').forEach(gallery => {
+      const box = gallery.getBoundingClientRect();
+      const travel = innerHeight + box.height;
+      const progress = Math.max(0, Math.min(1, (innerHeight - box.top) / travel));
+      const horizontalPan = reducedMotion ? 0 : 4 - progress * 8;
+      const horizontalShift = reducedMotion ? 0 : 16 - progress * 32;
+      gallery.style.setProperty('--gallery-pan', `${horizontalPan.toFixed(2)}%`);
+      gallery.style.setProperty('--gallery-shift', `${horizontalShift.toFixed(1)}px`);
+    });
+  };
+  const requestSectionDepth = () => {
+    if (!depthFrame) depthFrame = requestAnimationFrame(updateSectionDepth);
+  };
+  addEventListener('scroll', requestSectionDepth, { passive: true });
+  addEventListener('resize', requestSectionDepth);
+  updateSectionDepth();
+
+})();
+</script>
+</body>
+</html>
