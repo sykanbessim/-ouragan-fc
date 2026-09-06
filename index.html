@@ -4,6 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F57C20">
+<script>
+  try {
+    if (localStorage.getItem('ouragan-theme') === 'dark') {
+      document.documentElement.dataset.theme = 'dark';
+      document.querySelector('meta[name="theme-color"]').content = '#111313';
+    }
+  } catch (_) { /* Le sélecteur reste utilisable sans stockage local. */ }
+</script>
 <title>Ouragan FC — Application officielle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -52,6 +60,31 @@
 
   <img class="header-waves" src="waves.svg" alt="">
 </header>
+
+<div class="theme-toolbar">
+  <span class="theme-caption">L’AMBIANCE DU CLUB</span>
+  <button class="theme-toggle" type="button" aria-label="Activer le style sombre" aria-pressed="false">
+    <span class="theme-choice theme-choice-light"><span aria-hidden="true">☀</span> Classique</span>
+    <span class="theme-choice theme-choice-dark"><span aria-hidden="true">☾</span> Sombre</span>
+  </button>
+</div>
+<script>
+  (() => {
+    const toggle = document.querySelector('.theme-toggle');
+    const updateTheme = dark => {
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.setAttribute('aria-label', dark ? 'Activer le style classique' : 'Activer le style sombre');
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#111313' : '#F57C20';
+    };
+    updateTheme(document.documentElement.dataset.theme === 'dark');
+    toggle.addEventListener('click', () => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      updateTheme(dark);
+      try { localStorage.setItem('ouragan-theme', dark ? 'dark' : 'light'); } catch (_) {}
+    });
+  })();
+</script>
 
 <main>
 
