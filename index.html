@@ -1,14 +1,16 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#F57C20">
 <script>
   try {
-    if (localStorage.getItem('ouragan-theme') === 'dark') {
+    if (localStorage.getItem('ouragan-theme') !== 'light') {
       document.documentElement.dataset.theme = 'dark';
       document.querySelector('meta[name="theme-color"]').content = '#111313';
+    } else {
+      document.documentElement.dataset.theme = 'light';
     }
   } catch (_) { /* Le sélecteur reste utilisable sans stockage local. */ }
 </script>
@@ -26,6 +28,11 @@
 <body>
 
 <svg class="icon-sprite" aria-hidden="true">
+  <defs>
+    <clipPath id="footer-sweep" clipPathUnits="objectBoundingBox">
+      <path d="M0,.19 C.28,.07 .68,.11 1,0 L1,1 L0,1 Z"/>
+    </clipPath>
+  </defs>
   <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 16h12l-1.5-2.2V10a4.5 4.5 0 0 0-9 0v3.8L6 16Z"/><path d="M10 19h4M12 3V2"/></symbol>
   <symbol id="icon-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7Zm-3 2.2-3.2.3m4.3 3.2-2.4 3.1m6.2-3.1 2.4 3.1m-8.6 0 .7 3.1m7.9-3.1-.7 3.1m.4-9.7 3.2.3"/></symbol>
   <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3.5 19c.4-4 2.2-6 5.5-6s5.1 2 5.5 6M14 14c3.7-.8 5.8.9 6.5 4"/></symbol>
@@ -51,6 +58,7 @@
     <span><b>BRAZZAVILLE</b><strong>EN FORCE</strong></span>
   </div>
 
+  <p class="header-motto">PLUS QU’UN CLUB, UNE FAMILLE</p>
   <div class="header-actions">
     <a href="#notifications" class="icon-link" aria-label="Notifications">
       <span class="badge">3</span><svg class="storm-icon"><use href="#icon-bell"/></svg>
@@ -58,33 +66,13 @@
     <a href="#menu" class="icon-link" aria-label="Menu">☰</a>
   </div>
 
-  <img class="header-waves" src="waves.svg" alt="">
+  <svg class="header-curve" viewBox="0 0 1024 76" preserveAspectRatio="none" aria-hidden="true">
+    <path fill="#f6eee5" d="M0 53 C320 79 718 54 1024 5 L1024 76 L0 76Z"/>
+    <path fill="none" stroke="#ff922f" stroke-width="5" d="M0 53 C320 79 718 54 1024 5"/>
+  </svg>
 </header>
 
-<div class="theme-toolbar">
-  <span class="theme-caption">L’AMBIANCE DU CLUB</span>
-  <button class="theme-toggle" type="button" aria-label="Activer le style sombre" aria-pressed="false">
-    <span class="theme-choice theme-choice-light"><span aria-hidden="true">☀</span> Classique</span>
-    <span class="theme-choice theme-choice-dark"><span aria-hidden="true">☾</span> Sombre</span>
-  </button>
-</div>
-<script>
-  (() => {
-    const toggle = document.querySelector('.theme-toggle');
-    const updateTheme = dark => {
-      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      toggle.setAttribute('aria-pressed', String(dark));
-      toggle.setAttribute('aria-label', dark ? 'Activer le style classique' : 'Activer le style sombre');
-      document.querySelector('meta[name="theme-color"]').content = dark ? '#111313' : '#F57C20';
-    };
-    updateTheme(document.documentElement.dataset.theme === 'dark');
-    toggle.addEventListener('click', () => {
-      const dark = document.documentElement.dataset.theme !== 'dark';
-      updateTheme(dark);
-      try { localStorage.setItem('ouragan-theme', dark ? 'dark' : 'light'); } catch (_) {}
-    });
-  })();
-</script>
+
 
 <main>
 
@@ -97,6 +85,7 @@
     <p>ENSEMBLE</p>
     <h1>PLUS FORTS</h1>
     <span class="small-line"></span>
+    <div class="hero-motto">UN CLUB <i>|</i> UNE PASSION <i>|</i> UNE FAMILLE</div>
     <a href="#notre-club" class="button">DÉCOUVRIR LE CLUB <b>›</b></a>
   </div>
   <div class="carousel-dots"><span></span><span class="on"></span><span></span><span></span></div>
@@ -139,6 +128,24 @@
 
   <a href="billetterie.html" class="big-link">INFOS &amp; BILLETTERIE <b>›</b></a>
 </section>
+
+<nav class="shortcut-grid">
+  <a href="#match-results" class="shortcut js-matches-toggle" aria-expanded="false" aria-controls="match-results">
+    <span class="picto"><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b>
+  </a>
+  <a href="equipes.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b>
+  </a>
+  <a href="classement.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b>
+  </a>
+  <a href="calendrier.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-calendar"/></svg></span><b>CALENDRIER</b>
+  </a>
+  <a href="actualites.html" class="shortcut">
+    <span class="picto"><svg><use href="#icon-bolt"/></svg></span><b>ACTUALITÉS</b>
+  </a>
+</nav>
 
 <section class="news panel">
   <div class="section-head">
@@ -214,23 +221,7 @@
   </div>
 </section>
 
-<nav class="shortcut-grid">
-  <a href="#match-results" class="shortcut js-matches-toggle" aria-expanded="false" aria-controls="match-results">
-    <span class="picto"><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b>
-  </a>
-  <a href="equipes.html" class="shortcut">
-    <span class="picto"><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b>
-  </a>
-  <a href="classement.html" class="shortcut">
-    <span class="picto"><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b>
-  </a>
-  <a href="calendrier.html" class="shortcut">
-    <span class="picto"><svg><use href="#icon-calendar"/></svg></span><b>CALENDRIER</b>
-  </a>
-  <a href="actualites.html" class="shortcut">
-    <span class="picto"><svg><use href="#icon-bolt"/></svg></span><b>ACTUALITÉS</b>
-  </a>
-</nav>
+
 
 <section class="match-results panel" id="match-results" hidden>
   <div class="results-head">
@@ -455,6 +446,38 @@
 </main>
 
 <footer class="legal-footer">
+  <section class="club-signature" aria-labelledby="club-signature-title">
+    <img class="club-signature-supporters" src="assets/footer-supporters.jpg" alt="" loading="lazy" decoding="async" width="1536" height="1024">
+    <img class="club-signature-textile" src="assets/footer-textile-ouragan.jpg" alt="Blason Ouragan FC sur un textile noir aux coutures orange" loading="lazy" decoding="async" width="1536" height="1024">
+    <div class="club-signature-copy">
+      <h2 id="club-signature-title"><img class="club-signature-wordmark" src="assets/footer-signature-ouragan.png" alt="Ouragan FC — Ensemble plus fort" width="2172" height="724" loading="lazy" decoding="async"></h2>
+    </div>
+  </section>
+  <div class="legal-footer-details">
+<div class="theme-toolbar">
+  <span class="theme-caption">L’AMBIANCE DU CLUB</span>
+  <button class="theme-toggle" type="button" aria-label="Activer le style sombre" aria-pressed="false">
+    <span class="theme-choice theme-choice-light"><span aria-hidden="true">☀</span> Classique</span>
+    <span class="theme-choice theme-choice-dark"><span aria-hidden="true">☾</span> Sombre</span>
+  </button>
+</div>
+<script>
+  (() => {
+    const toggle = document.querySelector('.theme-toggle');
+    const updateTheme = dark => {
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.setAttribute('aria-label', dark ? 'Activer le style classique' : 'Activer le style sombre');
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#111313' : '#F57C20';
+    };
+    updateTheme(document.documentElement.dataset.theme === 'dark');
+    toggle.addEventListener('click', () => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      updateTheme(dark);
+      try { localStorage.setItem('ouragan-theme', dark ? 'dark' : 'light'); } catch (_) {}
+    });
+  })();
+</script>
   <address>
     <strong>Ouragan FC</strong>
     <span>18 rue Tsiba MFILOU</span>
@@ -507,6 +530,7 @@
       <h3>RESPONSABILITÉ</h3>
       <p>Le club s’efforce de fournir des informations exactes et mises à jour. Toutefois, il ne saurait être tenu responsable des erreurs, omissions ou d’une indisponibilité temporaire du site.</p>
     </section>
+  </div>
   </div>
 </footer>
 

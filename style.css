@@ -385,3 +385,195 @@ html[data-theme="dark"] .bottom-nav span{color:#bfb6ad}
 html[data-theme="dark"] .bottom-nav .active span{color:var(--orange)}
 html[data-theme="dark"] :is(.button,.big-link,.reserve){background:linear-gradient(105deg,#ff9f25,#eb6100);border:1px solid #ffbd63;box-shadow:0 5px 18px #ed6a001c}
 @media(max-width:560px){.theme-toolbar{padding:8px 12px 14px;gap:6px}.theme-caption{font-size:9px;letter-spacing:.06em}.theme-choice{padding:8px 9px}.theme-toggle{font-size:10px}}
+
+/* Signature du club : photos indépendantes et lettrage original fourni. */
+.legal-footer{padding:0;border-top:0;background:#101212;color:#f6f2ee}
+.legal-footer-details{padding:24px 20px;border-top:1px solid #ffffff12}
+.legal-footer address,.legal-toggle{color:#c9bfb6}
+.legal-footer address strong{color:#fff}
+.legal-content{color:var(--black)}
+.club-signature{position:relative;isolation:isolate;display:flex;align-items:center;min-height:260px;overflow:hidden;background:#0b0d0c;text-align:left;border-top:3px solid var(--orange);clip-path:polygon(0 8%,100% 0,100% 100%,0 100%);margin-top:-22px}
+.club-signature-supporters,.club-signature-textile{position:absolute;top:0;height:100%;object-fit:cover;z-index:-2;pointer-events:none}
+.club-signature-supporters{left:0;width:62%;object-position:22% center;mask-image:linear-gradient(90deg,#000 35%,transparent 100%);-webkit-mask-image:linear-gradient(90deg,#000 35%,transparent 100%)}
+.club-signature-textile{right:0;width:64%;object-position:right center;mask-image:linear-gradient(90deg,transparent,#000 24%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 24%)}
+.club-signature::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,#0002,rgba(0,0,0,.65) 38%,transparent 72%),linear-gradient(0deg,#080a09aa,transparent 45%);pointer-events:none}
+.club-signature-copy{width:72%;padding:40px 18px 35px 24px}
+.club-signature-copy h2{margin:0;line-height:0}
+.club-signature-wordmark{display:block;width:100%;height:auto;filter:drop-shadow(0 3px 8px #0009)}
+@media(max-width:560px){
+  .club-signature{min-height:220px;margin-top:-12px}
+  .club-signature-copy{width:72%;padding:30px 8px 30px 12px}
+  .club-signature-textile{width:61%;object-position:85% center}
+  .club-signature-supporters{width:76%;object-position:20% center}
+  .club-signature::after{background:linear-gradient(90deg,#0005,#0008 38%,transparent 76%)}
+}
+
+/* Composition de la référence : panneaux noirs sur des séparations ivoire. */
+.header-motto,.hero-motto{display:none}
+html[data-theme="dark"] .page{max-width:1024px;background:#f6eee5}
+html[data-theme="dark"] .header{height:190px;padding:12px 28px;background:linear-gradient(90deg,#101111d9,#111e 75%),url("assets/footer-supporters.jpg") center 48%/cover;border-bottom:4px solid #fa8929;overflow:visible}
+html[data-theme="dark"] .header::after{content:"";position:absolute;right:0;top:0;width:17%;height:100%;background:linear-gradient(125deg,#ff9b29,#f27113);clip-path:polygon(36% 0,100% 0,100% 79%,0 93%);pointer-events:none}
+html[data-theme="dark"] .header .brand img{width:175px;height:175px;filter:drop-shadow(0 5px 8px #0008)}
+html[data-theme="dark"] .header-impact{left:235px;right:175px;top:36px;height:92px}
+html[data-theme="dark"] .header-impact>span{display:none}
+html[data-theme="dark"] .header-impact>span:first-child{display:flex}
+html[data-theme="dark"] .impact-letter{animation:none;opacity:1;transform:none}
+html[data-theme="dark"] .header-impact b{font-size:35px}
+html[data-theme="dark"] .header-impact strong{font-size:51px}
+html[data-theme="dark"] .header-motto{display:block;position:absolute;left:235px;top:128px;margin:0;font:500 20px "Barlow Condensed",sans-serif;letter-spacing:.12em;color:#ddd}
+html[data-theme="dark"] .header-actions{gap:14px;margin-top:36px}
+html[data-theme="dark"] .header-actions .icon-link{color:#101111;width:48px;height:48px;font-size:42px}
+html[data-theme="dark"] .header-actions .storm-icon{color:#fff;width:38px;height:38px}
+html[data-theme="dark"] .header-waves{display:none}
+html[data-theme="dark"] .theme-toolbar{padding:8px 22px;min-height:54px}
+html[data-theme="dark"] .theme-caption{color:#5f4d3e}
+html[data-theme="dark"] main{padding:0 22px 40px}
+html[data-theme="dark"] .hero{height:440px;border-radius:18px 18px 55px 55px;border-width:0 0 5px;border-color:#ff922f}
+html[data-theme="dark"] .hero-content{left:8%;top:20%}
+html[data-theme="dark"] .hero-content p{font-size:58px;line-height:1}
+html[data-theme="dark"] .hero-content h1{font-size:84px;line-height:1.05}
+html[data-theme="dark"] .small-line{width:94px;height:7px;background:linear-gradient(90deg,#ff932c,#ffc46b,transparent)}
+html[data-theme="dark"] .hero-motto{display:flex;gap:14px;margin:16px 0 20px;color:#eee;font:500 17px "Barlow Condensed",sans-serif;letter-spacing:.05em}
+.hero-motto i{font-style:normal;color:#b6b1a9}
+html[data-theme="dark"] .button{font:700 25px "Barlow Condensed",sans-serif;padding:15px 30px;min-width:300px;justify-content:space-between;border-radius:25px}
+html[data-theme="dark"] .hero-bottom-logo{display:none}
+html[data-theme="dark"] .next-match{margin-top:26px;padding:34px 28px 20px;border-radius:28px;background:linear-gradient(90deg,#080c0dea,#101413b8),url("hero-football-player.png") center/cover}
+html[data-theme="dark"] .tab-title{top:-15px;left:32px;padding:10px 26px;font:700 24px "Barlow Condensed",sans-serif;letter-spacing:.07em;background:linear-gradient(100deg,#ff922f,#e55e00);border:1px solid #ffc36a;transform:skew(-13deg)}
+html[data-theme="dark"] .tab-title .label-icon{width:24px;height:24px;vertical-align:-4px}
+html[data-theme="dark"] .match-row{grid-template-columns:140px 1fr 190px;min-height:245px}
+html[data-theme="dark"] .date strong{font-size:86px;line-height:1}
+html[data-theme="dark"] .date b{font:700 37px "Barlow Condensed",sans-serif}
+html[data-theme="dark"] .date span{font-size:29px}
+html[data-theme="dark"] .date small{font-size:16px}
+html[data-theme="dark"] .club img{width:118px;height:118px}
+html[data-theme="dark"] .clubs{gap:22px}
+html[data-theme="dark"] .club span{font-size:23px;margin-top:12px}
+html[data-theme="dark"] .cnff-logo{width:100px;height:100px;font-size:34px;border-radius:15px}
+html[data-theme="dark"] .versus{font-size:63px}
+html[data-theme="dark"] .kickoff strong{font-size:72px}
+html[data-theme="dark"] .kickoff>b{font-size:23px}
+html[data-theme="dark"] .kickoff span{font-size:20px}
+html[data-theme="dark"] .kickoff small{font-size:14px}
+html[data-theme="dark"] .venue{font-size:19px;margin:12px 0 20px}
+html[data-theme="dark"] .big-link{padding:15px;font:800 30px "Barlow Condensed",sans-serif;border-radius:25px}
+html[data-theme="dark"] .shortcut-grid{gap:6px;margin:20px 0}
+html[data-theme="dark"] .shortcut{padding:22px 5px;border-radius:18px;font:600 18px "Barlow Condensed",sans-serif;border-color:#b36a31;background:linear-gradient(145deg,#30231a,#111414 65%)}
+html[data-theme="dark"] .shortcut .picto{margin-bottom:12px;transform:none;width:48px;height:44px}
+html[data-theme="dark"] .shortcut .picto svg{width:38px;height:38px;transform:none}
+html[data-theme="dark"] .hero,html[data-theme="dark"] main>.panel,html[data-theme="dark"] main>.support{transform:none;will-change:auto}
+html[data-theme="dark"] .next-match .club img,html[data-theme="dark"] .next-match .cnff-logo{transform:none}
+html[data-theme="dark"] .club-signature{min-height:245px}
+html[data-theme="dark"] .club-signature-copy{width:69%;padding-left:30%;padding-right:0}
+@media(max-width:760px){
+ html[data-theme="dark"] .header{height:140px;padding:10px 14px}
+ html[data-theme="dark"] .header .brand img{width:116px;height:116px}
+ html[data-theme="dark"] .header-impact{left:142px;right:110px;top:25px;height:65px}
+ html[data-theme="dark"] .header-impact b{font-size:24px}
+ html[data-theme="dark"] .header-impact strong{font-size:33px}
+ html[data-theme="dark"] .header-motto{left:142px;top:97px;font-size:13px}
+ html[data-theme="dark"] .header-actions{gap:3px;margin-top:22px}
+ html[data-theme="dark"] .header-actions .icon-link{width:36px;font-size:30px}
+ html[data-theme="dark"] .header-actions .storm-icon{width:28px;height:28px}
+ html[data-theme="dark"] .match-row{grid-template-columns:90px 1fr 115px;min-height:190px}
+ html[data-theme="dark"] .clubs{gap:12px}
+ html[data-theme="dark"] .club img{width:78px;height:78px}
+ html[data-theme="dark"] .cnff-logo{width:70px;height:70px;font-size:25px}
+ html[data-theme="dark"] .club span{font-size:16px}
+ html[data-theme="dark"] .versus{font-size:40px}
+ html[data-theme="dark"] .date strong{font-size:62px}
+ html[data-theme="dark"] .date b{font-size:27px}
+ html[data-theme="dark"] .date span{font-size:22px}
+ html[data-theme="dark"] .date small{font-size:12px}
+ html[data-theme="dark"] .kickoff strong{font-size:50px}
+ html[data-theme="dark"] .kickoff>b{font-size:16px}
+ html[data-theme="dark"] .kickoff span{font-size:13px}
+ html[data-theme="dark"] .kickoff small{font-size:10px}
+}
+@media(max-width:560px){
+ html[data-theme="dark"] .header{height:115px;padding:8px}
+ html[data-theme="dark"] .header .brand img{width:94px;height:94px}
+ html[data-theme="dark"] .header-impact{left:106px;right:74px;top:20px;height:53px}
+ html[data-theme="dark"] .header-impact b{font-size:18px}
+ html[data-theme="dark"] .header-impact strong{font-size:clamp(19px,5.3vw,29px)}
+ html[data-theme="dark"] .header-motto{left:106px;top:80px;font-size:9px;letter-spacing:.05em}
+ html[data-theme="dark"] .header-actions{gap:0;margin-top:18px}
+ html[data-theme="dark"] .header-actions .icon-link{width:29px;font-size:25px}
+ html[data-theme="dark"] .header-actions .storm-icon{width:22px}
+ html[data-theme="dark"] main{padding:0 10px 30px}
+ html[data-theme="dark"] .hero{height:280px;border-radius:14px 14px 28px 28px}
+ html[data-theme="dark"] .hero-content{left:7%;top:21%}
+ html[data-theme="dark"] .hero-content p{font-size:35px}
+ html[data-theme="dark"] .hero-content h1{font-size:49px}
+ html[data-theme="dark"] .hero-motto{gap:8px;font-size:11px;margin:12px 0}
+ html[data-theme="dark"] .small-line{margin:10px 0;width:64px;height:5px}
+ html[data-theme="dark"] .button{min-width:210px;font-size:18px;padding:11px 18px;border-radius:20px}
+ html[data-theme="dark"] .next-match{padding:28px 10px 12px;border-radius:20px}
+ html[data-theme="dark"] .tab-title{left:18px;font-size:18px;padding:8px 15px}
+ html[data-theme="dark"] .match-row{grid-template-columns:58px minmax(0,1fr) 76px;min-height:155px}
+ html[data-theme="dark"] .clubs{gap:6px}
+ html[data-theme="dark"] .club img{width:50px;height:50px}
+ html[data-theme="dark"] .cnff-logo{width:44px;height:48px;font-size:19px;border-radius:8px}
+ html[data-theme="dark"] .club span{font-size:11px}
+ html[data-theme="dark"] .versus{font-size:28px}
+ html[data-theme="dark"] .date strong{font-size:47px}
+ html[data-theme="dark"] .date b{font-size:23px}
+ html[data-theme="dark"] .date span{font-size:18px}
+ html[data-theme="dark"] .date small{font-size:8px}
+ html[data-theme="dark"] .kickoff strong{font-size:38px}
+ html[data-theme="dark"] .kickoff>b{font-size:13px}
+ html[data-theme="dark"] .kickoff span{font-size:10px}
+ html[data-theme="dark"] .kickoff small{font-size:8px}
+ html[data-theme="dark"] .venue{font-size:11px;margin:10px 0 14px}
+ html[data-theme="dark"] .big-link{font-size:22px;padding:11px;border-radius:18px}
+ html[data-theme="dark"] .shortcut{font-size:11px;padding:13px 2px;border-radius:12px}
+ html[data-theme="dark"] .shortcut .picto{width:32px;height:32px;margin-bottom:6px}
+ html[data-theme="dark"] .shortcut .picto svg{width:27px;height:27px}
+ html[data-theme="dark"] .club-signature{min-height:190px}
+ html[data-theme="dark"] .club-signature-copy{width:73%;padding-left:21%;padding-right:0}
+}
+
+/* Grandes courbes asymétriques de la maquette. */
+.header-curve{display:none}
+html[data-theme="dark"] .header{border-bottom:0;box-shadow:none;padding-bottom:22px}
+html[data-theme="dark"] .header-curve{display:block;position:absolute;left:0;bottom:-1px;width:100%;height:55px;z-index:2;pointer-events:none}
+html[data-theme="dark"] .header::after{clip-path:none;border-radius:0 0 0 100% / 0 0 0 30%}
+html[data-theme="dark"] .hero{border-radius:24px 24px 48% 12% / 24px 24px 7% 9%;border-bottom:6px solid #ff922f;box-shadow:0 9px 0 #ffddbd,0 18px 26px #68300918}
+html[data-theme="dark"] .next-match{margin-top:32px;border-radius:30px 30px 38px 38px}
+.club-signature{clip-path:url(#footer-sweep);border-top:0;padding-top:24px}
+html[data-theme="dark"] .club-signature{margin-top:-28px}
+@media(max-width:560px){
+ html[data-theme="dark"] .header-curve{height:25px}
+ html[data-theme="dark"] .hero{border-radius:16px 16px 48% 13% / 16px 16px 6% 8%;border-bottom-width:4px;box-shadow:0 6px 0 #ffddbd,0 12px 18px #68300918}
+ html[data-theme="dark"] .next-match{margin-top:26px;border-radius:22px 22px 28px 28px}
+ html[data-theme="dark"] .club-signature{margin-top:-20px}
+}
+
+/* Espacements resserrés pour retrouver les bandes continues de la référence. */
+html[data-theme="dark"] main{padding:0 18px 22px}
+html[data-theme="dark"] .hero{margin-top:-8px}
+html[data-theme="dark"] .next-match{margin-top:22px;padding:26px 24px 16px}
+html[data-theme="dark"] .match-row{min-height:220px}
+html[data-theme="dark"] .venue{margin:6px 0 12px}
+html[data-theme="dark"] .shortcut-grid{margin:12px 0;gap:5px}
+html[data-theme="dark"] .shortcut{padding:16px 4px}
+html[data-theme="dark"] main>.panel:not(.next-match),html[data-theme="dark"] main>.support{margin-top:10px}
+html[data-theme="dark"] .club-signature{min-height:205px;margin-top:-12px;padding-top:16px}
+html[data-theme="dark"] .club-signature-copy{padding-top:20px;padding-bottom:20px}
+.legal-footer-details{padding:12px 18px}
+.legal-footer-details .theme-toolbar{justify-content:center;flex-wrap:wrap;min-height:0;padding:0 0 12px;gap:10px}
+.legal-footer-details .theme-caption,html[data-theme="dark"] .legal-footer-details .theme-caption{color:#d1c3b7}
+@media(max-width:760px){
+ html[data-theme="dark"] .match-row{min-height:172px}
+}
+@media(max-width:560px){
+ html[data-theme="dark"] main{padding:0 8px 18px}
+ html[data-theme="dark"] .hero{height:255px;margin-top:-4px}
+ html[data-theme="dark"] .hero-content{top:17%}
+ html[data-theme="dark"] .next-match{margin-top:20px;padding:24px 8px 10px}
+ html[data-theme="dark"] .match-row{min-height:145px}
+ html[data-theme="dark"] .venue{margin:5px 0 10px}
+ html[data-theme="dark"] .shortcut-grid{margin:10px 0}
+ html[data-theme="dark"] .shortcut{padding:10px 2px}
+ html[data-theme="dark"] .club-signature{min-height:155px;margin-top:-8px;padding-top:12px}
+ html[data-theme="dark"] .club-signature-copy{padding-top:16px;padding-bottom:16px}
+}
