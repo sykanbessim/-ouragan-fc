@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css?v=20260907-supporters-sobre">
-<link rel="stylesheet" href="composition.css?v=cbb4ac6">
+<link rel="stylesheet" href="composition.css?v=classique-20260907">
 <style>
 .main-logo{display:block;position:relative;z-index:20}
 .logo-video{width:150px;height:150px;object-fit:contain;display:block;background:transparent}
@@ -82,18 +82,22 @@
 <main>
 
 <section class="hero">
-  <img class="hero-animation" src="hero-soccer-animated.webp" alt="Joueurs d’Ouragan FC en action">
-  <img class="hero-signature" src="assets/footer-signature-ouragan.png" alt="Ouragan FC — Ensemble plus fort" width="2172" height="724">
-  <div class="hero-shade"></div>
-  <div class="hero-filigree" aria-hidden="true"></div>
-  <div class="hero-content">
+  <img class="hero-composition" src="photo/F2A59552-A9DC-4C3A-88AE-5FB6C5D1D3EC.png" alt="Composition Ouragan FC avec joueurs, stade et supporters">
+  <img class="hero-composition-alt" src="photo/1C729CC9-DFE2-43E1-8BEA-A2443D65034B.png" alt="Joueurs d’Ouragan FC en action sur le terrain">
+  <div class="hero-composition-slogan">LA PASSION NOUS UNIT</div>
+  <img class="hero-photo-three" src="photo/68ACDA81-8C28-455D-B3BB-84C3AEDC4692.png" alt="Joueur d’Ouragan FC en action avec le ballon">
+  <img class="hero-photo-four" src="photo/8661FAFC-301F-4195-A648-F5275778343F.png" alt="Gardien d’Ouragan FC dans le stade">
+  <img class="hero-photo-five" src="photo/105DB7C7-7D22-4DE1-B0F6-56AA3C385A19.png" alt="Joueur d’Ouragan FC en action dans le stade">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="photo/F2A59552-A9DC-4C3A-88AE-5FB6C5D1D3EC.png" aria-label="Ouragan FC en action">
+    <source src="Soccer_Emblem_Design_ouragan_fc_finalwebm_hvByG1-a.webm" type="video/webm">
+  </video>
+  <div class="hero-overlay-copy">
     <p>ENSEMBLE</p>
     <h1>PLUS FORTS</h1>
     <span class="small-line"></span>
     <div class="hero-motto">UN CLUB <i>|</i> UNE PASSION</div>
-    <a href="#notre-club" class="button">DÉCOUVRIR LE CLUB <b>›</b></a>
   </div>
-  <div class="carousel-dots"><span></span><span class="on"></span><span></span><span></span></div>
+  <a class="hero-cta" href="#notre-club">DÉCOUVRIR LE CLUB <b aria-hidden="true">›</b></a>
 </section>
 
 <section id="prochain-match" class="next-match panel">
@@ -1002,6 +1006,35 @@
   addEventListener('scroll', requestSectionDepth, { passive: true });
   addEventListener('resize', requestSectionDepth);
   updateSectionDepth();
+
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.controls = false;
+    heroVideo.muted = true;
+    heroVideo.defaultMuted = true;
+    const playHeroVideo = () => {
+      if (!document.hidden) heroVideo.play().catch(() => {});
+    };
+    const showReadyHeroVideo = () => {
+      heroVideo.classList.add('is-ready');
+      playHeroVideo();
+    };
+    heroVideo.addEventListener('loadeddata', showReadyHeroVideo);
+    heroVideo.addEventListener('canplay', showReadyHeroVideo);
+    const hideUnavailableHeroVideo = () => {
+      if (heroVideo.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+        heroVideo.hidden = true;
+        heroVideo.classList.remove('is-ready');
+      }
+    };
+    heroVideo.addEventListener('error', hideUnavailableHeroVideo);
+    setTimeout(hideUnavailableHeroVideo, 1500);
+    document.addEventListener('visibilitychange', playHeroVideo);
+    ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
+      document.addEventListener(eventName, playHeroVideo, { once: true, passive: true });
+    });
+    playHeroVideo();
+  }
 
 })();
 </script>

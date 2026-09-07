@@ -23,7 +23,11 @@ main{padding:0 20px 105px}
 .hero{height:320px;position:relative;overflow:hidden;border-radius:20px;background:var(--black-soft)}
 .hero-canvas{position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(120deg,#080808,#321307 58%,#111)}
 .hero-photo{position:absolute;inset:0;z-index:1;background:url("hero-soccer-scene-smooth.webp") center/cover no-repeat;opacity:.94}
-.hero-animation{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block;object-fit:cover;object-position:center;background:#111;pointer-events:none}
+.hero-animation,.hero-still{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block;object-fit:cover;object-position:center;background:#111;pointer-events:none}
+.hero-animation{animation:hero-video-loop 18s ease-in-out infinite}
+.hero-still{opacity:0;animation:hero-still-loop 18s ease-in-out infinite}
+@keyframes hero-video-loop{0%,42%{opacity:1}52%,78%{opacity:0}88%,100%{opacity:1}}
+@keyframes hero-still-loop{0%,42%{opacity:0}52%,78%{opacity:1}88%,100%{opacity:0}}
 .hero-bottom-logo{position:absolute;right:14px;bottom:12px;z-index:3;width:72px;height:72px;object-fit:contain;filter:drop-shadow(0 5px 9px rgba(0,0,0,.35));pointer-events:none}
 .hero-shade{position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,rgba(0,0,0,.72),rgba(0,0,0,.15) 66%,transparent)}
 .hero-filigree{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:.24;background:repeating-linear-gradient(116deg,rgba(255,255,255,.14) 0 1px,transparent 1px 24px),repeating-linear-gradient(8deg,transparent 0 46px,rgba(245,130,32,.2) 46px 47px,transparent 47px 94px);mix-blend-mode:soft-light;-webkit-mask-image:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2) 70%,transparent);mask-image:linear-gradient(90deg,rgba(0,0,0,.75),rgba(0,0,0,.2) 70%,transparent)}
@@ -923,9 +927,119 @@ main > .news .section-head strong{font-size:22px;color:#fff}
 @media(prefers-reduced-motion:reduce){.header::before{animation:none;transform:none;will-change:auto}}
 
 /* Mouvement discret du visuel principal. */
-.hero-animation{animation:hero-football-drift-soft 14s ease-in-out infinite alternate;transform-origin:center;will-change:transform}
+.hero-animation{animation:hero-video-loop 18s ease-in-out infinite,hero-football-drift-soft 14s ease-in-out infinite alternate;transform-origin:center;will-change:transform}
 @keyframes hero-football-drift-soft{from{transform:translate(-.35%,.2%) scale(1.02)}to{transform:translate(.35%,-.2%) scale(1.055)}}
-@media(prefers-reduced-motion:reduce){.hero-animation{animation:none;transform:none;will-change:auto}}
+@media(prefers-reduced-motion:reduce){.hero-animation,.hero-still{animation:none;opacity:1;transform:none;will-change:auto}}
+
+/* Boucle vidéo + composition + photo d'action dans le bandeau. */
+.hero-animation,.hero-still,.hero-action{transition:none;}
+.hero-animation{animation:hero-video-triple 27s ease-in-out infinite,hero-football-drift-soft 14s ease-in-out infinite alternate}
+.hero-still{animation:hero-panorama-triple 27s ease-in-out infinite;filter:saturate(1.08) contrast(1.04)}
+.hero-action{opacity:0;object-position:center 42%;filter:saturate(1.06) contrast(1.03) brightness(.98);animation:hero-action-triple 27s ease-in-out infinite;will-change:opacity,transform}
+@keyframes hero-video-triple{0%,25%{opacity:1}33%,69%{opacity:0}77%,100%{opacity:1}}
+@keyframes hero-panorama-triple{0%,25%{opacity:0}33%,58%{opacity:1}66%,100%{opacity:0}}
+@keyframes hero-action-triple{0%,58%{opacity:0}66%,91%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .hero-animation{animation:none;opacity:1;transform:none;will-change:auto}
+  .hero-still,.hero-action{animation:none;opacity:0;transform:none;will-change:auto}
+}
+
+/* La composition contient déjà tous ses textes et éléments graphiques. */
+.hero-composition{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;animation:hero-composition-drift 18s ease-in-out infinite alternate;filter:saturate(1.04) contrast(1.03);will-change:transform}
+@keyframes hero-composition-drift{from{transform:scale(1.01)}to{transform:scale(1.045)}}
+@media(prefers-reduced-motion:reduce){.hero-composition{animation:none;transform:none;will-change:auto}}
+
+/* Rotation douce entre les deux visuels autonomes du bandeau. */
+.hero-composition,.hero-composition-alt{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;will-change:opacity,transform}
+.hero-composition{animation:hero-composition-cycle 24s ease-in-out infinite}
+.hero-composition-alt{opacity:0;animation:hero-composition-alt-cycle 24s ease-in-out infinite;filter:saturate(1.06) contrast(1.04)}
+@keyframes hero-composition-cycle{0%,38%{opacity:1}48%,88%{opacity:0}96%,100%{opacity:1}}
+@keyframes hero-composition-alt-cycle{0%,38%{opacity:0}48%,88%{opacity:1}96%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){.hero-composition{animation:none;opacity:1;transform:none}.hero-composition-alt,.hero-overlay-copy{animation:none;opacity:0;transform:none}}
+
+/* La composition reste entière ; seule la photo d’action est abaissée. */
+.hero-composition{object-position:center;transform:scale(1.045)}
+.hero-composition-alt{object-position:center 38%;transform:scale(1.045) translateY(2.5%)}
+.hero-overlay-copy{position:absolute;left:clamp(18px,3.5cqw,36px);top:clamp(48px,9cqw,92px);z-index:3;color:#fff;opacity:0;animation:hero-copy-cycle 24s ease-in-out infinite;text-shadow:0 3px 10px #000b}
+.hero-overlay-copy p{font:800 italic 30px "Barlow Condensed";margin:0}
+.hero-overlay-copy h1{font:800 italic 42px "Barlow Condensed";color:var(--orange);margin:-4px 0 5px}
+.hero-overlay-copy .small-line{margin:10px 0 13px}
+.hero-overlay-copy .hero-motto{font:500 16px/1.2 "Barlow Condensed";letter-spacing:.08em}
+@keyframes hero-copy-cycle{0%,38%{opacity:0}48%,88%{opacity:1}96%,100%{opacity:0}}
+.hero-cta{position:absolute;left:clamp(18px,3.5cqw,36px);bottom:clamp(20px,4cqw,42px);z-index:3;display:inline-flex;align-items:center;gap:12px;padding:12px 18px;border-radius:999px;background:linear-gradient(90deg,#f58220,#df6812);color:#fff;font-size:11px;font-weight:800;box-shadow:0 7px 18px #0008;text-shadow:0 1px 3px #0008}
+.hero-cta b{font-size:22px;line-height:.7}
+@media(max-width:560px){.hero-overlay-copy{left:16px;top:42px}.hero-overlay-copy p{font-size:24px}.hero-overlay-copy h1{font-size:34px}.hero-overlay-copy .hero-motto{font-size:13px}.hero-cta{left:16px;bottom:18px;padding:10px 14px;font-size:9px}.hero-cta b{font-size:18px}}
+
+/* Rotation complète : composition, photos du club et vidéo. */
+.hero-composition,.hero-composition-alt,.hero-photo-three,.hero-photo-four,.hero-photo-five,.hero-video{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:center;will-change:opacity,transform}
+.hero-composition{animation:hero-slide-one 48s ease-in-out infinite}
+.hero-composition-alt{object-position:center 38%;transform:scale(1.045) translateY(2.5%);animation:hero-slide-two 48s ease-in-out infinite}
+.hero-photo-three{animation:hero-slide-three 48s ease-in-out infinite;filter:saturate(1.06) contrast(1.04)}
+.hero-photo-four{animation:hero-slide-four 48s ease-in-out infinite;filter:saturate(1.06) contrast(1.04)}
+.hero-photo-five{animation:hero-slide-five 48s ease-in-out infinite;filter:saturate(1.06) contrast(1.04)}
+.hero-video{opacity:0;animation:hero-slide-six 48s ease-in-out infinite;object-position:center}
+.hero-overlay-copy{animation:hero-copy-six-cycle 48s ease-in-out infinite}
+@keyframes hero-slide-one{0%,13%{opacity:1}17%,96%{opacity:0}100%{opacity:1}}
+@keyframes hero-slide-two{0%,13%{opacity:0}17%,29%{opacity:1}33%,100%{opacity:0}}
+@keyframes hero-slide-three{0%,29%{opacity:0}33%,45%{opacity:1}49%,100%{opacity:0}}
+@keyframes hero-slide-four{0%,45%{opacity:0}49%,61%{opacity:1}65%,100%{opacity:0}}
+@keyframes hero-slide-five{0%,61%{opacity:0}65%,77%{opacity:1}81%,100%{opacity:0}}
+@keyframes hero-slide-six{0%,77%{opacity:0}81%,93%{opacity:1}97%,100%{opacity:0}}
+@keyframes hero-copy-six-cycle{0%,13%{opacity:0}17%,96%{opacity:1}100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .hero-composition{animation:none;opacity:1;transform:none}
+  .hero-composition-alt,.hero-photo-three,.hero-photo-four,.hero-photo-five,.hero-video,.hero-overlay-copy,.hero-composition-slogan{animation:none;opacity:0;transform:none}
+}
+
+/* Boucle photo uniquement, sans lecteur vidéo visible. */
+.hero-composition{animation:hero-photo-one-cycle 40s ease-in-out infinite}
+.hero-composition-slogan{position:absolute;left:50%;top:20%;z-index:3;width:min(58%,620px);padding:8px 18px;text-align:center;color:#fff;font:600 clamp(13px,2.2cqw,25px)/1.1 "Barlow Condensed",sans-serif;letter-spacing:.22em;text-shadow:0 2px 8px #000;transform:translateX(-50%);background:linear-gradient(90deg,transparent,#070707dd 18%,#070707dd 82%,transparent);animation:hero-composition-slogan-cycle 40s ease-in-out infinite}
+.hero-composition-alt{animation:hero-photo-two-cycle 40s ease-in-out infinite}
+.hero-photo-three{animation:hero-photo-three-cycle 40s ease-in-out infinite}
+.hero-photo-four{animation:hero-photo-four-cycle 40s ease-in-out infinite}
+.hero-photo-five{animation:hero-photo-five-cycle 40s ease-in-out infinite}
+.hero-overlay-copy{animation:hero-copy-photo-cycle 40s ease-in-out infinite}
+@keyframes hero-photo-one-cycle{0%,18%{opacity:1}22%,98%{opacity:0}100%{opacity:1}}
+@keyframes hero-photo-two-cycle{0%,18%{opacity:0}22%,38%{opacity:1}42%,100%{opacity:0}}
+@keyframes hero-photo-three-cycle{0%,38%{opacity:0}42%,58%{opacity:1}62%,100%{opacity:0}}
+@keyframes hero-photo-four-cycle{0%,58%{opacity:0}62%,78%{opacity:1}82%,100%{opacity:0}}
+@keyframes hero-photo-five-cycle{0%,78%{opacity:0}82%,98%{opacity:1}100%{opacity:0}}
+@keyframes hero-copy-photo-cycle{0%,18%{opacity:0}22%,100%{opacity:1}}
+@keyframes hero-composition-slogan-cycle{0%,18%{opacity:1}22%,100%{opacity:0}}
+@media(max-width:560px){.hero-composition-slogan{top:19%;width:72%;padding:6px 8px;font-size:12px;letter-spacing:.12em}}
+@media(prefers-reduced-motion:reduce){.hero-composition-slogan{opacity:1;animation:none;transform:translateX(-50%)}}
+
+/* La vidéo revient comme sixième diapositive, sans contrôles visibles. */
+.hero-composition{animation:hero-six-one 48s ease-in-out infinite}
+.hero-composition,.hero-composition-alt,.hero-photo-three,.hero-photo-four,.hero-photo-five{animation-duration:48s,16s;animation-timing-function:ease-in-out,ease-in-out;animation-iteration-count:infinite,infinite;animation-direction:normal,alternate;will-change:opacity,transform}
+.hero-composition-alt{animation-name:hero-six-two,hero-banner-breathe-two}
+.hero-photo-three{animation-name:hero-six-three,hero-banner-breathe-three}
+.hero-photo-four{animation-name:hero-six-four,hero-banner-breathe-four}
+.hero-photo-five{animation-name:hero-six-five,hero-banner-breathe-five}
+.hero-composition{animation-name:hero-six-one,hero-banner-breathe-one}
+.hero-video{opacity:0;animation:hero-six-video 48s ease-in-out infinite;object-position:center;pointer-events:none}
+.hero-video:not(.is-ready){visibility:hidden}
+.hero-video[hidden]{display:none!important}
+.hero-video::-webkit-media-controls,.hero-video::-webkit-media-controls-panel,.hero-video::-webkit-media-controls-start-playback-button{display:none!important;-webkit-appearance:none}
+.hero-overlay-copy{animation:hero-six-copy 48s ease-in-out infinite}
+.hero-composition-slogan{animation:hero-six-slogan 48s ease-in-out infinite}
+@keyframes hero-six-one{0%,13%{opacity:1}17%,96%{opacity:0}100%{opacity:1}}
+@keyframes hero-six-two{0%,13%{opacity:0}17%,29%{opacity:1}33%,100%{opacity:0}}
+@keyframes hero-six-three{0%,29%{opacity:0}33%,45%{opacity:1}49%,100%{opacity:0}}
+@keyframes hero-six-four{0%,45%{opacity:0}49%,61%{opacity:1}65%,100%{opacity:0}}
+@keyframes hero-six-five{0%,61%{opacity:0}65%,77%{opacity:1}81%,100%{opacity:0}}
+@keyframes hero-six-video{0%,77%{opacity:0}81%,93%{opacity:1}97%,100%{opacity:0}}
+@keyframes hero-banner-breathe-one{from{transform:scale(1.02) translate3d(-.4%,.2%,0)}to{transform:scale(1.07) translate3d(.5%,-.3%,0)}}
+@keyframes hero-banner-breathe-two{from{transform:scale(1.045) translate3d(.5%,2.5%,0)}to{transform:scale(1.095) translate3d(-.5%,2%,0)}}
+@keyframes hero-banner-breathe-three{from{transform:scale(1.02) translate3d(-.6%,0,0)}to{transform:scale(1.075) translate3d(.4%,-.4%,0)}}
+@keyframes hero-banner-breathe-four{from{transform:scale(1.04) translate3d(.4%,.3%,0)}to{transform:scale(1.09) translate3d(-.5%,-.2%,0)}}
+@keyframes hero-banner-breathe-five{from{transform:scale(1.025) translate3d(-.4%,-.2%,0)}to{transform:scale(1.08) translate3d(.5%,.3%,0)}}
+@keyframes hero-six-copy{0%,13%{opacity:0}17%,100%{opacity:1}}
+@keyframes hero-six-slogan{0%,13%{opacity:1}17%,100%{opacity:0}}
+@media(prefers-reduced-motion:reduce){
+  .hero-composition{animation:none;opacity:1}
+  .hero-composition-alt,.hero-photo-three,.hero-photo-four,.hero-photo-five,.hero-video,.hero-overlay-copy,.hero-composition-slogan{animation:none;opacity:0}
+}
 
 
 /* Le bandeau conserve son identité dans les deux ambiances. */

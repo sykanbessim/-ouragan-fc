@@ -52,3 +52,34 @@ html[data-theme] .header-actions .badge{top:-.2cqw;right:0;min-width:2.8cqw;heig
 /* Ombre suivant le tracé du liseré courbe du bandeau. */
 html[data-theme] .header-curve{overflow:visible}
 html[data-theme] .header-curve path:last-child{filter:drop-shadow(0 4px 3px #000b)}
+
+/* Classique : grandes surfaces blanches et ivoire, relief doux et encre foncée. */
+html[data-theme="light"] .page{--poster:#fffaf4;color:#202821}
+html[data-theme="light"] body,html[data-theme="light"] body::before{background:#eee7de}
+html[data-theme="light"] body::after{opacity:.08}
+html[data-theme="light"] .page>main>:is(.panel,.hero){box-shadow:0 9px 15px -9px #47301f70,0 2px 5px -2px #71451f40}
+html[data-theme="light"] .page>main>.next-match{background:linear-gradient(100deg,#fffffff2,#fffaf4df),url('assets/match-stadium.jpg') center/cover;color:#202821}
+html[data-theme="light"] .date span,html[data-theme="light"] .venue,html[data-theme="light"] .kickoff small{color:#63574c}
+html[data-theme="light"] .date,html[data-theme="light"] .kickoff{border-color:#d7c7b6}
+html[data-theme="light"] .page>main>.news,html[data-theme="light"] .page>main>.support{background:#fffaf4;color:#202821}
+html[data-theme="light"] .page>main>.news::before,html[data-theme="light"] .page>main>.support::before{opacity:.055}
+html[data-theme="light"] .page .news-card,html[data-theme="light"] .page .news-reader{background:#fff;color:#202821;border-color:#ead7c3;box-shadow:0 4px 14px #49301b0a}
+html[data-theme="light"] .page :is(.news-card p,.news-reader p){color:#5e564f}
+html[data-theme="light"] .page>main>.news .section-head strong,html[data-theme="light"] .gallery .section-head strong{color:#202821}
+html[data-theme="light"] .page>main>.gallery{background:linear-gradient(105deg,#fffdfaf7,#f7eee3ed),url('assets/footer-textile-discret.png') center/cover;color:#202821}
+html[data-theme="light"] .page>main>.support .support-copy span{color:#65584a}
+html[data-theme="light"] .support .support-product>span{background:#f6e6d3;color:#402d1c}
+html[data-theme="light"] .page>main>.president-message,html[data-theme="light"] .page>main>.partners{background:#fffaf4;color:#202821}
+html[data-theme="light"] .page>main>.president-message::before{background-image:linear-gradient(90deg,#fffaf4f7,#fffaf4de 50%,#fffaf488),url('assets/president-stade-aerien.png')}
+html[data-theme="light"] .page>main>.partners::before{background-image:linear-gradient(90deg,#fffaf4f7,#fffaf4df 50%,#fffaf488),url('assets/partenaires-sans-visages.png')}
+html[data-theme="light"] .president-message .president-message-head strong,html[data-theme="light"] .partners .partners-toggle{color:#202821;text-shadow:none}
+html[data-theme="light"] .partners .partners-toggle strong{text-shadow:none}
+html[data-theme="light"] .president-message .president-message-head>span{color:#5c5146}
+html[data-theme="light"] .president-message-head small,html[data-theme="light"] .partners .partners-toggle small{color:#a5440b}
+html[data-theme="light"] .president-message .president-content,html[data-theme="light"] .partners .partners-content{background:#fffffff0;border-color:#dcc6af;color:#202821}
+html[data-theme="light"] .president-letter p,html[data-theme="light"] .president-letter>p:first-child,html[data-theme="light"] .president-letter footer span,html[data-theme="light"] .partners .partners-intro p{color:#4f483f}
+html[data-theme="light"] .president-letter footer small{color:#a5440b}
+html[data-theme="light"] .page>.legal-footer{color:#202821;background:#fffaf4}
+html[data-theme="light"] .legal-footer :is(address,address strong,.legal-toggle){color:#584c40}
+html[data-theme="light"] .page>.bottom-nav{background:#fffdfaf5;color:#202821;border-color:#e5c7a7;box-shadow:0 -4px 16px #35251a0b}
+html[data-theme="light"] .bottom-nav>a>span,html[data-theme="light"] .bottom-nav .theme-caption{color:#584c40}
