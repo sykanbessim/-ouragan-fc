@@ -410,20 +410,20 @@ html[data-theme="dark"] :is(.button,.big-link,.reserve){background:linear-gradie
 
 /* Proportions de la maquette, calculées sur la largeur réelle de la page. */
 .header-curve,.header-motto,.hero-motto{display:none}
-html[data-theme="dark"] .page{max-width:1024px;container-type:inline-size;background:#f6eee5}
-html[data-theme="dark"] main{padding:0 1.8cqw 2.4cqw}
-html[data-theme="dark"] .header{height:23cqw;padding:1cqw 2.5cqw;border:0;box-shadow:none;overflow:visible;background:linear-gradient(90deg,#111c,#111b),url("assets/footer-supporters.jpg") center 62%/cover}
-html[data-theme="dark"] .header .brand img{width:22cqw;height:22cqw;filter:drop-shadow(0 .4cqw .5cqw #0009)}
-html[data-theme="dark"] .header-impact{left:29cqw;right:24cqw;top:4cqw;height:8.5cqw}
-html[data-theme="dark"] .header-impact b{font-size:3.5cqw;line-height:1}
-html[data-theme="dark"] .header-impact strong{font-size:5.1cqw;line-height:1;letter-spacing:-.025em}
-html[data-theme="dark"] .header-motto{display:block;position:absolute;left:23.5cqw;top:13cqw;margin:0;color:#ddd;font:500 2.05cqw/1.2 "Barlow Condensed",sans-serif;letter-spacing:.13em;z-index:3}
-html[data-theme="dark"] .header::after{content:"";position:absolute;right:0;top:0;width:17%;height:100%;background:linear-gradient(110deg,#ff9228,#f57412);clip-path:polygon(38% 0,100% 0,100% 78%,0 95%);pointer-events:none}
-html[data-theme="dark"] .header-actions{position:absolute;inset:5cqw 3cqw auto auto;gap:9cqw;margin:0;z-index:3}
-html[data-theme="dark"] .header-actions .icon-link{width:5.5cqw;height:5.5cqw;font-size:5.7cqw;line-height:1;color:#111}
-html[data-theme="dark"] .header-actions .storm-icon{width:5cqw;height:5cqw;color:#fff}
-html[data-theme="dark"] .badge{font-size:1.9cqw;padding:.5cqw 1cqw;top:-1.2cqw;right:-1cqw}
-html[data-theme="dark"] .header-curve{display:block;position:absolute;left:0;bottom:-1px;width:100%;height:5.5cqw;z-index:2;pointer-events:none}
+html[data-theme] .page{max-width:1024px;container-type:inline-size}
+html[data-theme] main{padding:0 1.8cqw 2.4cqw}
+html[data-theme] .header{height:23cqw;padding:1cqw 2.5cqw;border:0;box-shadow:none;overflow:visible;background:linear-gradient(90deg,#111c,#111b),url("assets/footer-supporters.jpg") center 62%/cover}
+html[data-theme] .header .brand img{width:22cqw;height:22cqw;filter:drop-shadow(0 .4cqw .5cqw #0009)}
+html[data-theme] .header-impact{left:29cqw;right:24cqw;top:4cqw;height:8.5cqw}
+html[data-theme] .header-impact b{font-size:3.5cqw;line-height:1}
+html[data-theme] .header-impact strong{font-size:5.1cqw;line-height:1;letter-spacing:-.025em}
+html[data-theme] .header-motto{display:block;position:absolute;left:26cqw;top:13.5cqw;margin:0;color:#ddd;font:500 2.05cqw/1.2 "Barlow Condensed",sans-serif;letter-spacing:.13em;z-index:3}
+html[data-theme] .header::after{content:"";position:absolute;right:0;top:0;width:17%;height:100%;background:linear-gradient(110deg,#ff9228,#f57412);clip-path:polygon(38% 0,100% 0,100% 78%,0 95%);pointer-events:none}
+html[data-theme] .header-actions{position:absolute;inset:5cqw 3cqw auto auto;gap:9cqw;margin:0;z-index:3}
+html[data-theme] .header-actions .icon-link{width:5.5cqw;height:5.5cqw;font-size:5.7cqw;line-height:1;color:#111}
+html[data-theme] .header-actions .storm-icon{width:5cqw;height:5cqw;color:#fff}
+html[data-theme] .badge{font-size:1.9cqw;padding:.5cqw 1cqw;top:-1.2cqw;right:-1cqw}
+html[data-theme] .header-curve{display:block;position:absolute;left:0;bottom:-1px;width:100%;height:5.5cqw;z-index:2;pointer-events:none}
 html[data-theme="dark"] .hero{height:45cqw;margin-top:-.3cqw;border:0;border-left:.65cqw solid #ff922f;border-bottom:.6cqw solid #ff922f;border-radius:1.8cqw 0 0 12% / 1.8cqw 0 0 7%;box-shadow:none}
 html[data-theme="dark"] .hero-bottom-logo,html[data-theme="dark"] .hero-filigree{display:none}
 html[data-theme="dark"] .hero-shade{background:linear-gradient(90deg,#0002,transparent 65%)}
@@ -927,3 +927,10 @@ main > .news .section-head strong{font-size:22px;color:#fff}
 @keyframes hero-football-drift-soft{from{transform:translate(-.35%,.2%) scale(1.02)}to{transform:translate(.35%,-.2%) scale(1.055)}}
 @media(prefers-reduced-motion:reduce){.hero-animation{animation:none;transform:none;will-change:auto}}
 
+
+/* Le bandeau conserve son identité dans les deux ambiances. */
+html[data-theme] .header-impact b{color:#fff}
+html[data-theme] .header-impact strong{color:#f58220}
+html[data-theme] .header-impact{left:26cqw;right:24cqw}
+html[data-theme] .header-curve path:first-child{fill:#f6eee5}
+html[data-theme="light"] .header-curve path:first-child{fill:#fffaf5}
