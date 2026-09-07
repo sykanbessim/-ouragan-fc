@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 180" preserveAspectRatio="none">
+<defs>
+  <linearGradient id="g1" x1="0" x2="1">
+    <stop offset="0%" stop-color="#ff7a18" stop-opacity=".08"/>
+    <stop offset="40%" stop-color="#ff5b00" stop-opacity=".65"/>
+    <stop offset="100%" stop-color="#ff7a18" stop-opacity=".10"/>
+  </linearGradient>
+  <linearGradient id="g2" x1="0" x2="1">
+    <stop offset="0%" stop-color="#ff5b00" stop-opacity=".05"/>
+    <stop offset="50%" stop-color="#ff7d33" stop-opacity=".35"/>
+    <stop offset="100%" stop-color="#ff5b00" stop-opacity=".06"/>
+  </linearGradient>
+</defs>
+<style>
+.wave1{animation:w1 3.5s ease-in-out infinite alternate}
+.wave2{animation:w2 4.5s ease-in-out infinite alternate}
+.lines{animation:w3 5.5s ease-in-out infinite alternate}
+@keyframes w1{from{transform:translateX(-22px)}to{transform:translateX(28px) translateY(-4px)}}
+@keyframes w2{from{transform:translateX(20px)}to{transform:translateX(-30px) translateY(3px)}}
+@keyframes w3{from{transform:translateX(-16px);opacity:.45}to{transform:translateX(20px);opacity:.85}}
+</style>
+<g class="wave1" fill="none">
+  <path d="M-60 112 C170 30 340 68 530 116 S860 190 1050 92 S1350 30 1660 96" stroke="url(#g1)" stroke-width="14" stroke-linecap="round"/>
+  <path d="M-60 130 C180 60 340 80 520 126 S870 175 1070 105 S1360 55 1660 112" stroke="#ff6a13" stroke-opacity=".25" stroke-width="4"/>
+</g>
+<g class="wave2" fill="none">
+  <path d="M-80 88 C140 150 320 22 560 72 S900 145 1130 92 S1370 48 1660 70" stroke="url(#g2)" stroke-width="10" stroke-linecap="round"/>
+</g>
+<g class="lines" fill="none" stroke="#ff650e" stroke-opacity=".28" stroke-width="1">
+  <path d="M-60 86 C160 40 340 48 520 92 S860 158 1060 80 S1350 30 1660 65"/>
+  <path d="M-60 92 C160 46 340 54 520 98 S860 164 1060 86 S1350 36 1660 71"/>
+  <path d="M-60 98 C160 52 340 60 520 104 S860 170 1060 92 S1350 42 1660 77"/>
+  <path d="M-60 104 C160 58 340 66 520 110 S860 176 1060 98 S1350 48 1660 83"/>
+</g>
+</svg>

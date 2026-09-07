@@ -17,7 +17,7 @@
 <title>Ouragan FC — Application officielle</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 <style>
 .main-logo{display:block;position:relative;z-index:20}
@@ -33,6 +33,7 @@
       <path d="M0,.19 C.28,.07 .68,.11 1,0 L1,1 L0,1 Z"/>
     </clipPath>
   </defs>
+  <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m3 7 9 6 9-6"/></symbol>
   <symbol id="icon-bell" viewBox="0 0 24 24"><path d="M6 16h12l-1.5-2.2V10a4.5 4.5 0 0 0-9 0v3.8L6 16Z"/><path d="M10 19h4M12 3V2"/></symbol>
   <symbol id="icon-ball" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="m12 7 3 2.2-1.1 3.5h-3.8L9 9.2 12 7Zm-3 2.2-3.2.3m4.3 3.2-2.4 3.1m6.2-3.1 2.4 3.1m-8.6 0 .7 3.1m7.9-3.1-.7 3.1m.4-9.7 3.2.3"/></symbol>
   <symbol id="icon-team" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3.5 19c.4-4 2.2-6 5.5-6s5.1 2 5.5 6M14 14c3.7-.8 5.8.9 6.5 4"/></symbol>
@@ -58,13 +59,14 @@
     <span><b>BRAZZAVILLE</b><strong>EN FORCE</strong></span>
   </div>
 
-  <p class="header-motto">PLUS QU’UN CLUB, UNE FAMILLE</p>
   <div class="header-actions">
     <a href="#notifications" class="icon-link" aria-label="Notifications">
       <span class="badge">3</span><svg class="storm-icon"><use href="#icon-bell"/></svg>
     </a>
-    <a href="#menu" class="icon-link" aria-label="Menu">☰</a>
+    <button type="button" class="icon-link menu-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="site-menu">☰</button>
   </div>
+
+
 
   <svg class="header-curve" viewBox="0 0 1024 76" preserveAspectRatio="none" aria-hidden="true">
     <path fill="#f6eee5" d="M0 53 C320 79 718 54 1024 5 L1024 76 L0 76Z"/>
@@ -78,20 +80,21 @@
 
 <section class="hero">
   <img class="hero-animation" src="hero-soccer-animated.webp" alt="Joueurs d’Ouragan FC en action">
-  <img class="hero-bottom-logo" src="logo-anime-transparent.webp" alt="Ouragan FC">
+  <img class="hero-signature" src="assets/footer-signature-ouragan.png" alt="Ouragan FC — Ensemble plus fort" width="2172" height="724">
   <div class="hero-shade"></div>
   <div class="hero-filigree" aria-hidden="true"></div>
   <div class="hero-content">
     <p>ENSEMBLE</p>
     <h1>PLUS FORTS</h1>
     <span class="small-line"></span>
-    <div class="hero-motto">UN CLUB <i>|</i> UNE PASSION <i>|</i> UNE FAMILLE</div>
+    <div class="hero-motto">UN CLUB <i>|</i> UNE PASSION</div>
     <a href="#notre-club" class="button">DÉCOUVRIR LE CLUB <b>›</b></a>
   </div>
   <div class="carousel-dots"><span></span><span class="on"></span><span></span><span></span></div>
 </section>
 
-<section class="next-match panel">
+<section id="prochain-match" class="next-match panel">
+  <div class="match-backdrop" aria-hidden="true"></div>
   <div class="tab-title"><svg class="label-icon"><use href="#icon-calendar"/></svg> PROCHAIN MATCH</div>
 
   <div class="match-row">
@@ -104,7 +107,7 @@
 
     <div class="clubs">
       <a href="ouragan-fc.html" class="club">
-        <img src="logo.png" alt="Ouragan FC">
+        <img src="logo-anime-transparent.webp" alt="Ouragan FC">
         <span>OURAGAN FC</span>
       </a>
 
@@ -126,28 +129,71 @@
 
   <a href="https://maps.google.com/" class="venue">📍 STADE MUNICIPAL - OURAGAN</a>
 
-  <a href="billetterie.html" class="big-link">INFOS &amp; BILLETTERIE <b>›</b></a>
+  <details class="match-ticket-details">
+    <summary class="big-link">INFOS &amp; BILLETTERIE <b aria-hidden="true">+</b></summary>
+    <div class="match-ticket-display">
+      <section aria-labelledby="match-info-title">
+        <h3 id="match-info-title">Les infos du match</h3>
+        <strong>OURAGAN FC — CNFF</strong>
+        <dl><div><dt>Date</dt><dd>21 août 2026</dd></div><div><dt>Coup d’envoi</dt><dd>10h00</dd></div><div><dt>Lieu</dt><dd>Stade municipal — Ouragan</dd></div></dl>
+      </section>
+      <form id="match-ticket-form" aria-labelledby="match-ticket-title">
+        <h3 id="match-ticket-title">🎟️ Vos billets</h3>
+        <p>Demandez vos places au club. Tarifs et disponibilités à confirmer.</p>
+        <label for="ticket-name">Votre nom<input id="ticket-name" name="name" autocomplete="name" maxlength="100" required></label>
+        <label for="ticket-quantity">Nombre de places<select id="ticket-quantity" name="quantity"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option></select></label>
+        <button type="submit">Demander mes billets ›</button>
+        <p class="ticket-help">Votre messagerie s’ouvrira pour envoyer la demande. Le club confirmera votre réservation.</p>
+        <p id="ticket-status" role="status"></p>
+      </form>
+    </div>
+  </details>
 </section>
 
-<nav class="shortcut-grid">
+<div class="match-hub panel">
+  <span class="match-hub-backdrop" aria-hidden="true"></span>
+<nav class="shortcut-grid" aria-label="Rubriques sportives">
   <a href="#match-results" class="shortcut js-matches-toggle" aria-expanded="false" aria-controls="match-results">
     <span class="picto"><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b>
   </a>
-  <a href="equipes.html" class="shortcut">
+  <a href="#hub-teams" class="shortcut" aria-expanded="false" aria-controls="hub-teams">
     <span class="picto"><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b>
   </a>
-  <a href="classement.html" class="shortcut">
+  <a href="#hub-standings" class="shortcut" aria-expanded="false" aria-controls="hub-standings">
     <span class="picto"><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b>
   </a>
-  <a href="calendrier.html" class="shortcut">
+  <a href="#hub-calendar" class="shortcut" aria-expanded="false" aria-controls="hub-calendar">
     <span class="picto"><svg><use href="#icon-calendar"/></svg></span><b>CALENDRIER</b>
-  </a>
-  <a href="actualites.html" class="shortcut">
-    <span class="picto"><svg><use href="#icon-bolt"/></svg></span><b>ACTUALITÉS</b>
   </a>
 </nav>
 
-<section class="news panel">
+<section class="match-results panel" id="match-results" hidden>
+  <div class="results-head">
+    <div><strong>MATCHS JOUÉS</strong><span>DERNIERS RÉSULTATS</span></div>
+    <button class="results-close" type="button" aria-label="Fermer les résultats">×</button>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-16">16 AOÛT</time>
+    <div><b>OURAGAN FC</b><span>METAL 10</span></div>
+    <strong><em>3</em><i>–</i>1</strong>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-12">12 AOÛT</time>
+    <div><b>CNFF</b><span>OURAGAN FC</span></div>
+    <strong>2<i>–</i><em>2</em></strong>
+  </div>
+  <div class="result-row">
+    <time datetime="2026-08-08">8 AOÛT</time>
+    <div><b>OURAGAN FC</b><span>E. MAKABANDILOU</span></div>
+    <strong><em>2</em><i>–</i>0</strong>
+  </div>
+</section>
+<section class="match-results panel" id="hub-teams" hidden aria-label="NOS ÉQUIPES"><div class="results-head"><div><strong>NOS ÉQUIPES</strong><span>LES COULEURS D’OURAGAN</span></div><button class="results-close" type="button" aria-label="Fermer nos équipes">×</button></div><div class="hub-teams"><figure><img src="photo/Équipe senior A.jpg" alt="Senior A Ouragan FC" loading="lazy"><figcaption>Senior A</figcaption></figure><figure><img src="photo/equipe B.jpeg" alt="Équipe B Ouragan FC" loading="lazy"><figcaption>Équipe B</figcaption></figure><figure><img src="photo/equipe U15.jpeg" alt="U15 Ouragan FC" loading="lazy"><figcaption>U15</figcaption></figure><figure><img src="photo/Équipe U17.jpeg" alt="U17 Ouragan FC" loading="lazy"><figcaption>U17</figcaption></figure></div></section>
+<section class="match-results panel" id="hub-standings" hidden aria-label="CLASSEMENT"><div class="results-head"><div><strong>CLASSEMENT</strong><span>SUIVRE LE CLUB</span></div><button class="results-close" type="button" aria-label="Fermer classement">×</button></div><p class="hub-note">Le classement officiel sera affiché dès sa publication par le club.</p><h3 class="hub-subtitle">Bilan des 3 résultats affichés</h3><div class="hub-stats"><div><strong>2</strong><span>Victoires</span></div><div><strong>1</strong><span>Nul</span></div><div><strong>0</strong><span>Défaite</span></div><div><strong>7–3</strong><span>Buts pour / contre</span></div></div></section>
+<section class="match-results panel" id="hub-calendar" hidden aria-label="CALENDRIER"><div class="results-head"><div><strong>CALENDRIER</strong><span>LES RENDEZ-VOUS DU CLUB</span></div><button class="results-close" type="button" aria-label="Fermer calendrier">×</button></div><p class="hub-note">Programme annoncé sur le site · Août 2026</p><div class="hub-calendar"><div><time datetime="2026-08-21"><strong>21</strong> AOÛT</time><span><b>Ouragan FC — CNFF</b><small>10h00</small></span></div><div><time datetime="2026-08-23"><strong>23</strong> AOÛT</time><span><b>E. Makabandilou — Ouragan FC</b><small>10h50</small></span></div><div><time datetime="2026-08-25"><strong>25</strong> AOÛT</time><span><b>Metal 10 — Ouragan FC</b><small>10h50</small></span></div><div><time datetime="2026-08-27"><strong>27</strong> AOÛT</time><span><b>Ouragan FC — AJ</b><small>10h00</small></span></div></div></section>
+</div>
+
+<section id="actualites" class="news panel">
   <div class="section-head">
     <strong>ACTUALITÉS DU CLUB</strong>
     <a href="https://www.ouraganfc.com/category/actualite/" target="_blank" rel="noopener">VOIR TOUT ›</a>
@@ -177,7 +223,7 @@
     <article class="news-card">
       <div class="thumb"><img src="photo/actualite-couleurs.png" alt="Fiers des couleurs d’Ouragan FC" loading="lazy"><span>CLUB</span></div>
       <small>19 JANVIER 2026</small><h3>FIERS DE NOS COULEURS</h3>
-      <p>Orange et noir : une identité qui rassemble les joueurs, les familles et tous les supporters d’Ouragan FC.</p><button class="news-more" type="button" data-news-target="news-couleurs" aria-controls="news-couleurs" aria-expanded="false">LIRE LA SUITE ›</button>
+      <p>Orange et noir : une identité qui rassemble les joueurs et tous les supporters d’Ouragan FC.</p><button class="news-more" type="button" data-news-target="news-couleurs" aria-controls="news-couleurs" aria-expanded="false">LIRE LA SUITE ›</button>
     </article>
   </div>
 
@@ -216,36 +262,22 @@
     <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
     <img src="photo/actualite-couleurs.png" alt="Fiers des couleurs d’Ouragan FC">
     <div><small>19 JANVIER 2026 · CLUB</small><h2>FIERS DE NOS COULEURS</h2>
-      <p>Orange et noir : plus que des couleurs, une identité qui rassemble les joueurs, les éducateurs, les familles et tous les supporters d’Ouragan FC.</p>
+      <p>Orange et noir : plus que des couleurs, une identité qui rassemble les joueurs, les éducateurs et tous les supporters d’Ouragan FC.</p>
     </div>
   </div>
 </section>
 
 
 
-<section class="match-results panel" id="match-results" hidden>
-  <div class="results-head">
-    <div><strong>MATCHS JOUÉS</strong><span>DERNIERS RÉSULTATS</span></div>
-    <button class="results-close" type="button" aria-label="Fermer les résultats">×</button>
-  </div>
-  <div class="result-row">
-    <time datetime="2026-08-16">16 AOÛT</time>
-    <div><b>OURAGAN FC</b><span>METAL 10</span></div>
-    <strong><em>3</em><i>–</i>1</strong>
-  </div>
-  <div class="result-row">
-    <time datetime="2026-08-12">12 AOÛT</time>
-    <div><b>CNFF</b><span>OURAGAN FC</span></div>
-    <strong>2<i>–</i><em>2</em></strong>
-  </div>
-  <div class="result-row">
-    <time datetime="2026-08-08">8 AOÛT</time>
-    <div><b>OURAGAN FC</b><span>E. MAKABANDILOU</span></div>
-    <strong><em>2</em><i>–</i>0</strong>
-  </div>
-</section>
+
 
 <section class="club-profile panel" id="notre-club" aria-labelledby="club-profile-title">
+  <span class="club-backdrop" aria-hidden="true">
+    <img src="photo/Équipe senior A.jpg" alt="" loading="lazy" decoding="async">
+    <img src="photo/equipe B.jpeg" alt="" loading="lazy" decoding="async">
+    <img src="photo/equipe U15.jpeg" alt="" loading="lazy" decoding="async">
+    <img src="photo/Équipe U17.jpeg" alt="" loading="lazy" decoding="async">
+  </span>
   <button class="club-profile-toggle" type="button" aria-expanded="false" aria-controls="club-profile-content">
     <span class="club-profile-head">
       <img src="logo.png" alt="Logo d’Ouragan Football Club">
@@ -288,7 +320,7 @@
   </div>
 </section>
 
-<section class="president-message panel" aria-labelledby="president-title">
+<section id="mot-du-president" class="president-message panel" aria-labelledby="president-title">
   <div class="president-feature">
     <div class="president-video-wrap">
       <img class="president-portrait" src="photo/president-anime.webp" alt="Portrait animé du président">
@@ -313,7 +345,7 @@
   </div>
 </section>
 
-<section class="tournament panel">
+<section id="tournoi" class="tournament panel">
   <div class="section-head">
     <div>
       <strong>🎟 TOURNOI DU CENTRE NATIONAL DE FORMATION DE FOOTBALL</strong>
@@ -365,7 +397,7 @@
   </div>
 </section>
 
-<section class="gallery panel" aria-labelledby="gallery-title">
+<section id="galerie-photos" class="gallery panel" aria-labelledby="gallery-title">
   <div class="section-head">
     <div>
       <strong id="gallery-title">📸 GALERIE PHOTOS</strong>
@@ -415,7 +447,7 @@
       <div><span>↗</span><p>Contribuer au <strong>développement du club</strong></p></div>
       <div><span><svg class="section-icon"><use href="#icon-ball"/></svg></span><p>Soutenir la <strong>formation des joueurs</strong></p></div>
       <div><span><svg class="section-icon"><use href="#icon-heart"/></svg></span><p>Participer à la <strong>vie associative et sportive locale</strong></p></div>
-      <div><span><svg class="section-icon"><use href="#icon-eye"/></svg></span><p>Bénéficier d’une <strong>visibilité</strong> auprès des licenciés, des familles et du public</p></div>
+      <div><span><svg class="section-icon"><use href="#icon-eye"/></svg></span><p>Bénéficier d’une <strong>visibilité</strong> auprès des licenciés et du public</p></div>
     </div>
 
     <div class="partner-types">
@@ -434,50 +466,54 @@
   </div>
 </section>
 
-<a href="reservation.html" class="support panel">
-  <div class="ticket">🎟️</div>
-  <div>
+<a href="#boutique" class="support panel" id="shop-open" aria-haspopup="dialog">
+  <div class="support-cart" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 5h4l4 16h14l4-11H9M12 25h13"/><circle cx="13" cy="28" r="1.5"/><circle cx="24" cy="28" r="1.5"/></svg></div>
+  <div class="support-copy">
     <strong>SOUTENEZ OURAGAN FC !</strong>
-    <span>Réservez vos places et venez vivre l’émotion avec nous !</span>
+    <span>Tee-shirt, drapeau, parfum, casquette, écharpe et mug : portez nos couleurs !</span>
   </div>
   <b class="reserve">JE RÉSERVE ›</b>
+  <div class="support-preview">
+    <div class="support-product"><div class="product-art art-shirt" role="img" aria-label="Tee-shirt Ouragan FC noir et orange"></div><span>TEE-SHIRT</span></div>
+    <div class="support-product"><div class="product-art art-flag" role="img" aria-label="Drapeau Ouragan FC orange et noir"></div><span>DRAPEAU</span></div>
+    <div class="support-product"><div class="product-art art-perfume" role="img" aria-label="Parfum Ouragan, flacon noir et orange"></div><span>PARFUM</span></div>
+    <div class="support-product"><div class="product-art art-cap" role="img" aria-label="Casquette Ouragan FC"></div><span>CASQUETTE</span></div>
+    <div class="support-product"><div class="product-art art-scarf" role="img" aria-label="Écharpe Ouragan FC"></div><span>ÉCHARPE</span></div>
+    <div class="support-product"><div class="product-art art-mug" role="img" aria-label="Mug Ouragan FC"></div><span>MUG</span></div>
+  </div>
 </a>
+
+<section class="contact-section panel" id="contact" aria-labelledby="contact-title">
+  <details class="contact-details">
+    <summary class="contact-heading">
+      <span><small>RESTONS EN CONTACT</small><strong id="contact-title">PARLONS DU CLUB</strong><span>Une question, une idée, un projet ?</span></span>
+      <span class="contact-open"><svg aria-hidden="true"><use href="#icon-mail"/></svg><span>ÉCRIVEZ-NOUS</span><b aria-hidden="true">+</b></span>
+    </summary>
+    <form class="contact-form">
+      <div class="contact-fields">
+        <label for="contact-name">Votre nom <span>(facultatif)</span><input id="contact-name" name="name" autocomplete="name" maxlength="100"></label>
+        <label for="contact-email">Votre e-mail<input id="contact-email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.fr" required maxlength="254"></label>
+      </div>
+      <label for="contact-subject">Sujet<input id="contact-subject" name="subject" placeholder="De quoi souhaitez-vous nous parler ?" required maxlength="150"></label>
+      <label for="contact-message">Votre message<textarea id="contact-message" name="message" rows="5" placeholder="Écrivez votre message ici…" required maxlength="4000"></textarea></label>
+      <button type="submit" class="button">PRÉPARER MON E-MAIL <span aria-hidden="true">↗</span></button>
+      <p class="contact-help">Votre messagerie s’ouvrira avec le message à envoyer à <a href="mailto:contact@ouraganfc.com">contact@ouraganfc.com</a>.</p>
+    </form>
+  </details>
+</section>
 
 </main>
 
 <footer class="legal-footer">
   <section class="club-signature" aria-labelledby="club-signature-title">
     <img class="club-signature-supporters" src="assets/footer-supporters.jpg" alt="" loading="lazy" decoding="async" width="1536" height="1024">
-    <img class="club-signature-textile" src="assets/footer-textile-ouragan.jpg" alt="Blason Ouragan FC sur un textile noir aux coutures orange" loading="lazy" decoding="async" width="1536" height="1024">
+    <img class="club-signature-textile" src="assets/footer-textile-discret.png" alt="Blason Ouragan FC incliné et fondu dans les plis d’un textile noir et orange" loading="lazy" decoding="async" width="1536" height="1024">
     <div class="club-signature-copy">
       <h2 id="club-signature-title"><img class="club-signature-wordmark" src="assets/footer-signature-ouragan.png" alt="Ouragan FC — Ensemble plus fort" width="2172" height="724" loading="lazy" decoding="async"></h2>
     </div>
   </section>
   <div class="legal-footer-details">
-<div class="theme-toolbar">
-  <span class="theme-caption">L’AMBIANCE DU CLUB</span>
-  <button class="theme-toggle" type="button" aria-label="Activer le style sombre" aria-pressed="false">
-    <span class="theme-choice theme-choice-light"><span aria-hidden="true">☀</span> Classique</span>
-    <span class="theme-choice theme-choice-dark"><span aria-hidden="true">☾</span> Sombre</span>
-  </button>
-</div>
-<script>
-  (() => {
-    const toggle = document.querySelector('.theme-toggle');
-    const updateTheme = dark => {
-      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
-      toggle.setAttribute('aria-pressed', String(dark));
-      toggle.setAttribute('aria-label', dark ? 'Activer le style classique' : 'Activer le style sombre');
-      document.querySelector('meta[name="theme-color"]').content = dark ? '#111313' : '#F57C20';
-    };
-    updateTheme(document.documentElement.dataset.theme === 'dark');
-    toggle.addEventListener('click', () => {
-      const dark = document.documentElement.dataset.theme !== 'dark';
-      updateTheme(dark);
-      try { localStorage.setItem('ouragan-theme', dark ? 'dark' : 'light'); } catch (_) {}
-    });
-  })();
-</script>
+
   <address>
     <strong>Ouragan FC</strong>
     <span>18 rue Tsiba MFILOU</span>
@@ -534,12 +570,33 @@
   </div>
 </footer>
 
-<nav class="bottom-nav">
-  <a href="index.html" class="active"><span><svg><use href="#icon-home"/></svg></span><b>ACCUEIL</b></a>
-  <a href="#match-results" class="js-matches-toggle" aria-expanded="false" aria-controls="match-results"><span><svg><use href="#icon-ball"/></svg></span><b>MATCHS</b></a>
-  <a href="equipes.html"><span><svg><use href="#icon-team"/></svg></span><b>ÉQUIPES</b></a>
-  <a href="classement.html"><span><svg><use href="#icon-trophy"/></svg></span><b>CLASSEMENT</b></a>
-  <a href="compte.html"><span><svg><use href="#icon-user"/></svg></span><b>COMPTE</b></a>
+<nav class="bottom-nav" aria-label="Ambiance, boutique et compte">
+<div class="theme-toolbar">
+  <span class="theme-caption">L’AMBIANCE DU CLUB</span>
+  <button class="theme-toggle" type="button" aria-label="Activer le style sombre" aria-pressed="false">
+    <span class="theme-choice theme-choice-light"><span aria-hidden="true">☀</span> Classique</span>
+    <span class="theme-choice theme-choice-dark"><span aria-hidden="true">☾</span> Sombre</span>
+  </button>
+</div>
+<script>
+  (() => {
+    const toggle = document.querySelector('.theme-toggle');
+    const updateTheme = dark => {
+      document.documentElement.dataset.theme = dark ? 'dark' : 'light';
+      toggle.setAttribute('aria-pressed', String(dark));
+      toggle.setAttribute('aria-label', dark ? 'Activer le style classique' : 'Activer le style sombre');
+      document.querySelector('meta[name="theme-color"]').content = dark ? '#111313' : '#F57C20';
+    };
+    updateTheme(document.documentElement.dataset.theme === 'dark');
+    toggle.addEventListener('click', () => {
+      const dark = document.documentElement.dataset.theme !== 'dark';
+      updateTheme(dark);
+      try { localStorage.setItem('ouragan-theme', dark ? 'dark' : 'light'); } catch (_) {}
+    });
+  })();
+</script>
+  <a href="#boutique" id="bottom-shop-open" aria-haspopup="dialog" aria-controls="boutique"><span><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M3 5h4l4 16h14l4-11H9M12 25h13"/><circle cx="13" cy="28" r="1.5"/><circle cx="24" cy="28" r="1.5"/></svg></span><b>PANIER</b></a>
+  <a href="compte.html"><span><svg aria-hidden="true"><use href="#icon-user"/></svg></span><b>COMPTE</b></a>
 </nav>
 
 </div>
@@ -547,9 +604,71 @@
   <button type="button" class="lightbox-close" aria-label="Fermer la photo">×</button>
   <img src="" alt="">
 </div>
+<dialog class="site-menu" id="site-menu" aria-labelledby="menu-title">
+  <div class="menu-sheet">
+    <div class="menu-handle" aria-hidden="true"></div>
+    <div class="menu-heading">
+      <img src="logo.png" alt="" width="52" height="52">
+      <div><small>ENSEMBLE PLUS FORTS</small><h2 id="menu-title">Ouragan FC</h2></div>
+      <button type="button" class="menu-close" aria-label="Fermer le menu">×</button>
+    </div>
+    <nav class="menu-apps" aria-label="Rubriques du site">
+      <a href="#prochain-match"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-calendar"/></svg></span><span>Prochain match</span></a>
+      <a href="#notre-club"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-team"/></svg></span><span>Notre club</span></a>
+      <a href="#mot-du-president"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-user"/></svg></span><span>Mot du président</span></a>
+      <a href="#galerie-photos"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-eye"/></svg></span><span>Galerie photo</span></a>
+      <a href="#actualites"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-bolt"/></svg></span><span>Actualités</span></a>
+      <a href="#match-results"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-trophy"/></svg></span><span>Matchs joués</span></a>
+      <a href="#tournoi"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-ball"/></svg></span><span>Tournoi</span></a>
+      <a href="#partenaires"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-heart"/></svg></span><span>Partenaires</span></a>
+      <a href="#contact"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-mail"/></svg></span><span>Contact</span></a>
+    </nav>
+    <p class="menu-signature">LA FIERTÉ DANS LA BATAILLE</p>
+  </div>
+</dialog>
 <script>
 (() => {
   const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.querySelector('.contact-form').addEventListener('submit', event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.reportValidity()) return;
+    const data = new FormData(form);
+    const body = `Nom : ${data.get('name') || 'Non renseigné'}\nE-mail : ${data.get('email')}\n\n${data.get('message')}`;
+    location.href = `mailto:contact@ouraganfc.com?subject=${encodeURIComponent(data.get('subject'))}&body=${encodeURIComponent(body)}`;
+  });
+
+  const menuToggle = document.querySelector('.menu-toggle');
+  const siteMenu = document.querySelector('#site-menu');
+  const syncMenu = () => {
+    menuToggle.setAttribute('aria-expanded', String(siteMenu.open));
+    document.documentElement.classList.toggle('menu-is-open', siteMenu.open);
+  };
+  const setMenuOpen = open => {
+    if (open && !siteMenu.open) siteMenu.showModal();
+    if (!open && siteMenu.open) siteMenu.close();
+    syncMenu();
+  };
+  menuToggle.addEventListener('click', () => setMenuOpen(!siteMenu.open));
+  siteMenu.querySelector('.menu-close').addEventListener('click', () => setMenuOpen(false));
+  siteMenu.addEventListener('close', syncMenu);
+  siteMenu.addEventListener('click', event => {
+    if (event.target === siteMenu) setMenuOpen(false);
+  });
+  siteMenu.addEventListener('click', event => {
+    const link = event.target.closest('a');
+    if (!link) return;
+    const target = document.querySelector(link.hash);
+    if (!target) return;
+    event.preventDefault();
+    if (target.id === 'match-results') setResults(true);
+    setMenuOpen(false);
+    target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
+    target.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
+    history.replaceState(null, '', link.hash);
+  });
 
   document.querySelectorAll('.header-impact > span').forEach(slogan => {
     let letterIndex = 0;
@@ -715,29 +834,39 @@
   new ResizeObserver(requestWaveLayout).observe(pageContainer);
   createIndependentWaves();
 
-  const results = document.querySelector('#match-results');
-  const matchButtons = document.querySelectorAll('.js-matches-toggle');
-
-  function setResults(open) {
-    results.hidden = !open;
-    matchButtons.forEach(button => button.setAttribute('aria-expanded', String(open)));
-    if (open) results.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' });
+  const sportPanels = [...document.querySelectorAll('.match-hub > .match-results')];
+  const sportButtons = [...document.querySelectorAll('.shortcut-grid .shortcut[aria-controls], .js-matches-toggle')];
+  function setSportPanel(target, open) {
+    sportPanels.forEach(panel => { panel.hidden = panel.id !== target || !open; });
+    sportButtons.forEach(button => button.setAttribute('aria-expanded', String(open && button.getAttribute('aria-controls') === target)));
+    if (open) document.getElementById(target).scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' });
   }
-
-  matchButtons.forEach(button => button.addEventListener('click', event => {
+  sportButtons.forEach(button => button.addEventListener('click', event => {
     event.preventDefault();
-    setResults(results.hidden);
+    const target = button.getAttribute('aria-controls');
+    setSportPanel(target, document.getElementById(target).hidden);
   }));
-  results.querySelector('.results-close').addEventListener('click', () => setResults(false));
+  sportPanels.forEach(panel => panel.querySelector('.results-close').addEventListener('click', () => {
+    setSportPanel(panel.id, false);
+    sportButtons.find(button => button.getAttribute('aria-controls') === panel.id).focus({ preventScroll: true });
+  }));
 
   const clubProfileToggle = document.querySelector('.club-profile-toggle');
   const clubProfileContent = document.querySelector('#club-profile-content');
-  clubProfileToggle.addEventListener('click', () => {
-    const open = clubProfileContent.hidden;
+  const setClubProfileOpen = open => {
     clubProfileContent.hidden = !open;
     clubProfileToggle.setAttribute('aria-expanded', String(open));
     clubProfileToggle.querySelector('.club-profile-action-label').textContent = open ? 'RÉDUIRE' : 'LIRE TOUT';
+  };
+  clubProfileToggle.addEventListener('click', () => setClubProfileOpen(clubProfileContent.hidden));
+  document.querySelectorAll('a[href="#notre-club"]').forEach(link => {
+    link.addEventListener('click', () => setClubProfileOpen(true));
   });
+  const openClubFromHash = () => {
+    if (location.hash === '#notre-club') setClubProfileOpen(true);
+  };
+  addEventListener('hashchange', openClubFromHash);
+  openClubFromHash();
 
   document.querySelectorAll('.gallery').forEach(gallery => {
     const galleryTrack = gallery.querySelector('.gallery-track');
@@ -877,6 +1006,8 @@
 
   const depthSections = [...document.querySelectorAll('.hero, main > .panel, main > .support')];
   const nextMatch = document.querySelector('.next-match');
+  const clubProfile = document.querySelector('.club-profile');
+  const matchHub = document.querySelector('.match-hub');
   let depthFrame = 0;
   const updateSectionDepth = () => {
     depthFrame = 0;
@@ -901,6 +1032,23 @@
       const logoGrowth = innerWidth <= 560 ? .28 : .42;
       const matchScale = reducedMotion ? 1 : 1 + Math.pow(matchProximity, 1.7) * logoGrowth;
       nextMatch.style.setProperty('--match-logo-scale', matchScale.toFixed(3));
+      const matchProgress = Math.max(0, Math.min(1, (innerHeight - matchBox.top) / (innerHeight + matchBox.height)));
+      const stadiumScale = reducedMotion ? 1 : 1.08 + matchProgress * .3;
+      const stadiumPan = reducedMotion ? 0 : 5 - matchProgress * 10;
+      nextMatch.style.setProperty('--stadium-scale', stadiumScale.toFixed(3));
+      nextMatch.style.setProperty('--stadium-pan', `${stadiumPan.toFixed(2)}%`);
+    }
+    if (matchHub) {
+      const box = matchHub.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (innerHeight - box.top) / (innerHeight + box.height)));
+      matchHub.style.setProperty('--hub-pan', reducedMotion ? '0%' : `${(6 - progress * 12).toFixed(2)}%`);
+      matchHub.style.setProperty('--hub-scale', reducedMotion ? '1' : (1.06 + progress * .2).toFixed(3));
+    }
+    if (clubProfile) {
+      const clubBox = clubProfile.getBoundingClientRect();
+      const progress = Math.max(0, Math.min(1, (innerHeight - clubBox.top) / (innerHeight + clubBox.height)));
+      clubProfile.style.setProperty('--club-background-scale', reducedMotion ? '1' : (1.08 + progress * .3).toFixed(3));
+      clubProfile.style.setProperty('--club-background-pan', reducedMotion ? '0%' : `${(5 - progress * 10).toFixed(2)}%`);
     }
     document.querySelectorAll('.gallery').forEach(gallery => {
       const box = gallery.getBoundingClientRect();
@@ -921,5 +1069,24 @@
 
 })();
 </script>
+
+<dialog id="boutique" class="shop" aria-labelledby="shop-title">
+  <div class="shop-top"><div><small>LES COULEURS DU CLUB</small><h2 id="shop-title">LA BOUTIQUE OURAGAN</h2></div><button type="button" id="shop-close" aria-label="Fermer la boutique">✕</button></div>
+  <a class="shop-cart-link" href="#shop-cart">🛒 Mon panier (<span id="cart-count">0</span>)</a>
+  <p>Choisissez vos articles et préparez votre demande de réservation.</p>
+  <div class="shop-products">
+    <article><div class="product-art art-shirt" role="img" aria-label="Tee-shirt noir Ouragan FC aux finitions orange"></div><h3>Tee-shirt Ouragan FC</h3><p>Les couleurs du club, au quotidien.</p><label>Taille <select id="shirt-size"><option>S</option><option selected>M</option><option>L</option><option>XL</option><option>XXL</option></select></label><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="shirt">🛒 Ajouter au panier</button></article>
+    <article><div class="product-art art-flag" role="img" aria-label="Drapeau orange et noir Ouragan FC"></div><h3>Drapeau Ouragan FC</h3><p>Faites vibrer les tribunes.</p><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="flag">🛒 Ajouter au panier</button></article>
+    <article><div class="product-art art-perfume" role="img" aria-label="Flacon de parfum Ouragan noir et orange"></div><h3>Parfum Ouragan</h3><p>La signature Ouragan.</p><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="perfume">🛒 Ajouter au panier</button></article>
+    <article><div class="product-art art-cap" role="img" aria-label="Casquette Ouragan FC"></div><h3>Casquette Ouragan FC</h3><p>Affichez vos couleurs au quotidien.</p><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="cap">🛒 Ajouter au panier</button></article>
+    <article><div class="product-art art-scarf" role="img" aria-label="Écharpe Ouragan FC"></div><h3>Écharpe Ouragan FC</h3><p>Le rendez-vous des supporters.</p><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="scarf">🛒 Ajouter au panier</button></article>
+    <article><div class="product-art art-mug" role="img" aria-label="Mug Ouragan FC"></div><h3>Mug Ouragan FC</h3><p>Ouragan vous accompagne chaque matin.</p><span class="shop-price">Tarif à confirmer</span><button type="button" data-add="mug">🛒 Ajouter au panier</button></article>
+  </div>
+  <p class="shop-note">Visuels de présentation. Prix et disponibilités à confirmer auprès du club.</p>
+  <section id="shop-cart" aria-labelledby="cart-title"><h3 id="cart-title">🛒 Mon panier</h3><div id="cart-items"></div><p id="cart-status" role="status" aria-live="polite"></p><button type="button" id="cart-reserve" disabled>Demander ma réservation</button><p class="shop-note">Votre messagerie s’ouvrira avec votre sélection. La réservation sera confirmée par le club.</p></section>
+</dialog>
+<script src="boutique.js" defer></script>
+<script src="billetterie.js" defer></script>
+
 </body>
 </html>
