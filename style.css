@@ -934,3 +934,12 @@ html[data-theme] .header-impact strong{color:#f58220}
 html[data-theme] .header-impact{left:26cqw;right:24cqw}
 html[data-theme] .header-curve path:first-child{fill:#f6eee5}
 html[data-theme="light"] .header-curve path:first-child{fill:#fffaf5}
+
+/* Silhouettes de supporters sur noir, comme le bandeau de référence. */
+html[data-theme] .header{background:#090909}
+html[data-theme] .header::before{
+  inset:0;width:100%;height:100%;opacity:1;
+  background:radial-gradient(ellipse at top left,rgba(0,0,0,.68) 0%,rgba(0,0,0,.42) 18%,rgba(0,0,0,.12) 34%,transparent 52%),url("assets/bandeau-supporters-original.png") center top/cover no-repeat;
+  filter:none;
+  animation:none;transform:none;will-change:auto;
+}
