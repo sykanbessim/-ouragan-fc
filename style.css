@@ -63,7 +63,7 @@ main{padding:0 20px 105px}
 .club-profile-toggle{display:flex;width:100%;align-items:center;justify-content:space-between;gap:16px;padding:0;border:0;background:transparent;color:inherit;text-align:left;cursor:pointer}.club-profile-head{display:flex;min-width:0;align-items:center;gap:16px}.club-profile-head img{width:68px;height:68px;object-fit:contain;filter:drop-shadow(0 7px 10px rgba(17,19,19,.14))}.club-profile-title-wrap{display:block}.club-profile-title-wrap>span:first-child{display:block;color:var(--orange);font-size:9px;font-weight:800;letter-spacing:.08em}.club-profile-head h2{margin:2px 0 0;font:800 italic 30px "Barlow Condensed"}.club-profile-head .club-profile-motto{display:block;margin:0;color:#695d55;font:700 italic 13px "Barlow Condensed";letter-spacing:0}.club-profile-action{display:flex;flex:0 0 auto;align-items:center;gap:8px;color:var(--orange);font-size:9px;font-weight:800}.club-profile-chevron{display:grid;width:28px;height:28px;place-items:center;border-radius:50%;background:var(--orange-soft);font-size:20px;line-height:1;transition:transform .22s ease}.club-profile-toggle[aria-expanded="true"] .club-profile-chevron{transform:rotate(180deg)}.club-profile-toggle:focus-visible{outline:2px solid var(--orange);outline-offset:8px;border-radius:8px}.club-profile-content{margin-top:15px;padding-top:1px;border-top:1px solid var(--border);animation:club-profile-reveal .24s ease both}.club-profile-content[hidden]{display:none}@keyframes club-profile-reveal{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:none}}
 .club-facts{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:14px}.club-facts>div{padding:11px;border:1px solid var(--border);border-radius:11px;background:#fff}.club-facts small,.academy-block small{display:block;margin-bottom:4px;color:var(--orange);font-size:8px;font-weight:800}.club-facts strong{display:flex;align-items:center;gap:5px;font:700 13px "Barlow Condensed"}.club-color{width:10px;height:10px;border-radius:50%}.club-color.orange{background:var(--orange)}.club-color.black{background:var(--black)}
 .club-profile-columns{display:grid;grid-template-columns:170px 1fr;gap:10px;margin-top:10px}.academy-block{display:flex;align-items:center;gap:10px;padding:14px;border-radius:12px;background:var(--black);color:#fff}.academy-block>span{font-size:27px}.academy-block strong{font:800 15px "Barlow Condensed"}.club-objectives{padding:13px;border-radius:12px;background:var(--orange-soft)}.club-objectives h3{margin:0 0 7px;font:800 15px "Barlow Condensed"}.club-objectives ul{margin:0;padding-left:17px;color:#5d534d;font-size:9px;line-height:1.5}.club-objectives li+li{margin-top:4px}
-.president-message{margin-top:15px;padding:20px;background:linear-gradient(145deg,#171717,#2a160c);color:#fff;overflow:hidden}.president-feature{display:grid;grid-template-columns:115px 1fr;align-items:center;gap:20px}.president-feature .president-video-wrap{width:115px;transition:width .28s ease}.president-message.message-open .president-feature{grid-template-columns:160px 1fr}.president-message.message-open .president-video-wrap{width:160px}.president-message-head small{display:block;color:#ff9b55;font-size:9px;font-weight:800;letter-spacing:.08em}.president-message-head strong{display:block;margin-top:5px;font:800 italic 27px/1 "Barlow Condensed"}.president-message-head>span{display:block;margin-top:7px;color:#cfc7c1;font:700 12px "Barlow Condensed"}.president-text-toggle{margin-top:14px;border:0;border-radius:999px;background:var(--orange);color:#fff;padding:9px 13px;font-size:9px;font-weight:800;cursor:pointer}
+.president-message{margin-top:15px;padding:20px;background:linear-gradient(145deg,#171717,#2a160c);color:#fff;overflow:hidden}.president-feature{display:grid;grid-template-columns:135px 1fr;align-items:center;gap:20px}.president-feature .president-video-wrap{width:135px;transition:width .28s ease}.president-message.message-open .president-feature{grid-template-columns:175px 1fr}.president-message.message-open .president-video-wrap{width:175px}.president-message-head small{display:block;color:#ff9b55;font-size:9px;font-weight:800;letter-spacing:.08em}.president-message-head strong{display:block;margin-top:5px;font:800 italic 27px/1 "Barlow Condensed"}.president-message-head>span{display:block;margin-top:7px;color:#cfc7c1;font:700 12px "Barlow Condensed"}.president-text-toggle{margin-top:14px;border:0;border-radius:999px;background:var(--orange);color:#fff;padding:9px 13px;font-size:9px;font-weight:800;cursor:pointer}
 .president-message.is-rotating{animation:president-window-spin 1.08s cubic-bezier(.35,.05,.22,1) both;transform-style:preserve-3d}.president-text-toggle:disabled{opacity:.7;cursor:wait}@keyframes president-window-spin{0%{transform:translateY(var(--scroll-lift,0)) scale(var(--scroll-scale,1)) perspective(900px) rotateY(0)}38%{transform:translateY(-13px) scale(1.14) perspective(900px) rotateY(200deg)}64%{transform:translateY(-17px) scale(1.18) perspective(900px) rotateY(360deg)}76%{transform:translateY(var(--scroll-lift,0)) scale(var(--scroll-scale,1)) perspective(900px) rotateY(360deg)}85%{transform:translateY(-4px) scale(1.045) perspective(900px) rotateY(360deg)}92%{transform:translateY(2px) scale(.985) perspective(900px) rotateY(360deg)}97%{transform:translateY(-1px) scale(1.012) perspective(900px) rotateY(360deg)}100%{transform:translateY(var(--scroll-lift,0)) scale(var(--scroll-scale,1)) perspective(900px) rotateY(360deg)}}
 .president-content{margin-top:17px;padding-top:17px;border-top:1px solid rgba(255,255,255,.14);animation:president-text-reveal .22s ease both}.president-content[hidden]{display:none}@keyframes president-text-reveal{from{opacity:0}to{opacity:1}}
 .president-video-wrap{position:relative;width:160px;align-self:start;overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:14px;background:#000;box-shadow:0 10px 25px rgba(0,0,0,.3)}.president-portrait{width:100%;height:auto;aspect-ratio:4/3;display:block;background:#000;object-fit:cover}.president-letter p{margin:0 0 10px;color:#ddd;font-size:10px;line-height:1.6}.president-letter>p:first-child{color:#fff;font-size:12px}.president-letter footer{margin-top:15px;padding-left:12px;border-left:3px solid var(--orange)}.president-letter footer span,.president-letter footer strong,.president-letter footer small{display:block}.president-letter footer span{color:#c9c1bb;font-size:9px}.president-letter footer strong{margin:3px 0;font:800 italic 18px "Barlow Condensed"}.president-letter footer small{color:#ff9b55;font-size:8px;font-weight:800}
@@ -117,7 +117,7 @@ main{padding:0 20px 105px}
   .gallery-card{flex-basis:84%;height:180px}
   .partners{padding:17px 14px}.partners-intro{padding-right:0}.partners h2{font-size:29px}.partner-benefits{grid-template-columns:1fr}.partner-contact{grid-template-columns:1fr}.partner-contact-label{width:max-content}
   .club-profile{scroll-margin-top:140px;padding:14px}.club-profile-head{gap:11px}.club-profile-head img{width:54px;height:54px}.club-profile-head h2{font-size:25px}.club-profile-head .club-profile-motto{font-size:11px}.club-profile-action-label{display:none}.club-facts{grid-template-columns:1fr 1fr}.club-profile-columns{grid-template-columns:1fr}.club-objectives ul{font-size:10px}
-  .president-message{padding:16px 14px}.president-feature{grid-template-columns:82px 1fr;gap:13px}.president-feature .president-video-wrap{width:82px}.president-message.message-open .president-feature{grid-template-columns:105px 1fr}.president-message.message-open .president-video-wrap{width:105px}.president-message-head strong{font-size:21px}.president-letter p{font-size:10px;line-height:1.55}.president-letter footer strong{font-size:15px}
+  .president-message{padding:16px 14px}.president-feature{grid-template-columns:95px 1fr;gap:13px}.president-feature .president-video-wrap{width:95px}.president-message.message-open .president-feature{grid-template-columns:120px 1fr}.president-message.message-open .president-video-wrap{width:120px}.president-message-head strong{font-size:21px}.president-letter p{font-size:10px;line-height:1.55}.president-letter footer strong{font-size:15px}
 }
 
 @media(prefers-reduced-motion:reduce){.gallery-card img{animation:none;transform:none;translate:0}.page-wave-watermark>span,.president-content,.club-profile-content,.impact-letter{animation:none}.club-profile-chevron{transition:none}.header-impact>span{display:none}.header-impact>span:first-child{display:flex}.header-impact>span:first-child .impact-letter{opacity:1;transform:none}}
@@ -334,7 +334,7 @@ body{
 .theme-toggle{display:inline-flex;flex-shrink:0;gap:3px;padding:4px;border:1px solid var(--border);border-radius:999px;background:#f5eee8;color:#695d55;cursor:pointer;font:700 11px Inter,Arial,sans-serif;min-height:44px;box-shadow:0 3px 12px rgba(0,0,0,.06)}
 .theme-choice{display:flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px}
 .theme-choice>span{font-size:17px;line-height:1}
-.theme-choice-light{background:#fff;color:#111313;box-shadow:0 2px 7px rgba(0,0,0,.09)}
+.theme-choice-light{background:var(--orange);color:#fff;box-shadow:0 2px 7px rgba(0,0,0,.09)}
 .theme-toggle:focus-visible{outline:3px solid var(--orange);outline-offset:4px}
 .theme-toggle:hover{border-color:var(--orange)}
 html[data-theme="dark"]{color-scheme:dark;--orange:#ff922f;--orange-dark:#f58220;--orange-soft:#342217;--border:#513521;--shadow:0 10px 28px rgba(0,0,0,.3)}
@@ -806,3 +806,66 @@ main>.partners,html[data-theme="dark"] main>.partners{
 .partners .partners-content{margin-top:16px;padding:18px;border:1px solid #ffffff30;border-radius:14px;background:#0b1412ed}
 .partners .partners-intro p{color:#e7dace}
 @media(max-width:560px){.partners .partners-toggle{min-height:125px;align-items:flex-start;justify-content:center;flex-direction:column;gap:16px}.partners .partners-content{padding:14px}}
+
+/* Fonds animés pour les rubriques immersives. */
+main > .president-message,
+main > .contact-section,
+main > .support,
+main > .partners{
+  position:relative;
+  isolation:isolate;
+  overflow:hidden;
+  background-color:#080e0b;
+  background-image:none;
+}
+main > .president-message::before,
+main > .contact-section::before,
+main > .support::before,
+main > .partners::before{
+  content:"";
+  position:absolute;
+  inset:-8%;
+  z-index:0;
+  pointer-events:none;
+  background-position:center;
+  background-size:cover;
+  background-repeat:no-repeat;
+  transform:translate(0,.3%) scale(1.06);
+  animation:immersive-panel-drift 18s ease-in-out infinite alternate;
+  will-change:transform;
+}
+main > .president-message::before{
+  background-image:linear-gradient(90deg,rgba(8,14,11,.86),rgba(8,14,11,.42) 55%,rgba(8,14,11,.12)),url("assets/president-stade-aerien.png");
+}
+main > .contact-section::before{
+  background-image:linear-gradient(90deg,#080e10dc,#080e1077 60%,#080e1022),url("assets/contact-club.png");
+  background-position:center 60%;
+}
+main > .support::before{
+  background-image:linear-gradient(90deg,#080e10e8,#080e1099 58%,#080e104d),url("assets/footer-supporters.jpg");
+  background-position:center 48%;
+}
+main > .partners::before{
+  background-image:linear-gradient(90deg,#080e10b3,#080e1066 55%,#080e1026),url("assets/partenaires-sans-visages.png");
+  background-position:center 60%;
+}
+main > .president-message > *,
+main > .contact-section > *,
+main > .support > *,
+main > .partners > *{
+  position:relative;
+  z-index:1;
+}
+main > .support{color:#fff;background-color:#080e0b}
+main > .support .support-copy span{color:#f1e7dd}
+@keyframes immersive-panel-drift{
+  from{transform:translate(-.7%,.4%) scale(1.06)}
+  to{transform:translate(.7%,-.4%) scale(1.11)}
+}
+@media(prefers-reduced-motion:reduce){
+  main > .president-message::before,
+  main > .contact-section::before,
+  main > .support::before,
+  main > .partners::before{animation:none;transform:none;will-change:auto}
+}
+

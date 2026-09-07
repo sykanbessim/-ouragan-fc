@@ -200,11 +200,6 @@
 
   <div class="news-grid">
     <article class="news-card">
-      <div class="thumb"><img src="photo/actualite-tournoi.jpg" alt="Tournoi CNFF 2026" loading="lazy"><span>NOUVEAU</span></div>
-      <small>18 AOÛT 2026</small><h3>OURAGAN FC ENTRE EN BATAILLE !</h3>
-      <p>Nos jeunes U11 et U14 sont prêts à défendre nos couleurs lors de la 7ᵉ édition du tournoi du CNFF.</p><button class="news-more" type="button" data-news-target="news-tournoi" aria-controls="news-tournoi" aria-expanded="false">LIRE LA SUITE ›</button>
-    </article>
-    <article class="news-card">
       <div class="thumb"><img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais" loading="lazy"><span>FÉLICITATIONS</span></div>
       <small>14 FÉVRIER 2026</small><h3>REPRÉSENTANT CONGOLAIS</h3>
       <p>Ouragan FC félicite l’AS Otohô pour sa qualification en quart de finale de la Coupe de la Confédération CAF.</p><button class="news-more" type="button" data-news-target="news-otoho" aria-controls="news-otoho" aria-expanded="false">LIRE LA SUITE ›</button>
@@ -226,14 +221,6 @@
     </article>
   </div>
 
-  <div class="news-reader" id="news-tournoi" hidden>
-    <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
-    <img src="photo/actualite-tournoi.jpg" alt="Tournoi CNFF 2026">
-    <div><small>18 AOÛT 2026 · ACTUALITÉ</small><h2>OURAGAN FC ENTRE EN BATAILLE !</h2>
-      <p>Le compte à rebours est lancé ! À l’occasion de la 7ᵉ édition 2026 du Tournoi du Centre National de Formation de Football, nos jeunes U11 et U14 sont prêts à défendre nos couleurs avec fierté, rigueur et passion.</p>
-      <p><strong>21, 23, 25 et 27 août 2026 :</strong> quatre matchs et un seul objectif, aller le plus loin possible. Tous derrière Ouragan FC !</p>
-    </div>
-  </div>
   <div class="news-reader" id="news-otoho" hidden>
     <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
     <img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais">
@@ -341,58 +328,6 @@
       <p>Merci de votre soutien et à bientôt sur le terrain !</p>
       <footer><span>Cordialement,</span><strong>Beni Carisma Migambanou</strong><small>PRÉSIDENT DU CLUB</small></footer>
     </article>
-  </div>
-</section>
-
-<section id="tournoi" class="tournament panel">
-  <div class="section-head">
-    <div>
-      <strong>🎟 TOURNOI DU CENTRE NATIONAL DE FORMATION DE FOOTBALL</strong>
-      <span>7ÈME ÉDITION 2026</span>
-    </div>
-    <button type="button" class="small-button" id="tournament-toggle" aria-expanded="true" aria-controls="tournament-fixtures">RÉDUIRE −</button>
-  </div>
-
-  <div class="fixtures" id="tournament-fixtures">
-    <a href="match-21-aout.html" class="fixture selected">
-      <div class="fixture-date"><b>21</b><span>AOÛT</span></div>
-      <div class="fixture-main">
-        <small>10H00</small>
-        <div class="mini-clubs">
-          <img src="logo.png" alt="">
-          <b>VS</b>
-          <div class="mini-cnff">CNFF</div>
-        </div>
-        <span>OURAGAN FC</span>
-      </div>
-    </a>
-
-    <a href="match-23-aout.html" class="fixture">
-      <div class="fixture-date"><b>23</b><span>AOÛT</span></div>
-      <div class="fixture-main">
-        <small>10H50</small>
-        <div class="mini-clubs"><div class="generic-logo">EM</div><b>VS</b><img src="logo.png" alt=""></div>
-        <span>E. MAKABANDILOU</span>
-      </div>
-    </a>
-
-    <a href="match-25-aout.html" class="fixture">
-      <div class="fixture-date"><b>25</b><span>AOÛT</span></div>
-      <div class="fixture-main">
-        <small>10H50</small>
-        <div class="mini-clubs"><div class="generic-logo">M10</div><b>VS</b><img src="logo.png" alt=""></div>
-        <span>METAL 10</span>
-      </div>
-    </a>
-
-    <a href="match-27-aout.html" class="fixture">
-      <div class="fixture-date"><b>27</b><span>AOÛT</span></div>
-      <div class="fixture-main">
-        <small>10H00</small>
-        <div class="mini-clubs"><img src="logo.png" alt=""><b>VS</b><div class="generic-logo">AJ</div></div>
-        <span>OURAGAN FC</span>
-      </div>
-    </a>
   </div>
 </section>
 
@@ -618,7 +553,6 @@
       <a href="#galerie-photos"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-eye"/></svg></span><span>Galerie photo</span></a>
       <a href="#actualites"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-bolt"/></svg></span><span>Actualités</span></a>
       <a href="#match-results"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-trophy"/></svg></span><span>Matchs joués</span></a>
-      <a href="#tournoi"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-ball"/></svg></span><span>Tournoi</span></a>
       <a href="#partenaires"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-heart"/></svg></span><span>Partenaires</span></a>
       <a href="#contact"><span class="menu-app-icon"><svg aria-hidden="true"><use href="#icon-mail"/></svg></span><span>Contact</span></a>
     </nav>
@@ -849,15 +783,6 @@
     setSportPanel(panel.id, false);
     sportButtons.find(button => button.getAttribute('aria-controls') === panel.id).focus({ preventScroll: true });
   }));
-
-  const tournamentToggle = document.getElementById('tournament-toggle');
-  const tournamentFixtures = document.getElementById('tournament-fixtures');
-  tournamentToggle.addEventListener('click', () => {
-    const open = tournamentFixtures.hidden;
-    tournamentFixtures.hidden = !open;
-    tournamentToggle.setAttribute('aria-expanded', String(open));
-    tournamentToggle.textContent = open ? 'RÉDUIRE −' : 'AGRANDIR +';
-  });
 
   const clubProfileToggle = document.querySelector('.club-profile-toggle');
   const clubProfileContent = document.querySelector('#club-profile-content');
