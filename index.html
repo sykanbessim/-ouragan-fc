@@ -351,10 +351,10 @@
       <strong>🎟 TOURNOI DU CENTRE NATIONAL DE FORMATION DE FOOTBALL</strong>
       <span>7ÈME ÉDITION 2026</span>
     </div>
-    <a href="calendrier.html" class="small-button">VOIR LE CALENDRIER ›</a>
+    <button type="button" class="small-button" id="tournament-toggle" aria-expanded="true" aria-controls="tournament-fixtures">RÉDUIRE −</button>
   </div>
 
-  <div class="fixtures">
+  <div class="fixtures" id="tournament-fixtures">
     <a href="match-21-aout.html" class="fixture selected">
       <div class="fixture-date"><b>21</b><span>AOÛT</span></div>
       <div class="fixture-main">
@@ -472,7 +472,7 @@
     <strong>SOUTENEZ OURAGAN FC !</strong>
     <span>Tee-shirt, drapeau, parfum, casquette, écharpe et mug : portez nos couleurs !</span>
   </div>
-  <b class="reserve">JE RÉSERVE ›</b>
+  <b class="reserve">ACHETER ›</b>
   <div class="support-preview">
     <div class="support-product"><div class="product-art art-shirt" role="img" aria-label="Tee-shirt Ouragan FC noir et orange"></div><span>TEE-SHIRT</span></div>
     <div class="support-product"><div class="product-art art-flag" role="img" aria-label="Drapeau Ouragan FC orange et noir"></div><span>DRAPEAU</span></div>
@@ -595,7 +595,7 @@
     });
   })();
 </script>
-  <a href="#boutique" id="bottom-shop-open" aria-haspopup="dialog" aria-controls="boutique"><span><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M3 5h4l4 16h14l4-11H9M12 25h13"/><circle cx="13" cy="28" r="1.5"/><circle cx="24" cy="28" r="1.5"/></svg></span><b>PANIER</b></a>
+  <a href="#boutique" id="bottom-shop-open" aria-haspopup="dialog" aria-controls="boutique"><span><svg aria-hidden="true" viewBox="0 0 32 32"><path d="M3 5h4l4 16h14l4-11H9M12 25h13"/><circle cx="13" cy="28" r="1.5"/><circle cx="24" cy="28" r="1.5"/></svg><span id="bottom-cart-count" class="cart-badge" aria-hidden="true">0</span></span><b>PANIER</b></a>
   <a href="compte.html"><span><svg aria-hidden="true"><use href="#icon-user"/></svg></span><b>COMPTE</b></a>
 </nav>
 
@@ -850,6 +850,15 @@
     setSportPanel(panel.id, false);
     sportButtons.find(button => button.getAttribute('aria-controls') === panel.id).focus({ preventScroll: true });
   }));
+
+  const tournamentToggle = document.getElementById('tournament-toggle');
+  const tournamentFixtures = document.getElementById('tournament-fixtures');
+  tournamentToggle.addEventListener('click', () => {
+    const open = tournamentFixtures.hidden;
+    tournamentFixtures.hidden = !open;
+    tournamentToggle.setAttribute('aria-expanded', String(open));
+    tournamentToggle.textContent = open ? 'RÉDUIRE −' : 'AGRANDIR +';
+  });
 
   const clubProfileToggle = document.querySelector('.club-profile-toggle');
   const clubProfileContent = document.querySelector('#club-profile-content');

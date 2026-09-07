@@ -787,3 +787,22 @@ html[data-theme="dark"] main > .president-message{
 .bottom-nav .theme-choice{display:flex;width:auto;height:auto;margin:0;padding:7px 8px;gap:4px;color:inherit}
 .bottom-nav .theme-choice>span{display:inline;width:auto;height:auto;margin:0;font-size:16px;color:inherit}
 @media(max-width:380px){.bottom-nav{gap:8px;padding:10px 8px}.bottom-nav>a{flex-basis:46px}.bottom-nav .theme-choice{padding:7px 5px;gap:3px}.bottom-nav .theme-toggle{font-size:9px}}
+
+/* Quantité du panier toujours visible sur le caddie du bas. */
+#bottom-shop-open>span{position:relative}
+.bottom-nav #bottom-cart-count{position:absolute;top:-5px;right:-9px;display:grid;place-items:center;width:auto;min-width:22px;height:22px;margin:0;padding:0 5px;border-radius:999px;background:#f58220;color:#111;font:800 11px Inter,Arial,sans-serif;border:2px solid #fff}
+#tournament-fixtures[hidden]{display:none}
+#tournament-toggle{cursor:pointer;min-height:44px;flex-shrink:0;font-family:inherit}
+#tournament-toggle:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+
+/* Partenaires : une rencontre au stade en image de fond. */
+main>.partners,html[data-theme="dark"] main>.partners{
+  background:linear-gradient(90deg,#080e10b3,#080e1066 55%,#080e1026),url("assets/partenaires-sans-visages.png") center 60%/cover no-repeat;
+  color:#fff;border-color:#b46c30;
+}
+.partners .partners-toggle{min-height:210px;color:#fff}
+.partners .partners-toggle strong{text-shadow:0 2px 12px #0008}
+.partners .partners-toggle small{color:#ffb270}
+.partners .partners-content{margin-top:16px;padding:18px;border:1px solid #ffffff30;border-radius:14px;background:#0b1412ed}
+.partners .partners-intro p{color:#e7dace}
+@media(max-width:560px){.partners .partners-toggle{min-height:180px;align-items:flex-start;justify-content:center;flex-direction:column;gap:16px}.partners .partners-content{padding:14px}}

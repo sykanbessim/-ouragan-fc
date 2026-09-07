@@ -30,7 +30,10 @@
       button('Retirer', 'Retirer du panier', () => { cart.splice(index, 1); render(); status.textContent = 'Article retiré du panier.'; });
       row.append(controls); items.append(row);
     });
-    document.getElementById('cart-count').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const count = cart.reduce((sum, item) => sum + item.quantity, 0);
+    document.getElementById('cart-count').textContent = count;
+    document.getElementById('bottom-cart-count').textContent = count;
+    document.getElementById('bottom-shop-open').setAttribute('aria-label', `Panier : ${count} article${count > 1 ? 's' : ''}`);
     document.getElementById('cart-reserve').disabled = !cart.length;
     try { localStorage.setItem('ouragan-cart', JSON.stringify(cart)); } catch (_) {}
   }
