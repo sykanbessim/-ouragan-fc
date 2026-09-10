@@ -18,7 +18,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css?v=20260907-motion">
+<link rel="stylesheet" href="style.css?v=20260909-updates">
 <link rel="stylesheet" href="composition.css?v=classique-20260907">
 <style>
 .main-logo{display:block;position:relative;z-index:20}
@@ -79,6 +79,8 @@
 
 
 
+<p class="site-update-notice">Le site d’Ouragan FC évolue ! Des améliorations sont en cours pour mieux vous accueillir.</p>
+
 <main>
 
 <section class="hero">
@@ -88,9 +90,6 @@
   <img class="hero-photo-three" src="photo/68ACDA81-8C28-455D-B3BB-84C3AEDC4692.png" alt="Joueur d’Ouragan FC en action avec le ballon">
   <img class="hero-photo-four" src="photo/8661FAFC-301F-4195-A648-F5275778343F.png" alt="Gardien d’Ouragan FC dans le stade">
   <img class="hero-photo-five" src="photo/105DB7C7-7D22-4DE1-B0F6-56AA3C385A19.png" alt="Joueur d’Ouragan FC en action dans le stade">
-  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="photo/F2A59552-A9DC-4C3A-88AE-5FB6C5D1D3EC.png" aria-label="Ouragan FC en action">
-    <source src="Soccer_Emblem_Design_ouragan_fc_finalwebm_hvByG1-a.webm" type="video/webm">
-  </video>
   <div class="hero-overlay-copy">
     <p>ENSEMBLE</p>
     <h1>PLUS FORTS</h1>
@@ -206,6 +205,15 @@
   </div>
 
   <div class="news-grid">
+    <article class="news-card news-card-video">
+      <button class="thumb news-video-preview" type="button" data-news-target="news-direction" aria-controls="news-direction" aria-expanded="false" aria-label="Voir la vidéo de la nouvelle équipe dirigeante d’Ouragan FC">
+        <video muted playsinline preload="metadata" aria-hidden="true" tabindex="-1" src="photo/WhatsApp%20Video%202026-09-07%20at%2012.40.47%20(1).mp4#t=0.1"></video>
+        <span>▶ VIDÉO</span>
+      </button>
+      <small>VIE DU CLUB</small><h3>Une nouvelle équipe dirigeante prend les commandes d’Ouragan FC.</h3>
+      <p>Le club ouvre un nouveau chapitre avec l’ambition de poursuivre son développement, renforcer son organisation et continuer à accompagner les jeunes talents.</p>
+      <button class="news-more" type="button" data-news-target="news-direction" aria-controls="news-direction" aria-expanded="false">VOIR LA VIDÉO ›</button>
+    </article>
     <article class="news-card">
       <div class="thumb"><img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais" loading="lazy"><span>FÉLICITATIONS</span></div>
       <small>14 FÉVRIER 2026</small><h3>REPRÉSENTANT CONGOLAIS</h3>
@@ -228,6 +236,16 @@
     </article>
   </div>
 
+  <div class="news-reader news-video-reader" id="news-direction" hidden>
+    <button class="news-reader-close" type="button" aria-label="Fermer la vidéo">×</button>
+    <video controls playsinline preload="none" aria-label="Nouvelle équipe dirigeante d’Ouragan FC">
+      <source src="photo/WhatsApp%20Video%202026-09-07%20at%2012.40.47%20(1).mp4" type="video/mp4">
+      Votre navigateur ne prend pas en charge la vidéo. <a href="photo/WhatsApp%20Video%202026-09-07%20at%2012.40.47%20(1).mp4">Ouvrir la vidéo</a>.
+    </video>
+    <div><small>VIE DU CLUB</small><h2>Une nouvelle équipe dirigeante prend les commandes d’Ouragan FC.</h2>
+      <p>Le club ouvre un nouveau chapitre avec l’ambition de poursuivre son développement, renforcer son organisation et continuer à accompagner les jeunes talents.</p>
+    </div>
+  </div>
   <div class="news-reader" id="news-otoho" hidden>
     <button class="news-reader-close" type="button" aria-label="Fermer l’actualité">×</button>
     <img src="photo/actualite-as-otoho.jpg" alt="AS Otohô, représentant congolais">
@@ -631,7 +649,10 @@
   const newsCards = [...document.querySelectorAll('[data-news-target]')];
   const newsReaders = [...document.querySelectorAll('.news-reader')];
   const closeNewsReaders = () => {
-    newsReaders.forEach(reader => { reader.hidden = true; });
+    newsReaders.forEach(reader => {
+      reader.querySelectorAll('video').forEach(video => video.pause());
+      reader.hidden = true;
+    });
     newsCards.forEach(card => card.setAttribute('aria-expanded', 'false'));
     document.querySelectorAll('.news-card.is-open').forEach(item => item.classList.remove('is-open'));
   };
@@ -646,7 +667,12 @@
       newsItem.appendChild(reader);
       newsItem.classList.add('is-open');
       reader.hidden = false;
-      card.setAttribute('aria-expanded', 'true');
+      newsCards.filter(opener => opener.dataset.newsTarget === reader.id).forEach(opener => opener.setAttribute('aria-expanded', 'true'));
+      const video = reader.querySelector('video');
+      if (video) {
+        video.play().catch(() => {});
+        reader.querySelector('.news-reader-close').focus({ preventScroll: true });
+      }
       requestAnimationFrame(() => newsItem.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'nearest' }));
     });
   });
@@ -1007,34 +1033,6 @@
   addEventListener('resize', requestSectionDepth);
   updateSectionDepth();
 
-  const heroVideo = document.querySelector('.hero-video');
-  if (heroVideo) {
-    heroVideo.controls = false;
-    heroVideo.muted = true;
-    heroVideo.defaultMuted = true;
-    const playHeroVideo = () => {
-      if (!document.hidden) heroVideo.play().catch(() => {});
-    };
-    const showReadyHeroVideo = () => {
-      heroVideo.classList.add('is-ready');
-      playHeroVideo();
-    };
-    heroVideo.addEventListener('loadeddata', showReadyHeroVideo);
-    heroVideo.addEventListener('canplay', showReadyHeroVideo);
-    const hideUnavailableHeroVideo = () => {
-      if (heroVideo.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
-        heroVideo.hidden = true;
-        heroVideo.classList.remove('is-ready');
-      }
-    };
-    heroVideo.addEventListener('error', hideUnavailableHeroVideo);
-    setTimeout(hideUnavailableHeroVideo, 1500);
-    document.addEventListener('visibilitychange', playHeroVideo);
-    ['pointerdown', 'touchstart', 'keydown'].forEach(eventName => {
-      document.addEventListener(eventName, playHeroVideo, { once: true, passive: true });
-    });
-    playHeroVideo();
-  }
 
 })();
 </script>
