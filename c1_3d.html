@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>C1 • Entrepôt 3D</title><style>
+*{box-sizing:border-box}body{margin:0;background:#101a20;color:#eff5f5;font:14px system-ui,sans-serif}header{height:76px;padding:0 28px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff15;background:#142129}h1{font-size:20px;letter-spacing:-.5px;margin:0}small,.muted{color:#93a8b4}header small{display:block;font-size:10px;letter-spacing:3px;margin-bottom:5px}.score{display:flex;gap:24px}.score b{font-size:23px;margin-right:5px;color:#bce2a5}main{display:grid;grid-template-columns:1fr 320px;height:calc(100dvh - 76px)}#view{position:relative;min-width:0;overflow:hidden;background:#a3b2b8}canvas{display:block;touch-action:none}.badge{position:absolute;top:22px;left:22px;background:#15242bdc;border:1px solid #ffffff25;padding:10px 14px;border-radius:6px;font-size:11px;letter-spacing:2px;pointer-events:none}.badge:before{content:'●';color:#bce2a5;margin-right:9px}.bin-hud{position:absolute;top:22px;right:22px;display:flex;overflow:hidden;border:1px solid #17242a;border-radius:6px;font-weight:800;font-size:18px;pointer-events:none}.bin-hud span{padding:9px 13px;color:#000}.bin-hud .hud-code{background:#fff}.bin-hud .hud-bin{background:#ffdb32}.camera{position:absolute;bottom:20px;left:20px;right:20px;display:flex;gap:8px;align-items:center}.camera span{margin-left:auto;background:#142129bf;padding:9px;border-radius:5px;font-size:11px;color:#d8e3e8}aside{padding:24px;overflow:auto;background:#142129}h2{font-size:10px;letter-spacing:2px;color:#9cafb9;margin:0 0 15px}.step{color:#d5e1e5;font-size:12px;margin-bottom:8px}.readout{font-size:32px;font-weight:650;letter-spacing:-1px;margin:6px 0 16px;color:#e6efcf}button{font:600 12px system-ui;cursor:pointer;border:1px solid #ffffff20;border-radius:6px;background:#23343e;color:#eaf3f5;padding:12px;transition:background .15s}button:hover{background:#344e5b}button:disabled{opacity:.35;cursor:default}button:focus-visible{outline:2px solid #d5edab;outline-offset:2px}.palettes{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.palettes button{padding:12px 3px}.palettes strong{display:block;font-size:23px;margin-bottom:5px}.palettes button.good{background:#456943}.palettes button.bad{background:#8b4138}.line{height:1px;background:#ffffff12;margin:24px 0}.controls{display:grid;grid-template-columns:1fr 1fr;gap:8px}.wide{grid-column:1/-1}.primary{background:#d2eaa5;color:#21301e;border:0}.primary:hover{background:#e1f4bd}#msg{min-height:68px;color:#bdcdd4;font-size:13px;line-height:1.6;margin:16px 0}#phase{font-size:10px;letter-spacing:1.5px;color:#c5e69c}.help{font-size:11px;line-height:1.8;color:#8fa5b2}.brand{margin-top:22px;font-size:10px;letter-spacing:2px;color:#708792}#error{position:absolute;inset:20%;padding:30px;background:#142129;display:none;z-index:5;line-height:1.7}@media(max-width:800px){#speed{display:block}header{padding:0 16px}.score{gap:10px}.score span{font-size:10px}main{display:flex;flex-direction:column;height:auto}#view{height:58dvh;min-height:360px}aside{padding:20px}.camera span{display:none}header small{letter-spacing:1px}}
+input{max-width:100%;background:#23343e;color:white;border:1px solid #657c83;padding:8px;border-radius:4px}#subtitle{font-size:18px;color:#e6efcf;min-height:44px}#testLog{padding-left:18px;max-height:150px;overflow:auto}.camera{flex-wrap:wrap}</style></head><body><header><div><small>FORMATION LOGISTIQUE</small><h1>C1 / Entrepôt 3D</h1></div><div class="score"><span><b id="score">0</b> réussites</span><span><b id="errors" style="color:#eea38b">0</b> erreurs</span></div></header><main><section id="view" aria-label="Entrepôt interactif en trois dimensions"><div class="badge">ALLÉE 01 · ENTRAÎNEMENT</div><div id="error"></div><div class="camera"><button id="stop">Arrêter le chariot</button><span id="speed">Vitesse : 0 · Arrêt</span><span>Molette ↑ accélérer · ↓ ralentir / reculer</span></div></section><aside><h2>TERMINAL DE PRÉPARATION</h2><div id="phase">SESSION VOCALE</div><div class="readout" id="address">Prêt ?</div>
+<div class="step">LYDIA</div><p id="subtitle" role="status" aria-live="polite">Commence une partie pour écouter Lydia.</p><div id="micro" class="help">Micro inactif</div>
+<div class="line"></div><div class="step">QUANTITÉ / DESTINATION</div><div class="readout" id="order">—</div><p id="msg" role="status" aria-live="polite">Cherche le numéro noir au-dessus de la palette.</p>
+<div class="controls"><button id="start" class="wide primary">Commencer · Voix et micro</button><button id="repeat" class="wide">Répéter Lydia · Espace</button><button id="mic" class="wide">Réactiver le micro</button></div>
+<div class="line"></div><h2>SE DÉPLACER DANS L’ALLÉE</h2><div id="bayText" class="step"></div><div class="controls"><button id="back">↓ Ralentir / reculer</button><button id="forward">Accélérer ↑</button><button id="left">← Roll précédent</button><button id="right">Roll suivant →</button><button id="labels">Afficher les rolls</button><button id="pause">Pause</button><button id="reset" class="wide">Nouvelle partie</button><button id="test" class="wide">Mode test vocal · Bin 150 → Delta</button><button id="testSim" class="wide">Test de la boucle sans micro</button></div>
+<div id="testPanel" hidden><div class="line"></div><h2>TEST · SCORE SÉPARÉ</h2><p class="help">Bin 150, détrompeur 25 (« deux, cinq »), destination « Un Delta ». Clique directement le roll Delta.</p><label class="help"><input id="simulate" type="checkbox"> Simuler les réponses vocales (sans micro)</label><div id="simulation" hidden><input id="testText" aria-label="Transcription vocale simulée" placeholder="deux, cinq"><button id="inject">Injecter la transcription</button></div><ol id="testLog" class="help"></ol></div>
+<p class="help">Molette ↑ / ↓ : le chariot bouge immédiatement. Tourne doucement pour ajuster précisément, plus vite pour parcourir une plus grande distance. ← / → : repérer un roll. Espace : répéter Lydia.<br>Vue arrière fixe. Après Lydia, clique directement sur le roll annoncé. Les réponses à Lydia restent vocales.</p><p class="help">Le micro nécessite ton autorisation. Selon le navigateur, la reconnaissance peut utiliser un service en ligne. Aucun enregistrement n’est conservé par le jeu.</p><div class="brand">C1 SIMULATOR / PRÉPARATION VOCALE</div></aside></main><script src="vendor/three.min.js"></script><script src="vehicle-motion.js"></script><script src="preparation-core.js"></script><script src="preparation-voice.js"></script><script>
+(()=>{'use strict';
+const $=s=>document.querySelector(s), view=$('#view');
+const binHud=document.createElement('div');binHud.className='bin-hud';binHud.hidden=true;binHud.innerHTML='<span class="hud-code" id="hudCode">--</span><span class="hud-bin" id="hudBin">BIN ---</span>';view.append(binHud);
+const heardHud=document.createElement('div');heardHud.hidden=true;Object.assign(heardHud.style,{position:'absolute',top:'76px',right:'22px',maxWidth:'280px',padding:'8px 11px',borderRadius:'5px',background:'#142129dc',color:'#eaf3f5',fontSize:'12px',pointerEvents:'none'});view.append(heardHud);
+const sideDivider=document.createElement('div');Object.assign(sideDivider.style,{position:'absolute',top:'0',bottom:'0',left:'50%',width:'1px',background:'#ffffff22',pointerEvents:'none'});view.append(sideDivider);
+const sideHud=document.createElement('div');sideHud.hidden=true;Object.assign(sideHud.style,{position:'absolute',top:'18px',left:'50%',transform:'translateX(-50%)',display:'flex',gap:'8px',flexWrap:'wrap',justifyContent:'center',width:'360px',color:'#eaf3f5',fontSize:'12px',pointerEvents:'none'});view.append(sideHud);
+try {
+if(!window.THREE)throw Error('Le moteur 3D est introuvable. Garde le dossier vendor à côté de ce fichier.');
+const scene=new THREE.Scene();scene.background=new THREE.Color(0x657076);scene.fog=new THREE.Fog(0x657076,38,78);
+const renderer=new THREE.WebGLRenderer({antialias:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.shadowMap.enabled=false;renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.3;view.prepend(renderer.domElement);
+const camera=new THREE.PerspectiveCamera(55,1,.1,100);
+const motion=new VehicleMotion();let viewBay=0,viewZ=0;
+// Même hauteur et recul que la perspective d'origine, recentrés sur l'allée.
+const cameraCookie='c1_camera_elevation',cameraDistanceCookie='c1_camera_distance';
+function savedCameraValue(name,fallback,min,max){
+  try {
+    const value=document.cookie.split('; ').find(item=>item.startsWith(name+'='))?.split('=')[1];
+    const number=Number(decodeURIComponent(value||''));
+    return Number.isFinite(number)&&number>=min&&number<=max ? number : fallback;
+  } catch (_) { return fallback; }
+}
+function saveCameraValue(name,value){document.cookie=name+'='+encodeURIComponent(value)+'; Max-Age=31536000; Path=/; SameSite=Lax';}
+const sideStatsCookie='c1_side_reaction_stats';
+function savedSideStats(){try{return {...{attempts:0,correct:0,wrong:0,totalMs:0,lastMs:0},...JSON.parse(decodeURIComponent(document.cookie.split('; ').find(item=>item.startsWith(sideStatsCookie+'='))?.split('=')[1]||'{}'))};}catch(_){return {attempts:0,correct:0,wrong:0,totalMs:0,lastMs:0};}}
+let sideStats=savedSideStats(),sideTracking=null;
+function saveSideStats(){document.cookie=sideStatsCookie+'='+encodeURIComponent(JSON.stringify(sideStats))+'; Max-Age=31536000; Path=/; SameSite=Lax';}
+let cameraElevation=savedCameraValue(cameraCookie,.28,.18,1.05);
+let cameraDistance=savedCameraValue(cameraDistanceCookie,20,10,32);
+// Le point visé passe derrière le préparateur : pilote plus haut dans l'image,
+// rolls arrière visibles au lieu d'être coupés par le bord inférieur.
+const vehicleFrameLead=6.2;
+function cameraUpdate(){
+  const cameraHeight=Math.sin(cameraElevation)*cameraDistance;
+  const cameraBack=Math.cos(cameraElevation)*cameraDistance;
+  camera.position.set(0,cameraHeight,viewZ+cameraBack);
+  camera.lookAt(0,2.5,viewZ-4+vehicleFrameLead);
+  camera.updateMatrixWorld();
+}
+function resize(){renderer.setSize(view.clientWidth,view.clientHeight);camera.aspect=view.clientWidth/view.clientHeight;camera.updateProjectionMatrix();cameraUpdate()}new ResizeObserver(resize).observe(view);
+scene.add(new THREE.HemisphereLight(0xdbefff,0x85857a,3));const sun=new THREE.DirectionalLight(0xffebce,3);sun.position.set(-8,17,8);scene.add(sun);
+const mat=(c,m=0,r=.7)=>new THREE.MeshStandardMaterial({color:c,metalness:m,roughness:r});const steel=mat(0x8eaaad,.75,.35),dark=mat(0x19292e,.3),blue=mat(0x176293,.5),orange=mat(0xec8c24,.3),wood=mat(0xb18b5a),card=mat(0xb99261),floor=mat(0x69777a),yellow=mat(0xe4c664);
+function box(parent,w,h,d,x,y,z,material){const o=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),material);o.position.set(x,y,z);o.castShadow=true;o.receiveShadow=true;parent.add(o);return o}
+function cylinder(parent,r,len,x,y,z,material){const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,len,16),material);o.rotation.x=Math.PI/2;o.position.set(x,y,z);o.castShadow=true;parent.add(o);return o}
+function label(parent,text,x,y,z,width=1.3,bg='#162b35',fg='#ffffff'){const c=document.createElement('canvas');c.width=512;c.height=128;const ctx=c.getContext('2d');const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthTest:true}));sp.position.set(x,y,z);sp.scale.set(width,width/4,1);parent.add(sp);sp.userData.set=t=>{ctx.fillStyle=bg;ctx.fillRect(0,0,512,128);ctx.fillStyle=fg;ctx.font='bold 64px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,256,68);tex.needsUpdate=true};sp.userData.set(text);return sp}
+function markers(parent,x,y,z){const c=document.createElement('canvas');c.width=192;c.height=96;const ctx=c.getContext('2d');for(const [cx,color] of [[48,'#d4463e'],[144,'#9a643d']]){ctx.fillStyle='#17242a';ctx.beginPath();ctx.arc(cx,48,43,0,Math.PI*2);ctx.fill();ctx.fillStyle=color;ctx.beginPath();ctx.arc(cx,48,35,0,Math.PI*2);ctx.fill()}const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthTest:true}));sp.position.set(x,y,z);sp.scale.set(.68,.34,1);parent.add(sp);return sp}
+// Une seule étiquette : détrompeur blanc à gauche, BIN jaune à droite.
+function binCodeLabel(parent,bin,code,x,y,z,width=1.78){const c=document.createElement('canvas');c.width=720;c.height=160;const ctx=c.getContext('2d');const tex=new THREE.CanvasTexture(c);tex.colorSpace=THREE.SRGBColorSpace;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:tex,depthTest:true}));sp.position.set(x,y,z);sp.scale.set(width,width/4,1);parent.add(sp);sp.userData.set=t=>{ctx.fillStyle='#ffffff';ctx.fillRect(0,0,290,160);ctx.fillStyle='#ffdb32';ctx.fillRect(290,0,430,160);ctx.strokeStyle='#17242a';ctx.lineWidth=8;ctx.strokeRect(0,0,720,160);ctx.beginPath();ctx.moveTo(290,0);ctx.lineTo(290,160);ctx.stroke();ctx.fillStyle='#000';ctx.font='bold 76px Arial';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(t,145,84);ctx.font='bold 84px Arial';ctx.fillText(bin,505,84);tex.needsUpdate=true};sp.userData.set(code);return sp}
+// Béton patiné, joints et traces de roues, générés localement.
+const concrete=document.createElement('canvas');concrete.width=concrete.height=512;const cx=concrete.getContext('2d');let seed=17;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296};cx.fillStyle='#92958f';cx.fillRect(0,0,512,512);for(let i=0;i<32000;i++){const n=110+Math.floor(random()*65);cx.fillStyle=`rgba(${n},${n},${n-4},.15)`;cx.fillRect(random()*512,random()*512,random()*6+1,random()*3+1)}for(let i=0;i<25;i++){cx.fillStyle='rgba(45,49,46,.035)';cx.fillRect(random()*512,0,2+random()*5,512)}const concreteMap=new THREE.CanvasTexture(concrete);concreteMap.wrapS=concreteMap.wrapT=THREE.RepeatWrapping;concreteMap.repeat.set(9,18);concreteMap.colorSpace=THREE.SRGBColorSpace;floor.map=concreteMap;
+box(scene,36,.2,235,0,-.15,-88,floor);for(let z=-205;z<30;z+=7)box(scene,26,.005,.018,0,-.043,z,mat(0x686c67));
+const wall=mat(0xaaa99a);
+box(scene,30,12,.25,0,6,-197,wall);for(let x=-15;x<15;x+=.22)box(scene,.025,7,.06,x,8.5,-196.84,steel);
+function pallet(parent,x,y,z){for(const dx of [-.55,0,.55])box(parent,.18,.18,1.2,x+dx,y+.09,z,wood);for(let j=0;j<5;j++)box(parent,1.5,.09,.19,x,y+.23,z-.48+j*.24,wood)}
+function rod(parent,a,b,r,material){const d=new THREE.Vector3().subVectors(b,a);const o=new THREE.Mesh(new THREE.CylinderGeometry(r,r,d.length(),6),material);o.position.copy(a).add(b).multiplyScalar(.5);o.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),d.normalize());parent.add(o);return o}
+function rack(parent,x,z,active=false){const group=new THREE.Group();parent.add(group);group.position.set(x,0,z);
+for(const xx of [-2.8,2.8])for(const zz of [-.95,.95]){box(group,.13,10.7,.13,xx,5.35,zz,blue);box(group,.32,.55,.32,xx,.275,zz,yellow);}
+for(const yy of [2.45,4.5,6.55,8.6,10.65]){for(const zz of [-.95,.95])box(group,5.7,.18,.12,0,yy,zz,orange);for(let xx=-2.7;xx<2.8;xx+=.5)box(group,.024,.035,1.85,xx,yy+.08,0,steel);for(const zz of [-.5,0,.5])box(group,5.5,.035,.025,0,yy+.08,zz,steel);}
+for(const xx of [-2.8,2.8])for(let y=.5;y<10;y+=2){rod(group,new THREE.Vector3(xx,y,-.9),new THREE.Vector3(xx,y+1.9,.9),.023,steel);rod(group,new THREE.Vector3(xx,y,.9),new THREE.Vector3(xx,y+1.9,-.9),.023,steel);}
+if(active)for(let i=0;i<3;i++){const xx=(i-1)*1.8;pallet(group,xx,.45,0);box(group,1.2,.75,1,xx,1.08,0,card);box(group,.13,.76,1.01,xx,1.08,0,wood)}return group}
+// 34 travées de chaque côté : 200 emplacements et 4 palettes de réserve.
+const binVisuals=new Map(), pickRoot=new THREE.Group(), pickTargets=[];scene.add(pickRoot);
+const hitMaterial=new THREE.MeshBasicMaterial({transparent:true,opacity:0,depthWrite:false});
+const initialBins=Preparation.locations();
+for(let bay=0;bay<34;bay++)for(const side of ['left','right']){
+  const x=side==='left'?-5.8:5.8,z=-bay*5.65;
+  const g=rack(scene,x,z);g.rotation.y=Math.PI/2;
+  for(let slot=0;slot<3;slot++){
+    const id=(bay*3+slot)*2+(side==='left'?1:2),localX=(slot-1)*1.8;
+    pallet(g,localX,0,0);
+    if(id>200){label(g,'RÉSERVE',localX,1.35,side==='left'?1.1:-1.1,1.3,'#ddd8c9','#222222');continue;}
+    for(let level=0;level<2;level++)for(let a=0;a<3;a++)for(let b=0;b<2;b++){
+      box(g,.41,.27,.46,localX+(a-1)*.46,.405+level*.28,(b-.5)*.51,card);
+      box(g,.055,.278,.467,localX+(a-1)*.46,.405+level*.28,(b-.5)*.51,wood);
+    }
+    // Panneau légèrement tourné vers l'allée centrale, sans empiéter dans le passage.
+    const edge=side==='left'?1.42:-1.42;
+    const number=binCodeLabel(g,String(id),initialBins[id-1].code,localX,1.68,edge);
+    markers(g,localX,1.22,edge);
+    const code=number;
+    const position=new THREE.Vector3(x,.7,z-localX);
+    // Les BINs sont visuels : le seul clic de la boucle se fait sur un plateau de roll.
+    number.userData.binId=id;binVisuals.set(id,{number,code,position,bay,side});
+  }
+}
+const train=new THREE.Group();scene.add(train);train.position.z=1.5;train.rotation.y=-Math.PI/2;
+const rolls=[],names=['Alpha','Bravo','Charlie','Delta'];
+// Rolls simplifiés : uniquement les quatre plateaux au sol, sans parois ni grilles.
+for(let i=0;i<4;i++){let x=4.4-i*2.05;const g=new THREE.Group();train.add(g);g.position.x=x;box(g,1.65,.16,1.45,0,.36,0,steel);for(const xx of [-.74,.74])for(const zz of [-.63,.63])cylinder(g,.17,.12,xx,.18,zz,dark);const l=label(g,names[i].toUpperCase(),0,.78,0,1.55);l.visible=false;rolls.push({g,l});}
+// Préparateur debout jaune/noir de la photo : capot avant, cockpit ouvert et long plateau.
+const catYellow=mat(0xe7bb50,.25,.4),rubber=mat(0x15191d),navy=mat(0x202a3e),skin=mat(0xd8b194),vest=mat(0xd9ed28),silver=mat(0xc7cdbe,.35),shirt=mat(0x667079);
+function rounded(parent,w,h,d,x,y,z,m,r=.12){const sh=new THREE.Shape();const a=-w/2,b=-d/2;sh.moveTo(a+r,b);sh.lineTo(a+w-r,b);sh.quadraticCurveTo(a+w,b,a+w,b+r);sh.lineTo(a+w,b+d-r);sh.quadraticCurveTo(a+w,b+d,a+w-r,b+d);sh.lineTo(a+r,b+d);sh.quadraticCurveTo(a,b+d,a,b+d-r);sh.lineTo(a,b+r);sh.quadraticCurveTo(a,b,a+r,b);const geo=new THREE.ExtrudeGeometry(sh,{depth:h,bevelEnabled:true,bevelSize:.035,bevelThickness:.035,bevelSegments:2,steps:1,curveSegments:5});geo.rotateX(-Math.PI/2);const o=new THREE.Mesh(geo,m);o.position.set(x,y-h/2,z);o.castShadow=o.receiveShadow=true;parent.add(o);return o}
+const c1=new THREE.Group();train.add(c1);c1.position.x=-4.85;
+rounded(c1,2.7,.3,1.38,0,.28,0,rubber,.23);rounded(c1,1.05,1.28,1.34,-.78,1,0,catYellow,.25);rounded(c1,1.11,.19,1.4,-.78,1.62,0,rubber,.22);
+box(c1,.85,.11,1.18,.63,.48,0,rubber);for(const z of [-.66,.66]){box(c1,.85,.85,.095,-.02,.92,z,dark);box(c1,.09,.5,.09,-1.05,1.95,z,dark);box(c1,.58,.075,.075,-.8,2.2,z,dark)}
+const console=box(c1,.58,.12,.8,-.35,1.55,0,dark);console.rotation.z=-.22;box(c1,.16,.018,.24,-.25,1.63,.06,mat(0x637f85,.3));
+rod(c1,new THREE.Vector3(-.33,1.53,0),new THREE.Vector3(-.13,1.95,0),.065,dark);const steering=new THREE.Mesh(new THREE.TorusGeometry(.23,.045,8,24),rubber);steering.rotation.y=Math.PI/2;steering.rotation.z=-.3;steering.position.set(-.13,1.95,0);c1.add(steering);
+for(const x of [-.9,.85])for(const z of [-.6,.6])cylinder(c1,.23,.16,x,.21,z,rubber);
+label(c1,'CAT',-.85,1.11,.71,.56,'#171b20','#ffffff');label(c1,'C1',-.85,1.11,-.71,.45,'#171b20','#ffffff');
+// Support plat commun des quatre plateaux.
+box(train,8.2,.16,1.52,1.33,.22,0,dark);
+const driver=new THREE.Group();c1.add(driver);driver.position.set(.55,.5,0);
+for(const z of [-.2,.2]){rod(driver,new THREE.Vector3(0,.13,z),new THREE.Vector3(.06,.85,z),.105,navy);rounded(driver,.4,.16,.22,-.08,.09,z,navy,.06)}
+rounded(driver,.42,.68,.6,0,1.16,0,vest,.08);for(const y of [.98,1.13])box(driver,.435,.07,.615,0,y,0,silver);for(const z of [-.19,.19])box(driver,.44,.55,.055,0,1.23,z,silver);
+rod(driver,new THREE.Vector3(0,1.4,-.34),new THREE.Vector3(-.28,1.22,-.42),.09,shirt);rod(driver,new THREE.Vector3(-.28,1.22,-.42),new THREE.Vector3(-.64,1.43,-.2),.064,skin);
+rod(driver,new THREE.Vector3(0,1.4,.34),new THREE.Vector3(-.25,1.21,.42),.09,shirt);rod(driver,new THREE.Vector3(-.25,1.21,.42),new THREE.Vector3(-.66,1.43,.18),.064,skin);
+const head=new THREE.Mesh(new THREE.SphereGeometry(.19,16,12),skin);head.scale.set(.92,1.15,.9);head.position.set(0,1.79,0);driver.add(head);const cap=new THREE.Mesh(new THREE.SphereGeometry(.2,16,8,0,Math.PI*2,0,Math.PI/2),navy);cap.position.set(0,1.85,0);driver.add(cap);box(driver,.28,.025,.3,-.17,1.86,0,navy);rod(driver,new THREE.Vector3(0,1.83,.19),new THREE.Vector3(-.19,1.66,.19),.018,dark);
+const parcel=new THREE.Group();scene.add(parcel);box(parcel,.72,.58,.65,0,0,0,card);box(parcel,.13,.59,.66,0,0,0,wood);box(parcel,.24,.15,.012,.16,.07,.33,mat(0xf1ecd9));parcel.visible=false;
+const ring=new THREE.Mesh(new THREE.RingGeometry(.64,.72,40),new THREE.MeshBasicMaterial({color:0xd8ee9f,side:THREE.DoubleSide}));ring.rotation.x=-Math.PI/2;scene.add(ring);ring.visible=false;
+// Regrouper les éléments fixes par matériau pour garder l'allée fluide.
+scene.updateMatrixWorld(true);const batches=new Map();const fixed=[];
+for(const child of scene.children){if(child===train||child===parcel||child===ring||child===pickRoot)continue;child.traverse(o=>{if(!o.isMesh||Array.isArray(o.material))return;fixed.push(o);if(!batches.has(o.material))batches.set(o.material,[]);const g=o.geometry.index?o.geometry.toNonIndexed():o.geometry.clone();g.applyMatrix4(o.matrixWorld);batches.get(o.material).push(g)})}
+for(const [material,geometries] of batches){const merged=new THREE.BufferGeometry();for(const name of ['position','normal','uv']){const size=name==='uv'?2:3;const length=geometries.reduce((n,g)=>n+g.attributes[name].array.length,0);const data=new Float32Array(length);let offset=0;for(const g of geometries){data.set(g.attributes[name].array,offset);offset+=g.attributes[name].array.length}merged.setAttribute(name,new THREE.BufferAttribute(data,size))}const mesh=new THREE.Mesh(merged,material);mesh.castShadow=false;mesh.receiveShadow=false;scene.add(mesh);geometries.forEach(g=>g.dispose())}fixed.forEach(o=>{o.removeFromParent();o.geometry.dispose()});
+const session=new Preparation.Session();
+let showLabels=false,selectedRoll=0,animation=null,simulation=false,lastLydia='',testSteps=[],speechBusy=false,actionGeneration=0;
+const instructions={idle:'Commence une session vocale.',code:'Cherche la palette et lis son détrompeur chiffre par chiffre.',roll:'Lydia annonce la destination : clique directement sur le bon roll.',complete:'Roll vert : préparation gagnée.'};
+function logTest(text){if(!session.test)return;testSteps.push(text);const li=document.createElement('li');li.textContent=text;$('#testLog').appendChild(li);}
+const voice=new LydiaVoice({
+  canListen:()=>!simulation&&!session.paused&&session.phase==='code',
+  onText:texts=>{
+    const heard=Array.isArray(texts) ? texts.join(' / ') : texts;
+    const numbers=[...new Set((Array.isArray(texts)?texts:[texts]).map(text=>Preparation.digits(text)||Preparation.guessDigits(text,session.bin?.code)).filter(Boolean))];
+    $('#micro').textContent='Entendu : « '+heard+' »';
+    heardHud.textContent='VOUS : « '+heard+' »'+(numbers.length===1?' → '+numbers[0]:'');heardHud.hidden=false;
+    logTest('Voix reçue : '+heard);
+    handle(session.hear(texts));
+  },
+  onStatus:text=>$('#micro').textContent=text,
+  onFailure:text=>{$('#micro').textContent=text;$('#msg').textContent=text;speechBusy=false;update();}
+});
+function update(){
+  $('#score').textContent=session.score;$('#errors').textContent=session.errors;
+  $('#address').textContent=session.bin?'Bin '+session.bin.number:'Prêt ?';
+  $('#order').textContent=session.codeOK?'Un '+names[session.target]:'—';
+  binHud.hidden=!session.bin||session.phase==='idle';
+  if(session.bin){$('#hudBin').textContent='BIN '+String(session.bin.number).padStart(3,'0');$('#hudCode').textContent=session.bin.code;}
+  $('#phase').textContent=(session.test?'TEST · ':'')+(session.paused?'PAUSE':({idle:'SESSION VOCALE',code:'01 / DÉTROMPEUR VOCAL',roll:'02 / CLIQUER LE ROLL',complete:'PRÉPARATION VALIDÉE'}[session.phase]));
+  $('#pause').textContent=session.paused?'Reprendre':'Pause';$('#pause').disabled=session.phase==='idle';
+  $('.badge').textContent='COULOIR '+String(session.aisle||1).padStart(2,'0')+' · ENTRAÎNEMENT';
+  $('#bayText').textContent='Couloir '+(session.aisle||1)+' · prélèvements '+(session.picksInAisle||0)+' / '+(session.aislePickLimit||10)+' · travée '+(viewBay+1)+' / 34';
+  $('#back').disabled=$('#forward').disabled=!!animation||session.paused;
+  $('#inject').disabled=!simulation||speechBusy||session.paused;
+}
+function renderSideHud(selected=null,correct=null,milliseconds=null){
+  const tag=(side,text)=>{const chosen=selected===side,color=chosen?(correct?'#39b96acc':'#df5650cc'):'#ffffff16';return '<span style="padding:9px 13px;border:1px solid '+(chosen?(correct?'#71e59a':'#ff8e89'):'#ffffff55')+';border-radius:6px;background:'+color+';font-weight:800">'+text+'</span>';};
+  sideHud.innerHTML=tag('left','← IMPAIR')+tag('right','PAIR →')+'<span style="width:100%;text-align:center">Bons : '+sideStats.correct+' · Erreurs : '+sideStats.wrong+(milliseconds===null?'':' · '+milliseconds+' ms')+'</span>';
+}
+function beginSideTracking(){
+  sideTracking={startedAt:performance.now(),armed:false,resolved:false};sideHud.hidden=false;
+  renderSideHud();
+}
+function pointerOverTrain(e,rect){
+  const bounds=new THREE.Box3().setFromObject(train),min=bounds.min,max=bounds.max;
+  let left=Infinity,right=-Infinity,top=Infinity,bottom=-Infinity;
+  for(const x of [min.x,max.x])for(const y of [min.y,max.y])for(const z of [min.z,max.z]){const p=new THREE.Vector3(x,y,z).project(camera);left=Math.min(left,(p.x+1)*rect.width/2);right=Math.max(right,(p.x+1)*rect.width/2);top=Math.min(top,(-p.y+1)*rect.height/2);bottom=Math.max(bottom,(-p.y+1)*rect.height/2);}
+  const x=e.clientX-rect.left,y=e.clientY-rect.top;return x>=left&&x<=right&&y>=top&&y<=bottom;
+}
+function trackSide(e){
+  if(!sideTracking||sideTracking.resolved||session.paused||session.phase!=='code')return;
+  const rect=renderer.domElement.getBoundingClientRect(),x=e.clientX-rect.left;
+  const chariotPosition=train.getWorldPosition(new THREE.Vector3()).project(camera);
+  const center=(chariotPosition.x+1)*rect.width/2;
+  if(pointerOverTrain(e,rect)){sideTracking.armed=true;return;}
+  if(!sideTracking.armed)return;
+  const side=x<center?'left':'right',milliseconds=Math.round(performance.now()-sideTracking.startedAt),correct=side===session.bin.side;
+  sideTracking.resolved=true;sideStats.attempts++;sideStats.totalMs+=milliseconds;sideStats.lastMs=milliseconds;if(correct)sideStats.correct++;else sideStats.wrong++;saveSideStats();
+  renderSideHud(side,correct,milliseconds);
+  if(!correct)$('#msg').textContent='Mauvaise direction : le BIN '+session.bin.number+' est '+(session.bin.side==='left'?'impair à gauche.':'pair à droite.');
+}
+function announce(text,done=()=>{}){
+  const token=++actionGeneration,tracksBin=/\bbin\s+\d+/i.test(text);lastLydia=text;$('#subtitle').textContent='Lydia : « '+text+' »';speechBusy=true;update();
+  voice.say(text,()=>{if(token!==actionGeneration)return;speechBusy=false;$('#micro').textContent=simulation?'TEST — micro arrêté':'Lydia a terminé';if(tracksBin&&session.phase==='code')beginSideTracking();done();update();});
+}
+function listen(){if(simulation){$('#micro').textContent='TEST — transcriptions simulées, micro arrêté';return;}voice.listen();}
+function instruction(){ $('#msg').textContent=session.phase==='destination'?'Colis en main : dis « Un '+names[session.target]+' ».':instructions[session.phase]; }
+function handle(result){
+  if(result.ignored)return;
+  instruction();update();
+  if(result.event==='error'){$('#msg').textContent=result.say;logTest('Erreur refusée, score : '+session.score);}
+  if(result.event==='code'){
+    $('#msg').textContent='Détrompeur validé. Lydia annonce maintenant la destination.';
+    logTest('Détrompeur accepté → Un '+names[session.target]);
+  }
+  if(result.event==='complete'){
+    logTest('Bon roll cliqué → préparation validée');
+    $('#subtitle').textContent='✓ Préparation gagnée';$('#msg').textContent='Le roll est vert. Nouvelle commande dans un instant.';
+    playVictory();speechBusy=false;update();
+    setTimeout(()=>{if(!session.paused&&session.phase==='complete'){parcel.visible=false;newOrder();}},850);return;
+  }
+  if(result.say)announce(result.say);else {speechBusy=false;update();}
+}
+function newOrder(){
+  const result=session.next();parcel.visible=ring.visible=false;animation=null;heardHud.hidden=true;sideTracking=null;sideHud.hidden=true;instruction();update();
+  if(result.newAisle)setBay(0);
+  logTest('Lydia annonce '+result.say);announce(result.say);
+}
+function updateSpeed(){
+  $('#speed').textContent='Molette : déplacement direct · sensibilité '+motion.wheelSensitivity;
+}
+function moveVehicle(distance){
+  if(session.paused||animation)return;
+  if(motion.move(distance)!==0)syncVehicle();
+  updateSpeed();
+}
+function stopVehicle(){updateSpeed();}
+function syncVehicle(){
+  const oldZ=train.position.z;
+  viewZ=motion.position;viewBay=Math.max(0,Math.min(33,Math.round(-viewZ/5.65)));
+  train.position.set(0,0,viewZ+1.5);
+  // Le préparateur et les quatre rolls restent dans le même groupe rigide.
+  train.updateMatrixWorld(true);
+  if(ring.visible)ring.position.z+=train.position.z-oldZ;
+  cameraUpdate();
+  $('#bayText').textContent='Travée '+(viewBay+1)+' / 34 · gauche : impairs · droite : pairs';
+}
+function setBay(bay){
+  // Placement de départ uniquement (nouvelle partie ou scénario de test).
+  motion.reset(-Math.max(0,Math.min(33,bay))*5.65);syncVehicle();updateSpeed();update();
+}
+function start(test=false){
+  voice.stop();voice.blocked=false;actionGeneration++;speechBusy=false;animation=null;
+  heardHud.hidden=true;sideTracking=null;sideHud.hidden=true;
+  session.start(test);simulation=test&&$('#simulate').checked;
+  testSteps=[];$('#testLog').textContent='';$('#testPanel').hidden=!test;$('#simulation').hidden=!simulation;
+  binVisuals.forEach((v,id)=>v.code.userData.set(session.bins[id-1].code));
+  parcel.visible=ring.visible=false;setBay(test?24:0);instruction();update();
+  if(!voice.supported&&!simulation){$('#micro').textContent='Reconnaissance vocale non disponible. Ouvre le jeu dans un navigateur compatible, ou utilise le test simulé.';return;}
+  logTest('Lydia annonce Bin '+session.bin.number);announce('Bin '+session.bin.number);
+}
+for(let i=0;i<4;i++){
+  const r=rolls[i];r.l.visible=showLabels;
+  // La zone de clic épouse exactement le plateau visible : aucune ancienne grille invisible.
+  const hit=box(r.g,1.65,.20,1.45,0,.47,0,hitMaterial);hit.userData.rollIndex=i;pickTargets.push(hit);
+  // Le retour vert/rouge reste lui aussi limité à la surface du plateau.
+  const flash=new THREE.Mesh(new THREE.BoxGeometry(1.72,.24,1.52),new THREE.MeshBasicMaterial({color:0xffffff,transparent:true,opacity:.72,depthTest:false}));
+  flash.position.set(0,.49,0);flash.visible=false;r.g.add(flash);r.flash=flash;
+}
+function flashRoll(index,color){
+  const roll=rolls[index];roll.flash.material.color.set(color);roll.flash.visible=true;
+  clearTimeout(roll.flashTimer);roll.flashTimer=setTimeout(()=>{roll.flash.visible=false;},900);
+}
+function playVictory(){
+  try {const AudioContext=window.AudioContext||window.webkitAudioContext;if(!AudioContext)return;const context=playVictory.context||(playVictory.context=new AudioContext());context.resume();
+    [660,880].forEach((frequency,index)=>{const oscillator=context.createOscillator(),gain=context.createGain(),start=context.currentTime+index*.11;oscillator.type='sine';oscillator.frequency.setValueAtTime(frequency,start);gain.gain.setValueAtTime(.08,start);gain.gain.exponentialRampToValueAtTime(.001,start+.16);oscillator.connect(gain).connect(context.destination);oscillator.start(start);oscillator.stop(start+.17);});
+  } catch (_) {}
+}
+const raycaster=new THREE.Raycaster();
+function sceneClick(e){
+  if(session.paused||speechBusy||animation)return;
+  const rect=renderer.domElement.getBoundingClientRect();raycaster.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,-(e.clientY-rect.top)/rect.height*2+1),camera);
+  scene.updateMatrixWorld(true);
+  const hits=raycaster.intersectObjects(pickTargets,false).filter(h=>h.object.userData.rollIndex!==undefined||Math.abs(binVisuals.get(h.object.userData.binId).bay-viewBay)<=1);
+  if(!hits.length)return;const data=hits[0].object.userData;
+  if(session.phase!=='roll'){$('#msg').textContent='Le dépôt attend le détrompeur vocal.';return;}
+  const result=session.deposit(data.rollIndex);
+  if(result.event!=='complete'){if(result.event==='error')flashRoll(data.rollIndex,0xf04e45);handle(result);return;}
+  // La validation est immédiate et verrouillée ; l'animation ne peut pas compter deux fois.
+  const end=rolls[data.rollIndex].g.getWorldPosition(new THREE.Vector3());end.y=.8;
+  flashRoll(data.rollIndex,0x40cf68);stopVehicle();animation={start:parcel.position.clone(),end,t:0,result};update();
+}
+function selectRoll(dir){selectedRoll=(selectedRoll+dir+4)%4;const p=rolls[selectedRoll].g.getWorldPosition(new THREE.Vector3());ring.position.set(p.x,.02,p.z);ring.visible=true;}
+$('#start').onclick=()=>start(false);$('#reset').onclick=()=>start(false);$('#test').onclick=()=>{$('#simulate').checked=false;start(true);};$('#testSim').onclick=()=>{$('#simulate').checked=true;start(true);};
+$('#repeat').onclick=()=>{if(session.paused||session.phase==='idle'||animation)return;if(session.phase==='complete'){parcel.visible=false;newOrder();return;}announce(lastLydia);};
+$('#mic').onclick=()=>{voice.blocked=false;if(session.paused)return;listen();};
+$('#forward').onclick=()=>moveVehicle(-.45);$('#back').onclick=()=>moveVehicle(.45);$('#stop').onclick=stopVehicle;
+const raiseViewButton=document.createElement('button'),lowerViewButton=document.createElement('button'),zoomInButton=document.createElement('button'),zoomOutButton=document.createElement('button');
+raiseViewButton.id='raiseView';raiseViewButton.type='button';raiseViewButton.textContent='Monter la vue';
+lowerViewButton.id='lowerView';lowerViewButton.type='button';lowerViewButton.textContent='Descendre la vue';
+zoomInButton.id='zoomIn';zoomInButton.type='button';zoomInButton.textContent='Zoom avancer';
+zoomOutButton.id='zoomOut';zoomOutButton.type='button';zoomOutButton.textContent='Zoom reculer';
+raiseViewButton.setAttribute('aria-label','Monter progressivement la vue pour voir les rolls');
+lowerViewButton.setAttribute('aria-label','Descendre progressivement la vue');
+zoomInButton.setAttribute('aria-label','Rapprocher la caméra du chariot');
+zoomOutButton.setAttribute('aria-label','Éloigner la caméra du chariot');
+document.querySelector('.camera').append(raiseViewButton,lowerViewButton,zoomInButton,zoomOutButton);
+function changeCameraElevation(amount){
+  cameraElevation=Math.max(.18,Math.min(1.05,cameraElevation+amount));
+  saveCameraValue(cameraCookie,cameraElevation);cameraUpdate();
+  raiseViewButton.disabled=cameraElevation>=1.05;
+  lowerViewButton.disabled=cameraElevation<=.18;
+}
+raiseViewButton.onclick=()=>changeCameraElevation(.07);
+lowerViewButton.onclick=()=>changeCameraElevation(-.07);
+function changeCameraDistance(amount){
+  cameraDistance=Math.max(10,Math.min(32,cameraDistance+amount));
+  saveCameraValue(cameraDistanceCookie,cameraDistance);cameraUpdate();
+  zoomInButton.disabled=cameraDistance<=10;
+  zoomOutButton.disabled=cameraDistance>=32;
+}
+zoomInButton.onclick=()=>changeCameraDistance(-1.5);
+zoomOutButton.onclick=()=>changeCameraDistance(1.5);
+changeCameraElevation(0);
+changeCameraDistance(0);
+$('#left').onclick=()=>selectRoll(-1);$('#right').onclick=()=>selectRoll(1);
+$('#pause').onclick=()=>{stopVehicle();session.paused=!session.paused;voice.stop();actionGeneration++;speechBusy=false;session.partial='';update();if(!session.paused){if(session.phase==='complete'&&!animation){parcel.visible=false;newOrder();}else announce(lastLydia);}};
+$('#labels').onclick=()=>{showLabels=!showLabels;rolls.forEach(r=>r.l.visible=showLabels);$('#labels').textContent=showLabels?'Masquer les rolls':'Afficher les rolls';};
+$('#simulate').onchange=()=>{voice.stop();actionGeneration++;speechBusy=false;simulation=$('#simulate').checked;$('#simulation').hidden=!simulation;start(true);};
+$('#inject').onclick=()=>{if(!session.test||!simulation||session.paused||speechBusy)return;const text=$('#testText').value;$('#testText').value='';logTest('Transcription simulée : '+text);handle(session.hear(text));};
+// Un glissement ne tourne plus la caméra et ne dépose pas accidentellement un colis.
+let drag=null;
+renderer.domElement.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,moved:false};renderer.domElement.setPointerCapture(e.pointerId);});
+renderer.domElement.addEventListener('pointermove',e=>{if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;trackSide(e);});
+renderer.domElement.addEventListener('pointerup',e=>{if(drag&&!drag.moved)sceneClick(e);drag=null;});
+renderer.domElement.addEventListener('pointercancel',()=>drag=null);
+function onVehicleWheel(e){
+  e.preventDefault();
+  if(session.paused||animation)return;
+  // deltaY négatif = molette vers le haut = progression vers les grands numéros.
+  const moved=motion.moveFromWheel(e.deltaY,e.deltaMode);
+  if(moved!==0)syncVehicle();
+  updateSpeed();
+}
+renderer.domElement.addEventListener('wheel',onVehicleWheel,{passive:false});
+window.addEventListener('keydown',e=>{
+  if(e.repeat||['INPUT','SELECT','TEXTAREA'].includes(e.target.tagName))return;
+  const k=e.key.toLowerCase();if(!['arrowleft','arrowright','arrowup','arrowdown',' '].includes(k))return;
+  if(e.target.tagName==='BUTTON'&&k===' ')return;e.preventDefault();
+  if(k==='arrowup')moveVehicle(-.45);if(k==='arrowdown')moveVehicle(.45);
+  if(k==='arrowleft')selectRoll(-1);if(k==='arrowright')selectRoll(1);
+  if(k===' ')$('#repeat').click();
+});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopVehicle();if(document.hidden&&session.phase!=='idle'&&!session.paused)$('#pause').click();});
+let last=performance.now();function frame(now){const dt=Math.min((now-last)/1000,.05);last=now;if(animation&&!session.paused){animation.t=Math.min(1,animation.t+dt/ .65);parcel.position.lerpVectors(animation.start,animation.end,animation.t);parcel.position.y+=Math.sin(animation.t*Math.PI);if(animation.t===1){const result=animation.result;animation=null;handle(result);}}
+  binVisuals.forEach(v=>{v.number.visible=v.code.visible=Math.abs(v.bay-viewBay)<=3;});renderer.render(scene,camera);requestAnimationFrame(frame);}
+// La session normale commence dès l'ouverture : Lydia annonce le premier BIN sans bouton de démarrage.
+$('#start').hidden=true;
+resize();update();start(false);requestAnimationFrame(frame);
+}catch(e){$('#error').style.display='block';$('#error').textContent='Impossible de démarrer la 3D : '+e.message;console.error(e)}
+})();
+</script></body></html>
