@@ -272,7 +272,7 @@ $('#start').onclick=()=>start(false);$('#reset').onclick=()=>start(false);$('#te
 $('#repeat').onclick=()=>{if(session.paused||session.phase==='idle'||animation)return;if(session.phase==='complete'){parcel.visible=false;newOrder();return;}announce(lastLydia);};
 $('#mic').onclick=()=>{voice.blocked=false;if(session.paused)return;listen();};
 $('#forward').onclick=()=>moveVehicle(-.45);$('#back').onclick=()=>moveVehicle(.45);$('#stop').onclick=stopVehicle;
-const touchStyle=document.createElement('style');touchStyle.textContent='@media(max-width:800px){#touchControls{display:grid!important;grid-template-columns:1fr 1fr;gap:8px;position:absolute;left:0;right:0;bottom:58px}#touchControls button{min-height:48px;font-size:14px;touch-action:manipulation}}';document.head.append(touchStyle);
+  const touchStyle=document.createElement('style');touchStyle.textContent='@media(max-width:800px){.camera{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;padding:8px;background:#142129e8;border:1px solid #ffffff20;border-radius:8px;align-items:stretch}.camera>#stop,.camera>#speed{grid-column:1/-1}.camera>#stop{min-height:44px}.camera>#speed{margin:0;text-align:center;background:transparent;padding:4px}.camera>button{width:100%;min-width:0;min-height:44px;padding:8px}.camera>span:last-of-type{display:none}#touchControls{display:contents!important;position:static!important}#touchControls button{width:100%;min-height:44px;font-size:14px;touch-action:none}.controls{grid-template-columns:repeat(2,minmax(0,1fr))}.controls button{width:100%;min-width:0;min-height:44px;padding:9px}.controls .wide{grid-column:1/-1}}';document.head.append(touchStyle);
 const touchControls=document.createElement('div');touchControls.id='touchControls';touchControls.style.display='none';touchControls.innerHTML='<button type="button" id="touchBack">Reculer</button><button type="button" id="touchForward">Avancer</button>';document.querySelector('.camera').append(touchControls);
 function bindTouchMove(button,distance){let timer=null;const stop=()=>{if(timer){clearInterval(timer);timer=null;}};const start=e=>{e.preventDefault();stop();moveVehicle(distance);timer=setInterval(()=>moveVehicle(distance),110);};button.addEventListener('pointerdown',start);['pointerup','pointercancel','pointerleave'].forEach(type=>button.addEventListener(type,stop));}
 bindTouchMove($('#touchBack'),.45);bindTouchMove($('#touchForward'),-.45);
@@ -313,8 +313,8 @@ $('#inject').onclick=()=>{if(!session.test||!simulation||session.paused||speechB
 let drag=null;
 renderer.domElement.addEventListener('pointerdown',e=>{drag={x:e.clientX,y:e.clientY,lastY:e.clientY,moved:false};renderer.domElement.setPointerCapture(e.pointerId);});
 renderer.domElement.addEventListener('pointermove',e=>{if(drag&&e.pointerType==='touch'){const delta=e.clientY-drag.lastY;if(Math.abs(delta)>1){drag.moved=true;drag.lastY=e.clientY;moveVehicle(delta*.028);return;}}if(drag&&Math.hypot(e.clientX-drag.x,e.clientY-drag.y)>5)drag.moved=true;trackSide(e);});
-renderer.domElement.addEventListener('pointerup',e=>{if(drag&&!drag.moved)sceneClick(e);drag=null;});
-renderer.domElement.addEventListener('pointercancel',()=>drag=null);
+  renderer.domElement.addEventListener('pointerup',e=>{if(drag&&!drag.moved)sceneClick(e);if(renderer.domElement.hasPointerCapture?.(e.pointerId))renderer.domElement.releasePointerCapture(e.pointerId);drag=null;});
+  renderer.domElement.addEventListener('pointercancel',e=>{if(renderer.domElement.hasPointerCapture?.(e.pointerId))renderer.domElement.releasePointerCapture(e.pointerId);drag=null;});
 function onVehicleWheel(e){
   e.preventDefault();
   if(session.paused||animation)return;
